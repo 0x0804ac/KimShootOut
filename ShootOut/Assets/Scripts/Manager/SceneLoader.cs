@@ -8,6 +8,13 @@ public class SceneLoader: MonoBehaviour
 {
     public string scenename;
 
+    public string[] scenelist = new string[] {"Main", "Multi", "Campaign", "Achivement", "Collections", "Customize", "CampaignPlay", "MultiPlay"};
+
+    public void Start()
+    {
+
+    }
+
     public void callScene(string name){
         scenename = name;
         SceneManager.LoadScene(scenename);
@@ -36,5 +43,5 @@ public class SceneLoader: MonoBehaviour
     {
         SceneManager.LoadScene("Customize");
     } 
-    public string GetcurrentScene(){ return scenename }
+//    public string GetcurrentScene(){ return scenename }
 }

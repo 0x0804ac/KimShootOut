@@ -1,0 +1,90 @@
+﻿#include "pch-c.h"
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void GameManager_Start_m87A71D65F3171A58DBDDBFB03832ADA65643D0E2 (void);
+extern void GameManager_StartButton_m625DD862114F045314EA889E9E6CA3FC4FEAF1C1 (void);
+extern void GameManager_StartPlayButton_mB4802319A099BC72CF28E3B1F758A4A43588861C (void);
+extern void GameManager_Update_m7F29D8E933B8D21D2E67507979C0F12ACF87BB41 (void);
+extern void GameManager__ctor_mF453CED520617BFB65C52405A964E06CF17DB368 (void);
+extern void SceneLoader_Start_mB9AA9E8ADCE59F893E3EF8E891ED5E1F3AB80DA0 (void);
+extern void SceneLoader_callScene_mEB61EEF6CE8A69788BDB5CD78A460945E043078D (void);
+extern void SceneLoader_loadMainmenu_m61B4D8A05E3A3B119019D1D4F3383AC80B8B208E (void);
+extern void SceneLoader_loadMultigame_m2F93E22B88F22A622A1787CABED780C0193BA832 (void);
+extern void SceneLoader_loadCampaign_m93529856C3B8A9522D8A216592EDFB2957A82C57 (void);
+extern void SceneLoader_loadAchivement_mD977CD8090D1A723D4FD481B9E37430719659D6A (void);
+extern void SceneLoader_loadCollectin_m75001F531CE093B9BE935E324D986F676E926BF1 (void);
+extern void SceneLoader_loadCustomize_m6988403C7727D465B6CC7C9F501725DCC9476004 (void);
+extern void SceneLoader__ctor_m2248766DF38AF07562AD31501C7275B8DF1B7D29 (void);
+extern void Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6 (void);
+extern void Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1 (void);
+static Il2CppMethodPointer s_methodPointers[18] = 
+{
+	GameManager_Start_m87A71D65F3171A58DBDDBFB03832ADA65643D0E2,
+	GameManager_StartButton_m625DD862114F045314EA889E9E6CA3FC4FEAF1C1,
+	GameManager_StartPlayButton_mB4802319A099BC72CF28E3B1F758A4A43588861C,
+	GameManager_Update_m7F29D8E933B8D21D2E67507979C0F12ACF87BB41,
+	GameManager__ctor_mF453CED520617BFB65C52405A964E06CF17DB368,
+	SceneLoader_Start_mB9AA9E8ADCE59F893E3EF8E891ED5E1F3AB80DA0,
+	SceneLoader_callScene_mEB61EEF6CE8A69788BDB5CD78A460945E043078D,
+	SceneLoader_loadMainmenu_m61B4D8A05E3A3B119019D1D4F3383AC80B8B208E,
+	SceneLoader_loadMultigame_m2F93E22B88F22A622A1787CABED780C0193BA832,
+	SceneLoader_loadCampaign_m93529856C3B8A9522D8A216592EDFB2957A82C57,
+	SceneLoader_loadAchivement_mD977CD8090D1A723D4FD481B9E37430719659D6A,
+	SceneLoader_loadCollectin_m75001F531CE093B9BE935E324D986F676E926BF1,
+	SceneLoader_loadCustomize_m6988403C7727D465B6CC7C9F501725DCC9476004,
+	SceneLoader__ctor_m2248766DF38AF07562AD31501C7275B8DF1B7D29,
+	Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6,
+	Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1,
+};
+static const int32_t s_InvokerIndices[18] = 
+{
+	13758,
+	13758,
+	13758,
+	13758,
+	13758,
+	13758,
+	10383,
+	13758,
+	13758,
+	13758,
+	13758,
+	13758,
+	13758,
+	13758,
+	13758,
+	13758,
+	24147,
+	13758,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
+const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
+{
+	"Assembly-CSharp.dll",
+	18,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};

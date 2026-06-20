@@ -1,0 +1,223 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.UnityTechnologies.com.unity.template.urpblank"
+4    android:installLocation="preferExternal"
+5    android:versionCode="1"
+6    android:versionName="0.1.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="25"
+10        android:targetSdkVersion="36" />
+11
+12    <supports-screens
+12-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:3-163
+13        android:anyDensity="true"
+13-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:135-160
+14        android:largeScreens="true"
+14-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:78-105
+15        android:normalScreens="true"
+15-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:49-77
+16        android:smallScreens="true"
+16-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:21-48
+17        android:xlargeScreens="true" />
+17-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:106-134
+18
+19    <uses-permission android:name="android.permission.INTERNET" />
+19-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:8:5-67
+19-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:8:22-64
+20
+21    <uses-feature android:glEsVersion="0x00030000" />
+21-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:10:5-54
+21-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:10:19-51
+22    <uses-feature
+22-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:11:5-13:36
+23        android:name="android.hardware.vulkan.version"
+23-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:12:9-55
+24        android:required="false" />
+24-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:13:9-33
+25    <uses-feature
+25-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:14:5-16:36
+26        android:name="android.hardware.touchscreen"
+26-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:15:9-52
+27        android:required="false" />
+27-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:16:9-33
+28    <uses-feature
+28-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:17:5-19:36
+29        android:name="android.hardware.touchscreen.multitouch"
+29-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:18:9-63
+30        android:required="false" />
+30-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:19:9-33
+31    <uses-feature
+31-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:20:5-22:36
+32        android:name="android.hardware.touchscreen.multitouch.distinct"
+32-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:21:9-72
+33        android:required="false" />
+33-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:22:9-33
+34
+35    <permission
+35-->[androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+36        android:name="com.UnityTechnologies.com.unity.template.urpblank.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+36-->[androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+37        android:protectionLevel="signature" />
+37-->[androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+38
+39    <uses-permission android:name="com.UnityTechnologies.com.unity.template.urpblank.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+39-->[androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+39-->[androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+40
+41    <application
+41-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:3-83
+42        android:appCategory="game"
+42-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:25:9-35
+43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+43-->[androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+44        android:enableOnBackInvokedCallback="true"
+44-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:26:9-51
+45        android:extractNativeLibs="true"
+46        android:icon="@mipmap/app_icon"
+46-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:16-47
+47        android:label="@string/app_name" >
+47-->C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:48-80
+48        <meta-data
+48-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:28:9-30:33
+49            android:name="unity.splash-mode"
+49-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:29:13-45
+50            android:value="0" />
+50-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:30:13-30
+51        <meta-data
+51-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:31:9-33:36
+52            android:name="unity.splash-enable"
+52-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:32:13-47
+53            android:value="True" />
+53-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:33:13-33
+54        <meta-data
+54-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:34:9-36:36
+55            android:name="unity.launch-fullscreen"
+55-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:35:13-51
+56            android:value="True" />
+56-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:36:13-33
+57        <meta-data
+57-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:37:9-39:36
+58            android:name="unity.render-outside-safearea"
+58-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:38:13-57
+59            android:value="True" />
+59-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:39:13-33
+60        <meta-data
+60-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:40:9-42:50
+61            android:name="notch.config"
+61-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:41:13-40
+62            android:value="portrait|landscape" />
+62-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:42:13-47
+63        <meta-data
+63-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:43:9-45:36
+64            android:name="unity.auto-report-fully-drawn"
+64-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:44:13-57
+65            android:value="true" />
+65-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:45:13-33
+66        <meta-data
+66-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:46:9-48:36
+67            android:name="unity.strip-engine-code"
+67-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:47:13-51
+68            android:value="true" />
+68-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:48:13-33
+69        <meta-data
+69-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:49:9-51:36
+70            android:name="unity.auto-set-game-state"
+70-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:50:13-53
+71            android:value="true" />
+71-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:51:13-33
+72
+73        <activity
+73-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:53:9-88:20
+74            android:name="com.unity3d.player.UnityPlayerGameActivity"
+74-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:54:13-70
+75            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+75-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:55:13-194
+76            android:enabled="true"
+76-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:56:13-35
+77            android:exported="true"
+77-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:57:13-36
+78            android:hardwareAccelerated="false"
+78-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:58:13-48
+79            android:launchMode="singleTask"
+79-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:59:13-44
+80            android:resizeableActivity="true"
+80-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:60:13-46
+81            android:screenOrientation="fullUser"
+81-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:61:13-49
+82            android:theme="@style/BaseUnityGameActivityTheme" >
+82-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:62:13-62
+83            <intent-filter>
+83-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:63:13-67:29
+84                <category android:name="android.intent.category.LAUNCHER" />
+84-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:64:17-77
+84-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:64:27-74
+85
+86                <action android:name="android.intent.action.MAIN" />
+86-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:66:17-69
+86-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:66:25-66
+87            </intent-filter>
+88
+89            <meta-data
+89-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:69:13-71:40
+90                android:name="unityplayer.UnityActivity"
+90-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:70:17-57
+91                android:value="true" />
+91-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:71:17-37
+92            <meta-data
+92-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:72:13-74:40
+93                android:name="android.app.lib_name"
+93-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:73:17-52
+94                android:value="game" />
+94-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:74:17-37
+95            <meta-data
+95-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:75:13-77:71
+96                android:name="WindowManagerPreference:FreeformWindowSize"
+96-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:76:17-74
+97                android:value="@string/FreeformWindowSize_maximize" />
+97-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:77:17-68
+98            <meta-data
+98-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:78:13-80:79
+99                android:name="WindowManagerPreference:FreeformWindowOrientation"
+99-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:79:17-81
+100                android:value="@string/FreeformWindowOrientation_landscape" />
+100-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:80:17-76
+101            <meta-data
+101-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:81:13-83:40
+102                android:name="notch_support"
+102-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:82:17-45
+103                android:value="true" />
+103-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:83:17-37
+104
+105            <layout
+105-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:85:13-87:44
+106                android:minHeight="300px"
+106-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:86:17-42
+107                android:minWidth="400px" />
+107-->[:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:87:17-41
+108        </activity>
+109
+110        <provider
+110-->[androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+111            android:name="androidx.startup.InitializationProvider"
+111-->[androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+112            android:authorities="com.UnityTechnologies.com.unity.template.urpblank.androidx-startup"
+112-->[androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+113            android:exported="false" >
+113-->[androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+114            <meta-data
+114-->[androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+115                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+115-->[androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+116                android:value="androidx.startup" />
+116-->[androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+117            <meta-data
+117-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+118                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+118-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+119                android:value="androidx.startup" />
+119-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+120        </provider>
+121    </application>
+122
+123</manifest>
