@@ -1,0 +1,76 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "BuilderDocument",
+        "m_EditorClassIdentifier": "UnityEditor.UIBuilderModule:Unity.UI.Builder:BuilderDocument",
+        "m_CurrentCanvasTheme": 4,
+        "m_CurrentCanvasThemeStyleSheetReference": {
+            "fileID": -4733365628477956816,
+            "guid": "9fdc86f2b63e6254a9e70fe08d5975e0",
+            "type": 3
+        },
+        "m_CodePreviewVisible": true,
+        "m_OpenUXMLFiles": [
+            {
+                "m_OpenUSSFiles": [
+                    {
+                        "m_StyleSheet": {
+                            "fileID": 7433441132597879392,
+                            "guid": "a42d7049e045f5542a9d966f78691ed7",
+                            "type": 3
+                        },
+                        "m_ContentHash": 1232335656,
+                        "m_UssPreview": ":root {\r\n    width: 360px;\r\n    height: 480px;\r\n    justify-content: flex-start;\r\n    align-self: flex-end;\r\n    right: 0;\r\n    bottom: 0;\r\n}\r\n",
+                        "m_OldPath": "Assets/UI/AttackerUI.uss"
+                    }
+                ],
+                "m_OpenendVisualTreeAssetOldPath": "Assets/Scenes/AttackerUI.uxml",
+                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <Style src=\"project://database/Assets/UI/AttackerUI.uss?fileID=7433441132597879392&amp;guid=a42d7049e045f5542a9d966f78691ed7&amp;type=3#AttackerUI\"/>\r\n    <ui:GroupBox name=\"Box\" style=\"bottom: auto; transform-origin: bottom; height: 60%; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-right: 5px; padding-left: 5px; flex-direction: column; flex-wrap: nowrap; top: 30%; left: auto; right: auto; align-self: auto;\">\r\n        <ui:VisualElement name=\"Panel\" style=\"flex-grow: 1; align-items: stretch; align-self: stretch; align-content: stretch; bottom: auto; right: auto; left: auto; transform-origin: center; height: auto;\">\r\n            <ui:VisualElement name=\"ButtonBound\" style=\"flex-grow: 1; background-color: rgba(0, 0, 0, 0.251); justify-content: center; align-items: auto; align-content: center;\">\r\n                <ui:Button text=\"방향\" name=\"DirectionButton\" style=\"align-items: center; align-self: center; align-content: center;\"/>\r\n            </ui:VisualElement>\r\n            <ui:Slider label=\"파워\" value=\"50\" high-value=\"100\" name=\"PowerSlider\" fill=\"true\" show-input-field=\"false\" style=\"transform-origin: center; white-space: normal; -unity-text-align: upper-left; text-overflow: clip; -unity-text-generator: standard; -unity-text-auto-size: none; flex-wrap: nowrap; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto;\"/>\r\n        </ui:VisualElement>\r\n    </ui:GroupBox>\r\n</ui:UXML>\r\n",
+                "m_ContentHash": -119693686,
+                "m_VisualTreeAssetRef": {
+                    "fileID": 9197481963319205126,
+                    "guid": "e90c6bb96c0dc5146bade970c8730b49",
+                    "type": 3
+                },
+                "m_TemplateAssetId": 0,
+                "m_TemplateAssetIndex": -1,
+                "m_ActiveStyleSheet": {
+                    "instanceID": 0
+                },
+                "m_Settings": {
+                    "UxmlGuid": "e90c6bb96c0dc5146bade970c8730b49",
+                    "UxmlPath": "Assets/Scenes/AttackerUI.uxml",
+                    "CanvasX": 0,
+                    "CanvasY": 0,
+                    "CanvasWidth": 360,
+                    "CanvasHeight": 480,
+                    "MatchGameView": false,
+                    "ZoomScale": 1.0,
+                    "PanOffset": {
+                        "x": 31.37774658203125,
+                        "y": 64.35549926757813
+                    },
+                    "ColorModeBackgroundOpacity": 1.0,
+                    "ImageModeCanvasBackgroundOpacity": 1.0,
+                    "CameraModeCanvasBackgroundOpacity": 1.0,
+                    "EnableCanvasBackground": false,
+                    "CanvasBackgroundMode": 0,
+                    "CanvasBackgroundColor": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0,
+                        "a": 0.250980406999588
+                    },
+                    "CanvasBackgroundImage": {
+                        "instanceID": 0
+                    },
+                    "CanvasBackgroundImageScaleMode": 1,
+                    "CanvasBackgroundCameraName": ""
+                },
+                "m_OpenSubDocumentParentIndex": -1
+            }
+        ],
+        "m_ActiveOpenUXMLFileIndex": 0
+    }
+}

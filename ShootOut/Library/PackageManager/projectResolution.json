@@ -9,6 +9,16 @@
     "C:\\Program Files\\Unity\\Hub\\Editor\\6000.4.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
   ],
   "outputs": {
+    "com.unity.2d.sprite@1.0.0": {
+      "name": "com.unity.2d.sprite",
+      "displayName": "2D Sprite",
+      "resolvedPath": "D:\\GitHub\\KimShootOut\\ShootOut\\Library\\PackageCache\\com.unity.2d.sprite@b95cc7beb645",
+      "fingerprint": "b95cc7beb64592d4ff059701a37494056d863cde",
+      "editorCompatibility": "2019.2.0a1",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
     "com.unity.ai.navigation@2.0.12": {
       "name": "com.unity.ai.navigation",
       "displayName": "AI Navigation",
