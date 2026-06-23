@@ -471,6 +471,7 @@
 "Assets/Scripts/Input/InputActions.cs"
 "Assets/Scripts/Input/SwipeDetection.cs"
 "Assets/Scripts/JoystickInput.cs"
+"Assets/Scripts/ScriptManager.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

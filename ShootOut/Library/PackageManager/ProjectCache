@@ -13,10 +13,18 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639174747762681993
-    m_Hash: 945531084
+      ticks: 639177970701922284
+    m_Hash: 3713925304
 m_EmbeddedPackageManifests:
-  m_ManifestsStatus: {}
+  m_ManifestsStatus:
+    D:/GitHub/KimShootOut/ShootOut/Packages/com.unity.ide.visualstudio/package.json:
+      m_FilePath: D:/GitHub/KimShootOut/ShootOut/Packages/com.unity.ide.visualstudio/package.json
+      m_PathExists: 1
+      m_ContentTrackingEnabled: 1
+      m_ModificationDate:
+        serializedVersion: 2
+        ticks: 639174710604036878
+      m_Hash: 3369814767
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: D:/GitHub/KimShootOut/ShootOut/Packages
@@ -612,12 +620,12 @@ m_ResolvedPackages:
       scopePatternExpression: 
       message: 
       readMoreLink: 
-- packageId: com.unity.ide.visualstudio@2.0.27
-  testable: 0
+- packageId: com.unity.ide.visualstudio@file:D:\GitHub\KimShootOut\ShootOut\Packages\com.unity.ide.visualstudio
+  testable: 1
   isDirectDependency: 1
   version: 2.0.27
-  source: 1
-  resolvedPath: D:\GitHub\KimShootOut\ShootOut\Library\PackageCache\com.unity.ide.visualstudio@dc1ddd4f09b6
+  source: 3
+  resolvedPath: D:\GitHub\KimShootOut\ShootOut\Packages\com.unity.ide.visualstudio
   assetPath: Packages/com.unity.ide.visualstudio
   name: com.unity.ide.visualstudio
   displayName: Visual Studio Editor
@@ -691,9 +699,9 @@ m_ResolvedPackages:
       violations: []
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 639057939089480000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.visualstudio@2.0/manual/index.html
   hasRepository: 1
   repository:
@@ -719,11 +727,11 @@ m_ResolvedPackages:
     have one `sln` or `slnx` file at a time.\n- Properly handle filenames with special
     characters in `link` tags."}'
   signature:
-    status: 1
-    reason: Signature is ok
+    status: 0
+    reason: 
     attestation:
-      format: archive
-      publishingChannel: unity
+      format: 
+      publishingChannel: 
       entitlementKeys: []
       ownerOrgName: 
       ownerOrgId: 

@@ -3,13 +3,13 @@
     "UxmlPath": "Assets/Scenes/AttackerUI.uxml",
     "CanvasX": 0,
     "CanvasY": 0,
-    "CanvasWidth": 360,
-    "CanvasHeight": 480,
-    "MatchGameView": false,
-    "ZoomScale": 1.0,
+    "CanvasWidth": 1080,
+    "CanvasHeight": 1920,
+    "MatchGameView": true,
+    "ZoomScale": 0.5,
     "PanOffset": {
-        "x": 31.37774658203125,
-        "y": 64.35549926757813
+        "x": 31.37762451171875,
+        "y": 64.35531616210938
     },
     "ColorModeBackgroundOpacity": 1.0,
     "ImageModeCanvasBackgroundOpacity": 1.0,

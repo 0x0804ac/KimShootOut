@@ -1,22 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameScript : MonoBehaviour
 {
     public GameObject soccerBall;
     public GameObject goalNet;
-    public GoalScript goalScript;
+    public ScriptManager manager;
 
-    private readonly Vector3 penaltySpot = new Vector3(0f, 0.11f, 41f);
-
+    private readonly Vector3 penaltySpot = new(0f, 0.11f, 41f);
+    private readonly float velocityMultiplier = 23.0f;
+    private bool canShoot = true;
     private Rigidbody rigidBody;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidBody = soccerBall.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -27,11 +27,26 @@ public class GameScript : MonoBehaviour
         rigidBody.linearVelocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;
         soccerBall.transform.localPosition = penaltySpot;
-        goalScript.flag = false;
+        manager.goalScript.flag = false;
+        canShoot = true;
     }
 
     public void Shoot(Vector2 direction, float power)
     {
-        rigidBody.AddForce(new Vector3(direction.x, direction.y, 1.0f) * power, ForceMode.Impulse);
+        if (!canShoot) return;
+        canShoot = false;
+        Vector3 v = direction.normalized;
+        v.z = 1.0f;
+        rigidBody.AddForce(v * power * velocityMultiplier, ForceMode.Impulse);
+        StartCoroutine(ExampleCoroutine());
+    }
+
+    public bool CanShoot() { return canShoot; }
+
+    public IEnumerator ExampleCoroutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        ResetBall();
+        manager.buttonScript.ResetControls();
     }
 }

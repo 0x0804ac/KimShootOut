@@ -4,10 +4,11 @@ public class GoalScript : MonoBehaviour
 {
     public bool flag = false;
     public Collider col;
+    public ScriptManager manager;
 
     void Start()
     {
-        if (col == null) col = GetComponent<Collider>();
+        
     }
 
     void Update()

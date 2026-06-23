@@ -119,7 +119,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &33101910
+--- !u!114 &71119419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4463137627667240005, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+  m_PrefabInstance: {fileID: 1467180903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bf961702a35f54d9b8a062c20203be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameScript
+--- !u!1 &140751402
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,22 +138,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 33101912}
-  - component: {fileID: 33101911}
-  m_Layer: 0
-  m_Name: UI
+  - component: {fileID: 140751404}
+  - component: {fileID: 140751403}
+  - component: {fileID: 140751405}
+  m_Layer: 5
+  m_Name: UIDocument
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &33101911
+--- !u!114 &140751403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33101910}
+  m_GameObject: {fileID: 140751402}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
@@ -159,21 +171,35 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
---- !u!4 &33101912
+--- !u!4 &140751404
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33101910}
+  m_GameObject: {fileID: 140751402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.62644, y: 0, z: -41.45712}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140751405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140751402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c1fd43f09259e4ca5b652574063000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonScript
+  document: {fileID: 140751403}
+  manager: {fileID: 1743038514}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +513,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999919203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5069770025725966758, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+  m_PrefabInstance: {fileID: 1467180903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65171e92c06fc949b6f2c42f2ad5021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoalScript
 --- !u!1001 &1467180903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,6 +536,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stadium
       objectReference: {fileID: 0}
+    - target: {fileID: 2325256147701655774, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267960009825016151, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463137627667240005, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1743038514}
+    - target: {fileID: 5069770025725966758, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1743038514}
     - target: {fileID: 7964573876358409902, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -544,6 +597,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+--- !u!1 &1743038513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1743038515}
+  - component: {fileID: 1743038514}
+  m_Layer: 0
+  m_Name: ScriptManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1743038514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743038513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06024ca46315d7d4ca095944668dda7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScriptManager
+  gameScript: {fileID: 71119419}
+  buttonScript: {fileID: 140751405}
+  goalScript: {fileID: 999919203}
+--- !u!4 &1743038515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743038513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -552,4 +652,5 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1467180903}
-  - {fileID: 33101912}
+  - {fileID: 140751404}
+  - {fileID: 1743038515}
