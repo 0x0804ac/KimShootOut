@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class GoalScript : MonoBehaviour
 {
-    public bool flag = false;
     public Collider col;
     public ScriptManager manager;
+
+    private bool isReady = true;
+
+    public bool Ready
+    {
+        get { return isReady; }
+        set { isReady = value; }
+    }
 
     void Start()
     {
@@ -18,15 +25,13 @@ public class GoalScript : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (flag) return;
-        if (other.gameObject.tag == "Ball")
+        if (!isReady) return;
+        if (other.gameObject.CompareTag("Ball"))
         {
-            Vector3 center = other.transform.position;
-            Vector3 pos = col.ClosestPointOnBounds(center);
-            if (Vector3.Distance(center, pos) > other.GetComponent<SphereCollider>().radius)
+            if (col.bounds.Contains(other.bounds.min) && col.bounds.Contains(other.bounds.max))
             {
                 Debug.Log("GOAL!");
-                flag = true;
+                isReady = false;
             }
         }
     }

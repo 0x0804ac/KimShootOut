@@ -8,7 +8,7 @@ public class GameScript : MonoBehaviour
     public ScriptManager manager;
 
     private readonly Vector3 penaltySpot = new(0f, 0.11f, 41f);
-    private readonly float velocityMultiplier = 23.0f;
+    private readonly float velocityMultiplier = 25.0f;
     private bool canShoot = true;
     private Rigidbody rigidBody;
 
@@ -27,7 +27,7 @@ public class GameScript : MonoBehaviour
         rigidBody.linearVelocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;
         soccerBall.transform.localPosition = penaltySpot;
-        manager.goalScript.flag = false;
+        manager.goalScript.Ready = true;
         canShoot = true;
     }
 
@@ -35,9 +35,8 @@ public class GameScript : MonoBehaviour
     {
         if (!canShoot) return;
         canShoot = false;
-        Vector3 v = direction.normalized;
-        v.z = 1.0f;
-        rigidBody.AddForce(v * power * velocityMultiplier, ForceMode.Impulse);
+        Vector3 v = new(direction.x, direction.y, 1.0f);
+        rigidBody.AddForce(v * (power * velocityMultiplier), ForceMode.Impulse);
         StartCoroutine(ExampleCoroutine());
     }
 

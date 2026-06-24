@@ -82,7 +82,10 @@ public class ButtonScript : MonoBehaviour
         {
             to = evt.position;
             MoveButton();
-            if (manager.gameScript.CanShoot()) manager.gameScript.Shoot(new Vector2(vec.x, -vec.y), slider.value * 0.01f);
+            if (manager.gameScript.CanShoot())
+            {
+                manager.gameScript.Shoot(new Vector2(vec.x, -vec.y) / (boundRadius - buttonRadius), slider.value * 0.01f);
+            }
             isPressed = false;
         }
     }
