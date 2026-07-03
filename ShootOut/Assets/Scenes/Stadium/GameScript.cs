@@ -10,7 +10,8 @@ public class GameScript : MonoBehaviour
 
     private readonly Vector3 penaltySpot = new(0f, 0.11f, 41f);
     private readonly Vector3 goalLine = new(0f, 1f, 52f);
-    private readonly Vector3 pos = new(0f, 0f, 0.5f);
+    private readonly Vector3 ballForce = new(0f, 0.11f, 40.89f);
+    private readonly Vector3 keeperForce = new(0f, 1.5f, 0f);
     private readonly float ballMultiplier = 25.0f;
     private readonly float keeperMultiplier = 10.0f;
     private int turn = 0;
@@ -48,7 +49,7 @@ public class GameScript : MonoBehaviour
         if (!isReady) return;
         isReady = false;
         Vector3 v = new(direction.x, direction.y, 1.0f);
-        ball.AddForce(v * (power * ballMultiplier), ForceMode.Impulse);
+        ball.AddForceAtPosition(v * (power * ballMultiplier), ballForce, ForceMode.Impulse);
         StartCoroutine(ExampleCoroutine());
     }
 
@@ -57,7 +58,7 @@ public class GameScript : MonoBehaviour
         if (!isReady) return;
         isReady = false;
         Vector3 v = new(direction.x, direction.y, -0.1f);
-        keeper.AddForceAtPosition(v * keeperMultiplier, pos, ForceMode.Impulse);
+        keeper.AddForceAtPosition(v * keeperMultiplier, keeperForce, ForceMode.Impulse);
         StartCoroutine(ExampleCoroutine());
     }
 

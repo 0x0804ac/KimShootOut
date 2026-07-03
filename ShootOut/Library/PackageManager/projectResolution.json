@@ -20,13 +20,13 @@
       "source": "builtin",
       "testable": false
     },
-    "com.unity.ai.navigation@2.0.12": {
+    "com.unity.ai.navigation@2.0.13": {
       "name": "com.unity.ai.navigation",
       "displayName": "AI Navigation",
-      "resolvedPath": "D:\\GitHub\\KimShootOut\\ShootOut\\Library\\PackageCache\\com.unity.ai.navigation@734c2c4c5591",
-      "fingerprint": "734c2c4c5591c25b6d4c6c83bd2f4957c118da40",
+      "resolvedPath": "D:\\GitHub\\KimShootOut\\ShootOut\\Library\\PackageCache\\com.unity.ai.navigation@42d896194035",
+      "fingerprint": "42d896194035bae4d686b8dbc562b702b14fea31",
       "editorCompatibility": "6000.0.0a1",
-      "version": "2.0.12",
+      "version": "2.0.13",
       "source": "registry",
       "testable": false
     },
@@ -108,16 +108,6 @@
       "editorCompatibility": "2022.3.0a1",
       "version": "1.8.12",
       "source": "registry",
-      "testable": false
-    },
-    "com.unity.ugui@2.0.0": {
-      "name": "com.unity.ugui",
-      "displayName": "uGUI",
-      "resolvedPath": "D:\\GitHub\\KimShootOut\\ShootOut\\Library\\PackageCache\\com.unity.ugui@1f2d1ab0d950",
-      "fingerprint": "1f2d1ab0d950c1e70186233f26a62f22a5132855",
-      "editorCompatibility": "2019.2.0a1",
-      "version": "2.0.0",
-      "source": "builtin",
       "testable": false
     },
     "com.unity.visualscripting@1.9.11": {
@@ -415,6 +405,16 @@
       "displayName": "Hierarchy Core",
       "resolvedPath": "D:\\GitHub\\KimShootOut\\ShootOut\\Library\\PackageCache\\com.unity.modules.hierarchycore",
       "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.ugui@2.0.0": {
+      "name": "com.unity.ugui",
+      "displayName": "uGUI",
+      "resolvedPath": "D:\\GitHub\\KimShootOut\\ShootOut\\Library\\PackageCache\\com.unity.ugui@1f2d1ab0d950",
+      "fingerprint": "1f2d1ab0d950c1e70186233f26a62f22a5132855",
+      "editorCompatibility": "2019.2.0a1",
+      "version": "2.0.0",
       "source": "builtin",
       "testable": false
     },

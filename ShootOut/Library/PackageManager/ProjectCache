@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639174747762650521
-    m_Hash: 356329760
+      ticks: 639183491695993692
+    m_Hash: 1014033859
   m_LockFileStatus:
     m_FilePath: D:/GitHub/KimShootOut/ShootOut/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639177970701922284
-    m_Hash: 3713925304
+      ticks: 639183491696697586
+    m_Hash: 1828093247
 m_EmbeddedPackageManifests:
   m_ManifestsStatus:
     D:/GitHub/KimShootOut/ShootOut/Packages/com.unity.ide.visualstudio/package.json:
@@ -121,12 +121,12 @@ m_ResolvedPackages:
       scopePatternExpression: 
       message: 
       readMoreLink: 
-- packageId: com.unity.ai.navigation@2.0.12
+- packageId: com.unity.ai.navigation@2.0.13
   testable: 0
   isDirectDependency: 1
-  version: 2.0.12
+  version: 2.0.13
   source: 1
-  resolvedPath: D:\GitHub\KimShootOut\ShootOut\Library\PackageCache\com.unity.ai.navigation@734c2c4c5591
+  resolvedPath: D:\GitHub\KimShootOut\ShootOut\Library\PackageCache\com.unity.ai.navigation@42d896194035
   assetPath: Packages/com.unity.ai.navigation
   name: com.unity.ai.navigation
   displayName: AI Navigation
@@ -214,13 +214,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 639094401028640000
+  datePublishedTicks: 639160313817740000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ai.navigation@2.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ai.navigation.git
-    revision: 242ca4c9e872acfa139a1f7497abc44987f0f4b3
+    revision: a40607ef770e3f5c387227265607ceac209b3a1e
     path: 
   unityLifecycle:
     version: 2.0.12
@@ -234,8 +234,8 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"### Fixed\n* Fixed exception being thrown on Linux
-    when opening the settings windows."}'
+  upmReserved: '{"changelog":"### Fixed\n* Fixed static data not being cleared correctly
+    when using Fast Enter Playmode."}'
   signature:
     status: 1
     reason: Signature is ok
@@ -249,7 +249,7 @@ m_ResolvedPackages:
     errorCode: 
   assetStore:
     productId: 
-  fingerprint: 734c2c4c5591c25b6d4c6c83bd2f4957c118da40
+  fingerprint: 42d896194035bae4d686b8dbc562b702b14fea31
   editorCompatibility:
     compatibilityLevel: 0
     minimumPackageVersion: 2.0.12
@@ -1471,113 +1471,6 @@ m_ResolvedPackages:
     compatibilityLevel: 0
     minimumPackageVersion: 1.8.12
     minimumUnityVersion: 2022.3
-  compliance:
-    status: 0
-    violation:
-      scopePatternExpression: 
-      message: 
-      readMoreLink: 
-- packageId: com.unity.ugui@2.0.0
-  testable: 0
-  isDirectDependency: 1
-  version: 2.0.0
-  source: 2
-  resolvedPath: D:\GitHub\KimShootOut\ShootOut\Library\PackageCache\com.unity.ugui@1f2d1ab0d950
-  assetPath: Packages/com.unity.ugui
-  name: com.unity.ugui
-  displayName: uGUI
-  author:
-    name: 
-    email: 
-    url: 
-  category: 
-  type: 
-  description: "uGUI (Unity UI) is a set of tools for developing user interfaces
-    for games and applications. It is a GameObject-based UI system that uses Components
-    and the Game View to arrange, position, and style user interfaces. \u200B You
-    cannot use Unity UI to create or change user interfaces in the Unity Editor."
-  errors: []
-  versions:
-    all:
-    - 2.0.0
-    compatible:
-    - 2.0.0
-    recommended: 2.0.0
-    deprecated: []
-  dependencies:
-  - name: com.unity.modules.ui
-    version: 1.0.0
-  - name: com.unity.modules.imgui
-    version: 1.0.0
-  resolvedDependencies:
-  - name: com.unity.modules.ui
-    version: 1.0.0
-  - name: com.unity.modules.imgui
-    version: 1.0.0
-  keywords:
-  - UI
-  - ugui
-  - Unity UI
-  - Canvas
-  - TextMeshPro
-  - TextMesh Pro
-  - Text
-  - TMP
-  - SDF
-  registry:
-    id: main
-    name: 
-    url: https://packages.unity.com
-    scopes: []
-    isDefault: 1
-    capabilities: 7
-    configSource: 0
-    compliance:
-      status: 0
-      violations: []
-  hideInEditor: 1
-  entitlements:
-    licensingModel: 0
-  isAssetStorePackage: 0
-  datePublishedTicks: 0
-  documentationUrl: 
-  hasRepository: 0
-  repository:
-    type: 
-    url: 
-    revision: 
-    path: 
-  unityLifecycle:
-    version: 2.0.0
-    nextVersion: 
-    recommendedVersion: 
-    isDeprecated: 0
-    deprecationMessage: 
-    isDiscoverable: 1
-  isDeprecated: 0
-  deprecationMessage: 
-  git:
-    hash: 
-    revision: 
-  upmReserved: 
-  signature:
-    status: 0
-    reason: 
-    attestation:
-      format: 
-      publishingChannel: 
-      entitlementKeys: []
-      ownerOrgName: 
-      ownerOrgId: 
-      publisherName: 
-    errorCode: 
-  assetStore:
-    productId: 
-  fingerprint: 1f2d1ab0d950c1e70186233f26a62f22a5132855
-  editorCompatibility:
-    compatibilityLevel: 0
-    minimumPackageVersion: 2.0.0
-    minimumUnityVersion: 2019.2
   compliance:
     status: 0
     violation:
@@ -5059,6 +4952,113 @@ m_ResolvedPackages:
     compatibilityLevel: 0
     minimumPackageVersion: 1.0.0
     minimumUnityVersion: 
+  compliance:
+    status: 0
+    violation:
+      scopePatternExpression: 
+      message: 
+      readMoreLink: 
+- packageId: com.unity.ugui@2.0.0
+  testable: 0
+  isDirectDependency: 0
+  version: 2.0.0
+  source: 2
+  resolvedPath: D:\GitHub\KimShootOut\ShootOut\Library\PackageCache\com.unity.ugui@1f2d1ab0d950
+  assetPath: Packages/com.unity.ugui
+  name: com.unity.ugui
+  displayName: uGUI
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: "uGUI (Unity UI) is a set of tools for developing user interfaces
+    for games and applications. It is a GameObject-based UI system that uses Components
+    and the Game View to arrange, position, and style user interfaces. \u200B You
+    cannot use Unity UI to create or change user interfaces in the Unity Editor."
+  errors: []
+  versions:
+    all:
+    - 2.0.0
+    compatible:
+    - 2.0.0
+    recommended: 2.0.0
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  keywords:
+  - UI
+  - ugui
+  - Unity UI
+  - Canvas
+  - TextMeshPro
+  - TextMesh Pro
+  - Text
+  - TMP
+  - SDF
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+    compliance:
+      status: 0
+      violations: []
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 2.0.0
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+    isDiscoverable: 1
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  signature:
+    status: 0
+    reason: 
+    attestation:
+      format: 
+      publishingChannel: 
+      entitlementKeys: []
+      ownerOrgName: 
+      ownerOrgId: 
+      publisherName: 
+    errorCode: 
+  assetStore:
+    productId: 
+  fingerprint: 1f2d1ab0d950c1e70186233f26a62f22a5132855
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.0.0
+    minimumUnityVersion: 2019.2
   compliance:
     status: 0
     violation:

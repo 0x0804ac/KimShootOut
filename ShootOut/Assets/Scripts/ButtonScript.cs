@@ -71,6 +71,7 @@ public class ButtonScript : MonoBehaviour
     {
         if (!isPressed)
         {
+            //button.CaptureMouse();
             from = evt.position;
             isPressed = true;
         }
@@ -120,7 +121,7 @@ public class ButtonScript : MonoBehaviour
     {
         isPressed = false;
         button.style.translate = Vector2.zero;
-        slider.value = 50;
+        slider.value = (slider.lowValue + slider.highValue) / 2;
         slider.visible = manager.gameScript.Turn % 2 == 0;
     }
     /*

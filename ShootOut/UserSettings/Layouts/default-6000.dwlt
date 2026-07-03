@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2048
     height: 1204.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 1108
     height: 738.4
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -273,8 +273,8 @@ MonoBehaviour:
     y: 0
     width: 563.19995
     height: 1148.8
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -329,7 +329,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/Stadium
+    - Assets/Scripts/Classes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -339,28 +339,27 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes/Stadium
+  - Assets/Scripts/Classes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitHub\KimShootOut\ShootOut
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 7.5999756}
     m_SelectedIDs:
-    - m_Data: 49564
+    - m_Data: 49984
     m_LastClickedID:
-      m_Data: 49564
+      m_Data: 49984
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49558
-    - m_Data: 49560
-    - m_Data: 49562
-    - m_Data: 49564
-    - m_Data: 49566
-    - m_Data: 49568
-    - m_Data: 49570
-    - m_Data: 49572
+    - m_Data: 49668
+    - m_Data: 49670
+    - m_Data: 49672
+    - m_Data: 49674
+    - m_Data: 49676
+    - m_Data: 49678
+    - m_Data: 49680
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -395,14 +394,13 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49558
-    - m_Data: 49560
-    - m_Data: 49562
-    - m_Data: 49564
-    - m_Data: 49566
-    - m_Data: 49568
-    - m_Data: 49570
-    - m_Data: 49572
+    - m_Data: 49668
+    - m_Data: 49670
+    - m_Data: 49672
+    - m_Data: 49674
+    - m_Data: 49676
+    - m_Data: 49678
+    - m_Data: 49680
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -430,17 +428,16 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs:
-    - m_Data: 50240
+    m_SelectedInstanceIDs: []
     m_LastClickedEntityId:
-      m_Data: 50240
+      m_Data: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 50862
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Item
+      m_OriginalName: Item
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -448,10 +445,10 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_Data: 0
+        m_Data: 50120
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 10}
@@ -573,7 +570,7 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 0
       containerId: overlay-toolbar__top
-      displayed: 1
+      displayed: 0
       id: Services/AI
       index: 5
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
@@ -713,7 +710,7 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 0
       containerId: overlay-toolbar__top
-      displayed: 1
+      displayed: 0
       id: Services/Unity Version Control
       index: 6
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
@@ -774,14 +771,10 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_Data: 50240
+      m_SelectedIDs: []
       m_LastClickedID:
-        m_Data: 50240
+        m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -9620
-      - m_Data: -9618
-      - m_Data: -1606
       - m_Data: -1362
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1404,9 +1397,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0.18984258, y: 3.2790637, z: 37.024357}
+    m_Target: {x: -0.4916739, y: 4.163574, z: 36.33816}
     speed: 2
-    m_Value: {x: 0.18984258, y: 3.2790637, z: 37.024357}
+    m_Value: {x: -0.4916739, y: 4.163574, z: 36.33816}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1453,13 +1446,13 @@ MonoBehaviour:
     m_gridOpacity: 0.482
     m_NearestPlaneToHandleMode: 0
   m_Rotation:
-    m_Target: {x: -0.229841, y: -0.04930375, z: 0.011681278, w: -0.9719515}
+    m_Target: {x: -0.2521132, y: -0.03394868, z: 0.008848565, w: -0.96711934}
     speed: 2
-    m_Value: {x: -0.22983135, y: -0.049301684, z: 0.011680788, w: -0.9719107}
+    m_Value: {x: -0.25209913, y: -0.033946786, z: 0.008848071, w: -0.9670654}
   m_Size:
-    m_Target: 0.17853571
+    m_Target: 0.19052595
     speed: 2
-    m_Value: 0.17853571
+    m_Value: 0.19052595
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1477,7 +1470,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: -0.35803825, y: -0.15277624, z: 0.059499055, w: -0.9192574}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 15}
@@ -1564,7 +1557,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
