@@ -2,21 +2,13 @@ using UnityEngine;
 
 public class Player
 {
-    public readonly long ID;
-    public readonly string NAME;
+    public PlayerProfile profile;
     private Item[] inventory;
     private double score;
 
-    public Player()
+    public Player(PlayerProfile profile)
     {
-        ID = 0L;
-        NAME = "연습 봇";
-    }
-
-    public Player(long id, string name)
-    {
-        ID = id;
-        NAME = name;
+        this.profile = profile;
     }
 
     public Item this[int index]

@@ -7,8 +7,9 @@ public abstract class Versus : Gamemode
     public Versus()
     {
         players = new Player[2];
-        AddPlayers();
     }
 
-    protected abstract void AddPlayers();
+    public abstract GamemodeType GetGamemodeType();
+    public abstract string GetDisplayName();
+    public abstract GameState GetGameState();
 }

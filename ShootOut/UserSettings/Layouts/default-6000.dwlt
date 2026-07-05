@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 1108
     height: 738.4
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -273,8 +273,8 @@ MonoBehaviour:
     y: 0
     width: 563.19995
     height: 1148.8
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -348,18 +348,18 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 7.5999756}
     m_SelectedIDs:
-    - m_Data: 49984
+    - m_Data: 49996
     m_LastClickedID:
-      m_Data: 49984
+      m_Data: 49996
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49668
-    - m_Data: 49670
-    - m_Data: 49672
-    - m_Data: 49674
-    - m_Data: 49676
-    - m_Data: 49678
     - m_Data: 49680
+    - m_Data: 49682
+    - m_Data: 49684
+    - m_Data: 49686
+    - m_Data: 49688
+    - m_Data: 49690
+    - m_Data: 49692
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -394,13 +394,13 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49668
-    - m_Data: 49670
-    - m_Data: 49672
-    - m_Data: 49674
-    - m_Data: 49676
-    - m_Data: 49678
     - m_Data: 49680
+    - m_Data: 49682
+    - m_Data: 49684
+    - m_Data: 49686
+    - m_Data: 49688
+    - m_Data: 49690
+    - m_Data: 49692
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -428,16 +428,17 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
+    m_SelectedInstanceIDs:
+    - m_Data: 50090
     m_LastClickedEntityId:
-      m_Data: 0
+      m_Data: 50090
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 50862
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Item
-      m_OriginalName: Item
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -445,10 +446,10 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_Data: 50120
+        m_Data: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 10}
@@ -771,7 +772,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 50090
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
