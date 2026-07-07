@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2048
     height: 1204.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -246,14 +246,14 @@ MonoBehaviour:
     y: 738.4
     width: 1484.8
     height: 410.40002
-  m_MinSize: {x: 231, y: 276}
-  m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 101, y: 126}
+  m_MaxSize: {x: 4001, y: 4026}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 12}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -329,7 +329,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Classes
+    - Assets/UI/Menu
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Classes
+  - Assets/UI/Menu
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitHub\KimShootOut\ShootOut
   m_LockTracker:
@@ -348,18 +348,18 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 7.5999756}
     m_SelectedIDs:
-    - m_Data: 49996
+    - m_Data: 50070
     m_LastClickedID:
-      m_Data: 49996
+      m_Data: 50070
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49680
-    - m_Data: 49682
-    - m_Data: 49684
-    - m_Data: 49686
-    - m_Data: 49688
-    - m_Data: 49690
     - m_Data: 49692
+    - m_Data: 49694
+    - m_Data: 49696
+    - m_Data: 49698
+    - m_Data: 49700
+    - m_Data: 49702
+    - m_Data: 49704
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -394,13 +394,13 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49680
-    - m_Data: 49682
-    - m_Data: 49684
-    - m_Data: 49686
-    - m_Data: 49688
-    - m_Data: 49690
     - m_Data: 49692
+    - m_Data: 49694
+    - m_Data: 49696
+    - m_Data: 49698
+    - m_Data: 49700
+    - m_Data: 49702
+    - m_Data: 49704
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -429,9 +429,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 50090
+    - m_Data: -52084
     m_LastClickedEntityId:
-      m_Data: 50090
+      m_Data: -52084
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 50862
@@ -773,10 +773,11 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 50090
+      - m_Data: -52084
       m_LastClickedID:
-        m_Data: 0
+        m_Data: -52084
       m_ExpandedIDs:
+      - m_Data: -51856
       - m_Data: -1362
       m_RenameOverlay:
         m_UserAcceptedRename: 0

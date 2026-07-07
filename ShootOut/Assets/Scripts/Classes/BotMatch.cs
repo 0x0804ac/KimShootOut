@@ -9,7 +9,7 @@ public class BotMatch : Versus
 
     public override void End()
     {
-        throw new System.NotImplementedException();
+        state = GameState.ENDING;
     }
 
     public override string GetDisplayName()
@@ -24,17 +24,19 @@ public class BotMatch : Versus
 
     public override void Load()
     {
-        throw new System.NotImplementedException();
+        state = GameState.LOADING;
+        //load items if enabled
+        //load scene
     }
 
     public override void Start()
     {
-        throw new System.NotImplementedException();
+        state = GameState.STARTING;
     }
 
     public override void Turn()
     {
-        throw new System.NotImplementedException();
+        turn++;
     }
 
     public override GameState GetGameState()
@@ -46,6 +48,6 @@ public class BotMatch : Versus
     {
         players[0] = player;
         players[1] = new Player(PlayerProfile.BotProfile(difficulty));
-        state = GameState.LOADING;
+        Load();
     }
 }
