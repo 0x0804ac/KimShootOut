@@ -481,6 +481,7 @@
 "Assets/Scripts/Input/DirectionInput.cs"
 "Assets/Scripts/Input/InputActions.cs"
 "Assets/Scripts/Input/Joystick.cs"
+"Assets/Scripts/Input/MainMenuControls.cs"
 "Assets/Scripts/Input/SwipeDetection.cs"
 "Assets/Scripts/JoystickInput.cs"
 "Assets/Scripts/ScriptManager.cs"
