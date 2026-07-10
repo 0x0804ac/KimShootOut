@@ -1,5 +1,13 @@
 :root {
+    transition-property: translate;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
 }
 
-Button {
+
+
+
+
+.offScreen {
+    translate: -100% 0;
 }

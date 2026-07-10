@@ -11,5 +11,5 @@ public abstract class Versus : Gamemode
 
     public abstract GamemodeType GetGamemodeType();
     public abstract string GetDisplayName();
-    public abstract GameState GetGameState();
+    public abstract GameState State { get; }
 }

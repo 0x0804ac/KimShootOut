@@ -20,8 +20,8 @@
                             "guid": "e41e4252b4a52fa4c8696002518a7295",
                             "type": 3
                         },
-                        "m_ContentHash": 1280997813,
-                        "m_UssPreview": ":root {\r\n}\r\n\r\nButton {\r\n}\r\n",
+                        "m_ContentHash": 1651083313,
+                        "m_UssPreview": ":root {\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n    transition-timing-function: linear;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n.offScreen {\r\n    translate: -100% 0;\r\n}\r\n",
                         "m_OldPath": "Assets/UI/Menu/UIButton.uss"
                     }
                 ],

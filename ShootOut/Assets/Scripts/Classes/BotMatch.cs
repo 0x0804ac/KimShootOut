@@ -39,10 +39,7 @@ public class BotMatch : Versus
         turn++;
     }
 
-    public override GameState GetGameState()
-    {
-        return state;
-    }
+    public override GameState State => state;
 
     public BotMatch(Player player, double difficulty)
     {
