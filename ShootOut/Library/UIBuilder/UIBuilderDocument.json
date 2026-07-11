@@ -20,8 +20,8 @@
                             "guid": "e41e4252b4a52fa4c8696002518a7295",
                             "type": 3
                         },
-                        "m_ContentHash": 1651083313,
-                        "m_UssPreview": ":root {\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n    transition-timing-function: linear;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n.offScreen {\r\n    translate: -100% 0;\r\n}\r\n",
+                        "m_ContentHash": 111345409,
+                        "m_UssPreview": ":root {\r\n    translate: 0% 0 1px;\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n}\r\n\r\n.offScreenLeft {\r\n    translate: -100% 0;\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n    transition-timing-function: ease;\r\n    transition-delay: 0s;\r\n}\r\n\r\n.offScreenRight {\r\n    translate: 100% 0;\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n    transition-timing-function: ease;\r\n    transition-delay: 0s;\r\n}\r\n",
                         "m_OldPath": "Assets/UI/Menu/UIButton.uss"
                     }
                 ],

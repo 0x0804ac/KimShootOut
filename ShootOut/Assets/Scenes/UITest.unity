@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 374492256}
   - component: {fileID: 374492258}
   m_Layer: 5
-  m_Name: UIDocument
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,6 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0797cece76b81014ea647324fef564d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuControls
+  singleplayerDocument: {fileID: 0}
+  multiplayerDocument: {fileID: 0}
+  cosmeticsDocument: {fileID: 0}
+  settingsDocument: {fileID: 0}
+  creditsDocument: {fileID: 0}
 --- !u!1 &1180227101
 GameObject:
   m_ObjectHideFlags: 0

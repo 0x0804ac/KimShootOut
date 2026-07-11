@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class MainMenuControls : MonoBehaviour
 {
+    [SerializeField] private UIDocument singleplayerDocument, multiplayerDocument, customizeDocument, settingsDocument, creditsDocument;
+
     private UIDocument document;
     private VisualElement root;
     private bool isHidden = false;
@@ -16,11 +18,13 @@ public class MainMenuControls : MonoBehaviour
     private void OnEnable()
     {
         RegisterClickEvents();
+        root.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
     }
 
     private void OnDisable()
     {
         UnregisterClickEvents();
+        root.UnregisterCallback<TransitionEndEvent>(OnTransitionEnd);
     }
 
     private void RegisterClickEvent(string buttonName, System.Action action)
@@ -57,34 +61,41 @@ public class MainMenuControls : MonoBehaviour
     {
         if (!isHidden) UnregisterClickEvents();
         isHidden = !isHidden;
-        root.EnableInClassList("offScreen", isHidden);
-        if (!isHidden) Invoke(nameof(RegisterClickEvents), 0.5f);
+        root.EnableInClassList("offScreenLeft", isHidden);
     }
 
     private void OnSingleplayerButtonClick()
     {
         ToggleVisible();
+        singleplayerDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
     }
 
     private void OnMultiplayerButtonClick()
     {
         ToggleVisible();
+        multiplayerDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
     }
 
     private void OnCustomizeButtonClick()
     {
         ToggleVisible();
+        customizeDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
     }
 
     private void OnSettingsButtonClick()
     {
         ToggleVisible();
+        settingsDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
     }
 
     private void OnCreditsButtonClick()
     {
         ToggleVisible();
+        creditsDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
     }
 
-    //public IEnumerator ShowUI(string name) { yield return new WaitForSeconds(0.5f); }
+    private void OnTransitionEnd(TransitionEndEvent evt)
+    {
+        if (!isHidden) RegisterClickEvents();
+    }
 }

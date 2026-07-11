@@ -1,13 +1,21 @@
 :root {
+    translate: 0% 0 1px;
     transition-property: translate;
     transition-duration: 0.5s;
-    transition-timing-function: linear;
 }
 
-
-
-
-
-.offScreen {
+.offScreenLeft {
     translate: -100% 0;
+    transition-property: translate;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
+.offScreenRight {
+    translate: 100% 0;
+    transition-property: translate;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
 }
