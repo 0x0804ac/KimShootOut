@@ -1,45 +1,16 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MainMenuControls : MonoBehaviour
+public class MainMenuControls : UIControls
 {
-    [SerializeField] private UIDocument singleplayerDocument, multiplayerDocument, customizeDocument, settingsDocument, creditsDocument;
+    [SerializeField] private UIControls singleplayerScript, multiplayerScript, customizeScript, settingsScript, creditsScript;
 
-    private UIDocument document;
-    private VisualElement root;
-    private bool isHidden = false;
-
-    private void Awake()
+    protected override void Init()
     {
-        document = GetComponent<UIDocument>();
-        root = document.rootVisualElement;
+        isHidden = false;
     }
 
-    private void OnEnable()
-    {
-        RegisterClickEvents();
-        root.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
-    }
-
-    private void OnDisable()
-    {
-        UnregisterClickEvents();
-        root.UnregisterCallback<TransitionEndEvent>(OnTransitionEnd);
-    }
-
-    private void RegisterClickEvent(string buttonName, System.Action action)
-    {
-        Button button = root.Q<Button>(buttonName);
-        if (button != null) button.clicked += action;
-    }
-
-    private void UnregisterClickEvent(string buttonName, System.Action action)
-    {
-        Button button = root.Q<Button>(buttonName);
-        if (button != null) button.clicked -= action;
-    }
-
-    private void RegisterClickEvents()
+    protected override void RegisterClickEvents()
     {
         RegisterClickEvent("singleplayer-button", OnSingleplayerButtonClick);
         RegisterClickEvent("multiplayer-button", OnMultiplayerButtonClick);
@@ -48,7 +19,7 @@ public class MainMenuControls : MonoBehaviour
         RegisterClickEvent("credits-button", OnCreditsButtonClick);
     }
 
-    private void UnregisterClickEvents()
+    protected override void UnregisterClickEvents()
     {
         UnregisterClickEvent("singleplayer-button", OnSingleplayerButtonClick);
         UnregisterClickEvent("multiplayer-button", OnMultiplayerButtonClick);
@@ -57,45 +28,33 @@ public class MainMenuControls : MonoBehaviour
         UnregisterClickEvent("credits-button", OnCreditsButtonClick);
     }
 
-    public void ToggleVisible()
-    {
-        if (!isHidden) UnregisterClickEvents();
-        isHidden = !isHidden;
-        root.EnableInClassList("offScreenLeft", isHidden);
-    }
-
     private void OnSingleplayerButtonClick()
     {
-        ToggleVisible();
-        singleplayerDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
+        MoveToLeft();
+        singleplayerScript.MoveToCenter();
     }
 
     private void OnMultiplayerButtonClick()
     {
-        ToggleVisible();
-        multiplayerDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
+        MoveToLeft();
+        multiplayerScript.MoveToCenter();
     }
 
     private void OnCustomizeButtonClick()
     {
-        ToggleVisible();
-        customizeDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
+        MoveToLeft();
+        customizeScript.MoveToCenter();
     }
 
     private void OnSettingsButtonClick()
     {
-        ToggleVisible();
-        settingsDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
+        MoveToLeft();
+        settingsScript.MoveToCenter();
     }
 
     private void OnCreditsButtonClick()
     {
-        ToggleVisible();
-        creditsDocument.rootVisualElement.EnableInClassList("offScreenRight", false);
-    }
-
-    private void OnTransitionEnd(TransitionEndEvent evt)
-    {
-        if (!isHidden) RegisterClickEvents();
+        MoveToLeft();
+        creditsScript.MoveToCenter();
     }
 }
