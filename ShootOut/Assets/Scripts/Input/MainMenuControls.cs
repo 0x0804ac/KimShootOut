@@ -5,6 +5,13 @@ public class MainMenuControls : UIControls
 {
     [SerializeField] private UIControls singleplayerScript, multiplayerScript, customizeScript, settingsScript, creditsScript;
 
+    const string SINGLEPLAYER = "singleplayer-button";
+    const string MULTIPLAYER = "multiplayer-button";
+    const string CUSTOMIZE = "customize-button";
+    const string SETTINGS = "settings-button";
+    const string CREDITS = "credits-button";
+    const string QUIT = "quit-button";
+
     protected override void Init()
     {
         isHidden = false;
@@ -12,20 +19,22 @@ public class MainMenuControls : UIControls
 
     protected override void RegisterClickEvents()
     {
-        RegisterClickEvent("singleplayer-button", OnSingleplayerButtonClick);
-        RegisterClickEvent("multiplayer-button", OnMultiplayerButtonClick);
-        RegisterClickEvent("customize-button", OnCustomizeButtonClick);
-        RegisterClickEvent("settings-button", OnSettingsButtonClick);
-        RegisterClickEvent("credits-button", OnCreditsButtonClick);
+        RegisterClickEvent(SINGLEPLAYER, OnSingleplayerButtonClick);
+        RegisterClickEvent(MULTIPLAYER, OnMultiplayerButtonClick);
+        RegisterClickEvent(CUSTOMIZE, OnCustomizeButtonClick);
+        RegisterClickEvent(SETTINGS, OnSettingsButtonClick);
+        RegisterClickEvent(CREDITS, OnCreditsButtonClick);
+        RegisterClickEvent(QUIT, OnQuitButtonClick);
     }
 
     protected override void UnregisterClickEvents()
     {
-        UnregisterClickEvent("singleplayer-button", OnSingleplayerButtonClick);
-        UnregisterClickEvent("multiplayer-button", OnMultiplayerButtonClick);
-        UnregisterClickEvent("customize-button", OnCustomizeButtonClick);
-        UnregisterClickEvent("settings-button", OnSettingsButtonClick);
-        UnregisterClickEvent("credits-button", OnCreditsButtonClick);
+        UnregisterClickEvent(SINGLEPLAYER, OnSingleplayerButtonClick);
+        UnregisterClickEvent(MULTIPLAYER, OnMultiplayerButtonClick);
+        UnregisterClickEvent(CUSTOMIZE, OnCustomizeButtonClick);
+        UnregisterClickEvent(SETTINGS, OnSettingsButtonClick);
+        UnregisterClickEvent(CREDITS, OnCreditsButtonClick);
+        UnregisterClickEvent(QUIT, OnQuitButtonClick);
     }
 
     private void OnSingleplayerButtonClick()
@@ -56,5 +65,10 @@ public class MainMenuControls : UIControls
     {
         MoveToLeft();
         creditsScript.MoveToCenter();
+    }
+
+    private void OnQuitButtonClick()
+    {
+        print("Show quit confirm dialog");
     }
 }

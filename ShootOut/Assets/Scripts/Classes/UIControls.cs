@@ -17,13 +17,13 @@ public abstract class UIControls : MonoBehaviour
         Init();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         RegisterClickEvents();
         root.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         UnregisterClickEvents();
         root.UnregisterCallback<TransitionEndEvent>(OnTransitionEnd);

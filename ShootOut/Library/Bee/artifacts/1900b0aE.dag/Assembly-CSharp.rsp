@@ -479,6 +479,7 @@
 "Assets/Scripts/Classes/Tutorial.cs"
 "Assets/Scripts/Classes/UIControls.cs"
 "Assets/Scripts/Classes/Versus.cs"
+"Assets/Scripts/Input/BackButton.cs"
 "Assets/Scripts/Input/DirectionInput.cs"
 "Assets/Scripts/Input/InputActions.cs"
 "Assets/Scripts/Input/Joystick.cs"

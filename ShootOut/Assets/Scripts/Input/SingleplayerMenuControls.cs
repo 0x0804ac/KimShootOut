@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 public class SingleplayerMenuControls : UIControls
 {
-    [SerializeField] private UIControls mainmenuScript, practicemenuScript, vsbotmenuScript;
+    [SerializeField] private UIControls tutorialMenu, practiceMenu, vsBotMenu;
 
     protected override void Init()
     {
