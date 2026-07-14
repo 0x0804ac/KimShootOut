@@ -5,24 +5,28 @@ public class SingleplayerMenuControls : UIControls
 {
     [SerializeField] private UIControls tutorialMenu, practiceMenu, vsBotMenu;
 
+    const string TUTORIAL = "tutorial-button";
+    const string PRACTICE = "practice-button";
+    const string BOTMATCH = "vsbot-button";
+
     protected override void Init()
     {
         isHidden = true;
         root.EnableInClassList(RIGHT, true);
     }
 
-    protected override void RegisterClickEvents()
+    protected override void RegisterEvents()
     {
-        RegisterClickEvent("tutorial-button", OnTutorialButtonClick);
-        RegisterClickEvent("practice-button", OnPracticeButtonClick);
-        RegisterClickEvent("vsbot-button", OnVersusBotButtonClick);
+        RegisterClickEvent(TUTORIAL, OnTutorialButtonClick);
+        RegisterClickEvent(PRACTICE, OnPracticeButtonClick);
+        RegisterClickEvent(BOTMATCH, OnVersusBotButtonClick);
     }
 
-    protected override void UnregisterClickEvents()
+    protected override void UnregisterEvents()
     {
-        UnregisterClickEvent("tutorial-button", OnTutorialButtonClick);
-        UnregisterClickEvent("practice-button", OnPracticeButtonClick);
-        UnregisterClickEvent("vsbot-button", OnVersusBotButtonClick);
+        UnregisterClickEvent(TUTORIAL, OnTutorialButtonClick);
+        UnregisterClickEvent(PRACTICE, OnPracticeButtonClick);
+        UnregisterClickEvent(BOTMATCH, OnVersusBotButtonClick);
     }
 
     private void OnTutorialButtonClick()

@@ -215,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507708837}
   - component: {fileID: 507708839}
+  - component: {fileID: 507708840}
   - component: {fileID: 507708838}
   m_Layer: 0
   m_Name: Settings Menu
@@ -222,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &507708837
 Transform:
   m_ObjectHideFlags: 0
@@ -251,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackButton
   previousMenu: {fileID: 1272394845}
-  thisMenu: {fileID: 0}
+  thisMenu: {fileID: 507708840}
 --- !u!114 &507708839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +276,18 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &507708840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507708836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5407bb9867ae9824eae46907b49cd4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsMenuControls
 --- !u!1 &809843694
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 809843695}
   - component: {fileID: 809843696}
+  - component: {fileID: 809843698}
   - component: {fileID: 809843697}
   m_Layer: 0
   m_Name: Multiplayer Menu
@@ -292,7 +306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &809843695
 Transform:
   m_ObjectHideFlags: 0
@@ -344,7 +358,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackButton
   previousMenu: {fileID: 1272394845}
-  thisMenu: {fileID: 0}
+  thisMenu: {fileID: 809843698}
+--- !u!114 &809843698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809843694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e98e0d4754c7474a8d29934d4559135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MultiplayerMenuControls
+  eventMenu: {fileID: 0}
+  normalMenu: {fileID: 0}
+  rankedMenu: {fileID: 0}
+  customMenu: {fileID: 0}
 --- !u!1 &834903034
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,9 +607,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuControls
   singleplayerScript: {fileID: 14843567}
-  multiplayerScript: {fileID: 0}
-  customizeScript: {fileID: 0}
-  settingsScript: {fileID: 0}
+  multiplayerScript: {fileID: 809843698}
+  customizeScript: {fileID: 1415116641}
+  settingsScript: {fileID: 507708840}
   creditsScript: {fileID: 0}
 --- !u!1 &1339044053
 GameObject:
@@ -797,6 +827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415116638}
   - component: {fileID: 1415116640}
+  - component: {fileID: 1415116641}
   - component: {fileID: 1415116639}
   m_Layer: 0
   m_Name: Customize Menu
@@ -804,7 +835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1415116638
 Transform:
   m_ObjectHideFlags: 0
@@ -833,7 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackButton
   previousMenu: {fileID: 1272394845}
-  thisMenu: {fileID: 0}
+  thisMenu: {fileID: 1415116641}
 --- !u!114 &1415116640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,6 +888,21 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &1415116641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415116637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbd0aa832fa19243a1dedbf8fc141ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomizeMenuControls
+  playerMenu: {fileID: 0}
+  effectMenu: {fileID: 0}
+  profileMenu: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

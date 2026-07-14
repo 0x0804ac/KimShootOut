@@ -17,7 +17,7 @@ public class MainMenuControls : UIControls
         isHidden = false;
     }
 
-    protected override void RegisterClickEvents()
+    protected override void RegisterEvents()
     {
         RegisterClickEvent(SINGLEPLAYER, OnSingleplayerButtonClick);
         RegisterClickEvent(MULTIPLAYER, OnMultiplayerButtonClick);
@@ -27,7 +27,7 @@ public class MainMenuControls : UIControls
         RegisterClickEvent(QUIT, OnQuitButtonClick);
     }
 
-    protected override void UnregisterClickEvents()
+    protected override void UnregisterEvents()
     {
         UnregisterClickEvent(SINGLEPLAYER, OnSingleplayerButtonClick);
         UnregisterClickEvent(MULTIPLAYER, OnMultiplayerButtonClick);

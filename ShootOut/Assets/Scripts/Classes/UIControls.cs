@@ -19,13 +19,13 @@ public abstract class UIControls : MonoBehaviour
 
     void OnEnable()
     {
-        RegisterClickEvents();
+        RegisterEvents();
         root.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
     }
 
     void OnDisable()
     {
-        UnregisterClickEvents();
+        UnregisterEvents();
         root.UnregisterCallback<TransitionEndEvent>(OnTransitionEnd);
     }
 
@@ -43,19 +43,19 @@ public abstract class UIControls : MonoBehaviour
 
     protected abstract void Init();
 
-    protected abstract void RegisterClickEvents();
+    protected abstract void RegisterEvents();
 
-    protected abstract void UnregisterClickEvents();
+    protected abstract void UnregisterEvents();
 
     private void OnTransitionEnd(TransitionEndEvent evt)
     {
-        if (!isHidden) RegisterClickEvents();
+        if (!isHidden) RegisterEvents();
     }
 
     public void MoveToLeft()
     {
         if (isHidden) return;
-        UnregisterClickEvents();
+        UnregisterEvents();
         isHidden = true;
         root.EnableInClassList(LEFT, true);
     }
@@ -71,7 +71,7 @@ public abstract class UIControls : MonoBehaviour
     public void MoveToRight()
     {
         if (isHidden) return;
-        UnregisterClickEvents();
+        UnregisterEvents();
         isHidden = true;
         root.EnableInClassList(RIGHT, true);
     }
