@@ -1,0 +1,353 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+MERGED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:2:1-91:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\user\.gradle\caches\9.1.0\transforms\8c733786075954d23b40c9961d674455\workspace\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\user\.gradle\caches\9.1.0\transforms\ffea51a0f1c65c064625cba14ca0df4a\workspace\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\user\.gradle\caches\9.1.0\transforms\9661b0ba661a170c3bd79b5ef59efda8\workspace\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\user\.gradle\caches\9.1.0\transforms\0e0f209d6f0ac8b45f4650eaafb2afc6\workspace\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\user\.gradle\caches\9.1.0\transforms\003c613b11484095eac6aaa889d6544a\workspace\transformed\jetified-activity-1.6.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\5510396b2a70e2e05c187fb9d1d3b0e9\workspace\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\4bb4d66617e7a0f556d697dd9f2d761d\workspace\transformed\jetified-emoji2-views-helper-1.2.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\b04a9648c7e3bf0f5bf26cf53a8bdcaa\workspace\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\255af3c8a500b17ebec42ff8e18495b0\workspace\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\e739ca00daf45c5ca1a50df6960f290e\workspace\transformed\jetified-lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\6056762eaa36fa6e1c0ff0681d18fee0\workspace\transformed\jetified-core-ktx-1.9.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\7fce8abeb0d4bf115438765e2eeec6c0\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\e3d30ead8adf49c33af85b89f9d6ad93\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\6118ee4858504e6ecd21f239f5f72973\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\dc405093e23d3db21eeb23be982be239\workspace\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.games:games-activity:4.4.0] C:\Users\user\.gradle\caches\9.1.0\transforms\1729aecbaee4d53c43e888c08a695309\workspace\transformed\jetified-games-activity-4.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\37590401797ef0632b4dd45b36063ab9\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\784cabc324a8287be1690c41cec1e6bf\workspace\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\3f249b226d560a1c026dde7e7ad33c9e\workspace\transformed\jetified-savedstate-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\41f53fd9d5071e7446530b5e7674ea83\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\411d60c3fbf3259e39e7610666599a2d\workspace\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\4a65c1880e13d1296359d8258976a8fa\workspace\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\428e32ccc0b8ed2adf722352f098fad5\workspace\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\f4b44d32e452ed540313e46fe1c487b1\workspace\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\58c4ddbfde4086720e2150d60453c035\workspace\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\16d74f1bcd8fde8322b2647b5db4be59\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\user\.gradle\caches\9.1.0\transforms\35510ab5c872de3a7d8c104c1bd69037\workspace\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
+	package
+		INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:111-157
+	android:versionCode
+		INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:52-110
+	android:installLocation
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:11-51
+application
+ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:3-83
+INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:3-83
+MERGED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:24:5-89:19
+MERGED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:24:5-89:19
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\user\.gradle\caches\9.1.0\transforms\8c733786075954d23b40c9961d674455\workspace\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\user\.gradle\caches\9.1.0\transforms\8c733786075954d23b40c9961d674455\workspace\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\41f53fd9d5071e7446530b5e7674ea83\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\41f53fd9d5071e7446530b5e7674ea83\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\411d60c3fbf3259e39e7610666599a2d\workspace\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\411d60c3fbf3259e39e7610666599a2d\workspace\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		REJECTED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:27:9-41
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+	android:label
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:48-80
+	android:appCategory
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:25:9-35
+	android:icon
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:16-47
+	android:enableOnBackInvokedCallback
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:26:9-51
+supports-screens
+ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:3-163
+	android:largeScreens
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:78-105
+	android:smallScreens
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:21-48
+	android:normalScreens
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:49-77
+	android:xlargeScreens
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:106-134
+	android:anyDensity
+		ADDED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:135-160
+uses-sdk
+INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+MERGED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:6:5-44
+MERGED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:6:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\user\.gradle\caches\9.1.0\transforms\8c733786075954d23b40c9961d674455\workspace\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\user\.gradle\caches\9.1.0\transforms\8c733786075954d23b40c9961d674455\workspace\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\user\.gradle\caches\9.1.0\transforms\ffea51a0f1c65c064625cba14ca0df4a\workspace\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\user\.gradle\caches\9.1.0\transforms\ffea51a0f1c65c064625cba14ca0df4a\workspace\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\user\.gradle\caches\9.1.0\transforms\9661b0ba661a170c3bd79b5ef59efda8\workspace\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\user\.gradle\caches\9.1.0\transforms\9661b0ba661a170c3bd79b5ef59efda8\workspace\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\user\.gradle\caches\9.1.0\transforms\0e0f209d6f0ac8b45f4650eaafb2afc6\workspace\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\user\.gradle\caches\9.1.0\transforms\0e0f209d6f0ac8b45f4650eaafb2afc6\workspace\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\user\.gradle\caches\9.1.0\transforms\003c613b11484095eac6aaa889d6544a\workspace\transformed\jetified-activity-1.6.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\user\.gradle\caches\9.1.0\transforms\003c613b11484095eac6aaa889d6544a\workspace\transformed\jetified-activity-1.6.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\5510396b2a70e2e05c187fb9d1d3b0e9\workspace\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\5510396b2a70e2e05c187fb9d1d3b0e9\workspace\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\4bb4d66617e7a0f556d697dd9f2d761d\workspace\transformed\jetified-emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\4bb4d66617e7a0f556d697dd9f2d761d\workspace\transformed\jetified-emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\b04a9648c7e3bf0f5bf26cf53a8bdcaa\workspace\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\b04a9648c7e3bf0f5bf26cf53a8bdcaa\workspace\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\255af3c8a500b17ebec42ff8e18495b0\workspace\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\255af3c8a500b17ebec42ff8e18495b0\workspace\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\e739ca00daf45c5ca1a50df6960f290e\workspace\transformed\jetified-lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\e739ca00daf45c5ca1a50df6960f290e\workspace\transformed\jetified-lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\6056762eaa36fa6e1c0ff0681d18fee0\workspace\transformed\jetified-core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\6056762eaa36fa6e1c0ff0681d18fee0\workspace\transformed\jetified-core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\7fce8abeb0d4bf115438765e2eeec6c0\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\7fce8abeb0d4bf115438765e2eeec6c0\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\e3d30ead8adf49c33af85b89f9d6ad93\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\e3d30ead8adf49c33af85b89f9d6ad93\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\6118ee4858504e6ecd21f239f5f72973\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\6118ee4858504e6ecd21f239f5f72973\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\dc405093e23d3db21eeb23be982be239\workspace\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\dc405093e23d3db21eeb23be982be239\workspace\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.games:games-activity:4.4.0] C:\Users\user\.gradle\caches\9.1.0\transforms\1729aecbaee4d53c43e888c08a695309\workspace\transformed\jetified-games-activity-4.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.games:games-activity:4.4.0] C:\Users\user\.gradle\caches\9.1.0\transforms\1729aecbaee4d53c43e888c08a695309\workspace\transformed\jetified-games-activity-4.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\37590401797ef0632b4dd45b36063ab9\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\37590401797ef0632b4dd45b36063ab9\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\784cabc324a8287be1690c41cec1e6bf\workspace\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\784cabc324a8287be1690c41cec1e6bf\workspace\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\3f249b226d560a1c026dde7e7ad33c9e\workspace\transformed\jetified-savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\3f249b226d560a1c026dde7e7ad33c9e\workspace\transformed\jetified-savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\41f53fd9d5071e7446530b5e7674ea83\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\41f53fd9d5071e7446530b5e7674ea83\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\411d60c3fbf3259e39e7610666599a2d\workspace\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\411d60c3fbf3259e39e7610666599a2d\workspace\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\4a65c1880e13d1296359d8258976a8fa\workspace\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\4a65c1880e13d1296359d8258976a8fa\workspace\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\428e32ccc0b8ed2adf722352f098fad5\workspace\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\428e32ccc0b8ed2adf722352f098fad5\workspace\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\f4b44d32e452ed540313e46fe1c487b1\workspace\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\user\.gradle\caches\9.1.0\transforms\f4b44d32e452ed540313e46fe1c487b1\workspace\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\58c4ddbfde4086720e2150d60453c035\workspace\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\user\.gradle\caches\9.1.0\transforms\58c4ddbfde4086720e2150d60453c035\workspace\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\16d74f1bcd8fde8322b2647b5db4be59\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\user\.gradle\caches\9.1.0\transforms\16d74f1bcd8fde8322b2647b5db4be59\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\user\.gradle\caches\9.1.0\transforms\35510ab5c872de3a7d8c104c1bd69037\workspace\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\user\.gradle\caches\9.1.0\transforms\35510ab5c872de3a7d8c104c1bd69037\workspace\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+	android:targetSdkVersion
+		INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:8:22-64
+uses-feature#0x00030000
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:10:5-54
+	android:glEsVersion
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:10:19-51
+uses-feature#android.hardware.vulkan.version
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:11:5-13:36
+	android:required
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:13:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:12:9-55
+uses-feature#android.hardware.touchscreen
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:14:5-16:36
+	android:required
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:16:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:15:9-52
+uses-feature#android.hardware.touchscreen.multitouch
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:17:5-19:36
+	android:required
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:19:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:18:9-63
+uses-feature#android.hardware.touchscreen.multitouch.distinct
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:20:5-22:36
+	android:required
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:22:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:21:9-72
+meta-data#unity.splash-mode
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:28:9-30:33
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:30:13-30
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:29:13-45
+meta-data#unity.splash-enable
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:31:9-33:36
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:33:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:32:13-47
+meta-data#unity.launch-fullscreen
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:34:9-36:36
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:36:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:35:13-51
+meta-data#unity.render-outside-safearea
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:37:9-39:36
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:39:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:38:13-57
+meta-data#notch.config
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:40:9-42:50
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:42:13-47
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:41:13-40
+meta-data#unity.auto-report-fully-drawn
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:43:9-45:36
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:45:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:44:13-57
+meta-data#unity.strip-engine-code
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:46:9-48:36
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:48:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:47:13-51
+meta-data#unity.auto-set-game-state
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:49:9-51:36
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:51:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:50:13-53
+activity#com.unity3d.player.UnityPlayerGameActivity
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:53:9-88:20
+	android:screenOrientation
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:61:13-49
+	android:enabled
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:56:13-35
+	android:launchMode
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:59:13-44
+	android:hardwareAccelerated
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:58:13-48
+	android:exported
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:57:13-36
+	android:resizeableActivity
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:60:13-46
+	android:configChanges
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:55:13-194
+	android:theme
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:62:13-62
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:54:13-70
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:63:13-67:29
+category#android.intent.category.LAUNCHER
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:64:17-77
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:64:27-74
+action#android.intent.action.MAIN
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:66:17-69
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:66:25-66
+meta-data#unityplayer.UnityActivity
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:69:13-71:40
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:71:17-37
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:70:17-57
+meta-data#android.app.lib_name
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:72:13-74:40
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:74:17-37
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:73:17-52
+meta-data#WindowManagerPreference:FreeformWindowSize
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:75:13-77:71
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:77:17-68
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:76:17-74
+meta-data#WindowManagerPreference:FreeformWindowOrientation
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:78:13-80:79
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:80:17-76
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:79:17-81
+meta-data#notch_support
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:81:13-83:40
+	android:value
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:83:17-37
+	android:name
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:82:17-45
+layout
+ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:85:13-87:44
+	android:minWidth
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:87:17-41
+	android:minHeight
+		ADDED from [:unityLibrary] C:\GitHub\KimShootOut\ShootOut\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml:86:17-42
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\411d60c3fbf3259e39e7610666599a2d\workspace\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\caches\9.1.0\transforms\411d60c3fbf3259e39e7610666599a2d\workspace\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\user\.gradle\caches\9.1.0\transforms\ced4c93479dcdd44b0e3012515f91336\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+permission#com.UnityTechnologies.com.unity.template.urpblank.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+uses-permission#com.UnityTechnologies.com.unity.template.urpblank.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\user\.gradle\caches\9.1.0\transforms\066c12c00859d02386bf97d2cf6432de\workspace\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\user\.gradle\caches\9.1.0\transforms\af8467fe9a5fe7568702627b2dd0bb14\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
