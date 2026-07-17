@@ -9,7 +9,7 @@ public class GameScript : MonoBehaviour
     public ScriptManager manager;
 
     private readonly Vector3 penaltySpot = new(0f, 0.11f, 41f);
-    private readonly Vector3 goalLine = new(0f, 1f, 52f);
+    private readonly Vector3 goalLine = new(0f, 0f, 52f);
     private readonly Vector3 ballForce = new(0f, 0.11f, 40.89f);
     private readonly Vector3 keeperForce = new(0f, 1.5f, 0f);
     private readonly float ballMultiplier = 25.0f;
