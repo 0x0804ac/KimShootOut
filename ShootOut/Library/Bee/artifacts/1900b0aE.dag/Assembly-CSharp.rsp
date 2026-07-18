@@ -486,10 +486,12 @@
 "Assets/Scripts/Input/Joystick.cs"
 "Assets/Scripts/Input/MainMenuControls.cs"
 "Assets/Scripts/Input/MultiplayerMenuControls.cs"
+"Assets/Scripts/Input/PracticeMenuControls.cs"
 "Assets/Scripts/Input/SettingsMenuControls.cs"
 "Assets/Scripts/Input/SingleplayerMenuControls.cs"
 "Assets/Scripts/Input/SwipeDetection.cs"
 "Assets/Scripts/JoystickInput.cs"
+"Assets/Scripts/MainMenuCamera.cs"
 "Assets/Scripts/ScriptManager.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0

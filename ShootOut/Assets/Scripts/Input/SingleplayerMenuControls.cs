@@ -37,10 +37,14 @@ public class SingleplayerMenuControls : UIControls
     private void OnPracticeButtonClick()
     {
         MoveToLeft();
+        practiceMenu.MoveToCenter();
+        MainMenuCamera.MoveCameraRight();
     }
 
     private void OnVersusBotButtonClick()
     {
         MoveToLeft();
+        //vsBotMenu.MoveToCenter();
+        MainMenuCamera.MoveCameraRight();
     }
 }

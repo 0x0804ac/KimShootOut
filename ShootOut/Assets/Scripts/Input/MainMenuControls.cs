@@ -41,30 +41,33 @@ public class MainMenuControls : UIControls
     {
         MoveToLeft();
         singleplayerScript.MoveToCenter();
+        MainMenuCamera.MoveCameraRight();
     }
 
     private void OnMultiplayerButtonClick()
     {
         MoveToLeft();
         multiplayerScript.MoveToCenter();
+        MainMenuCamera.MoveCameraRight();
     }
 
     private void OnCustomizeButtonClick()
     {
         MoveToLeft();
         customizeScript.MoveToCenter();
+        MainMenuCamera.MoveCameraRight();
     }
 
     private void OnSettingsButtonClick()
     {
         MoveToLeft();
         settingsScript.MoveToCenter();
+        MainMenuCamera.MoveCameraRight();
     }
 
     private void OnCreditsButtonClick()
     {
-        MoveToLeft();
-        creditsScript.MoveToCenter();
+        print("Show credits");
     }
 
     private void OnQuitButtonClick()
