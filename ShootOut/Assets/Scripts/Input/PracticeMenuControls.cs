@@ -14,6 +14,11 @@ public class PracticeMenuControls : UIControls
     DropdownField sideDropdown, cpuDropdown;
     Button startButton;
 
+    void Start()
+    {
+        UnregisterEvents();
+    }
+
     protected override void Init()
     {
         isHidden = true;
@@ -21,6 +26,7 @@ public class PracticeMenuControls : UIControls
         sideDropdown = root.Q<DropdownField>(SIDE);
         cpuDropdown = root.Q<DropdownField>(CPU_BEHAVIOUR);
         startButton = root.Q<Button>(START);
+        startButton.SetEnabled(false);
     }
 
     protected override void RegisterEvents()
@@ -41,13 +47,16 @@ public class PracticeMenuControls : UIControls
         switch (sideDropdown.index)
         {
             case 1:
-                label = ATTACK + SUFFIX;
+                label = DEFENSE + SUFFIX;
+                startButton.SetEnabled(true);
                 break;
             case 2:
-                label = DEFENSE + SUFFIX;
+                label = ATTACK + SUFFIX;
+                startButton.SetEnabled(true);
                 break;
             default:
                 label = OPPONENT + SUFFIX;
+                startButton.SetEnabled(false);
                 break;
         }
         cpuDropdown.label = label;
@@ -55,6 +64,17 @@ public class PracticeMenuControls : UIControls
 
     private void OnStartButtonClick()
     {
-        print("Load practice mode scene");
+        switch (sideDropdown.index)
+        {
+            case 1:
+                print("Load attack practice");
+                break;
+            case 2:
+                print("Load defense practice");
+                break;
+            default:
+                print("Please choose side before starting practice");
+                break;
+        }
     }
 }

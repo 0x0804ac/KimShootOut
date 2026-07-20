@@ -491,6 +491,7 @@
 "Assets/Scripts/Input/SingleplayerMenuControls.cs"
 "Assets/Scripts/Input/SwipeDetection.cs"
 "Assets/Scripts/JoystickInput.cs"
+"Assets/Scripts/KickerAnimations.cs"
 "Assets/Scripts/MainMenuCamera.cs"
 "Assets/Scripts/ScriptManager.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"

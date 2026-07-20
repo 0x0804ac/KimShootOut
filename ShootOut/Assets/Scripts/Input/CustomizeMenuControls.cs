@@ -8,6 +8,11 @@ public class CustomizeMenuControls : UIControls
     const string EFFECT = "effect-button";
     const string PROFILE = "profile-button";
 
+    void Start()
+    {
+        UnregisterEvents();
+    }
+
     protected override void Init()
     {
         isHidden = true;
@@ -31,15 +36,18 @@ public class CustomizeMenuControls : UIControls
     private void OnPlayerButtonClick()
     {
         print("Customize player");
+        MainMenuCamera.MoveCameraRight();
     }
 
     private void OnEffectButtonClick()
     {
         print("Customize effect");
+        MainMenuCamera.MoveCameraRight();
     }
 
     private void OnProfileButtonClick()
     {
         print("View/Edit profile");
+        MainMenuCamera.MoveCameraRight();
     }
 }

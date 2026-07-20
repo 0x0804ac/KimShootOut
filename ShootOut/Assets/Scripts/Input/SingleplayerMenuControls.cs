@@ -9,6 +9,11 @@ public class SingleplayerMenuControls : UIControls
     const string PRACTICE = "practice-button";
     const string BOTMATCH = "vsbot-button";
 
+    void Start()
+    {
+        UnregisterEvents();
+    }
+
     protected override void Init()
     {
         isHidden = true;

@@ -21,12 +21,14 @@ public abstract class UIControls : MonoBehaviour
     {
         RegisterEvents();
         root.RegisterCallback<TransitionEndEvent>(OnTransitionEnd);
+        //print($"{document.name} Enabled");
     }
 
     void OnDisable()
     {
         UnregisterEvents();
         root.UnregisterCallback<TransitionEndEvent>(OnTransitionEnd);
+        //print($"{document.name} Disabled");
     }
 
     protected void RegisterClickEvent(string buttonName, System.Action action)
@@ -49,7 +51,12 @@ public abstract class UIControls : MonoBehaviour
 
     private void OnTransitionEnd(TransitionEndEvent evt)
     {
-        if (!isHidden) RegisterEvents();
+        //print("Transition Ended");
+        if (!isHidden)
+        {
+            RegisterEvents();
+            //print("Register Events");
+        }
     }
 
     public void MoveToLeft()

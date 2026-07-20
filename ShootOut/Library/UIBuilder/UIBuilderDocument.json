@@ -17,32 +17,30 @@
                     {
                         "m_StyleSheet": {
                             "fileID": 7433441132597879392,
-                            "guid": "e41e4252b4a52fa4c8696002518a7295",
+                            "guid": "a42d7049e045f5542a9d966f78691ed7",
                             "type": 3
                         },
-                        "m_ContentHash": 2132345207,
-                        "m_UssPreview": ":root {\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n    translate: 0 0;\r\n}\r\n\r\n.offScreenLeft {\r\n    translate: -100% 0;\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n    transition-timing-function: ease;\r\n    transition-delay: 0s;\r\n}\r\n\r\n.offScreenRight {\r\n    translate: 100% 0;\r\n    transition-property: translate;\r\n    transition-duration: 0.5s;\r\n    transition-timing-function: ease;\r\n    transition-delay: 0s;\r\n}\r\n",
-                        "m_OldPath": "Assets/UI/Menu/UIStyleSheet.uss"
+                        "m_ContentHash": 1973925887,
+                        "m_UssPreview": ":root {\r\n    justify-content: center;\r\n}\r\n\r\n#unity-tracker {\r\n    position: absolute;\r\n    height: 64px;\r\n    top: 50%;\r\n    margin-left: 0;\r\n    padding-top: 0;\r\n    margin-top: -32px;\r\n}\r\n\r\n#unity-dragger {\r\n    top: 50%;\r\n    left: auto;\r\n    right: auto;\r\n    bottom: auto;\r\n    height: 64px;\r\n    margin-left: 0;\r\n    margin-right: 0;\r\n    margin-top: -32px;\r\n    margin-bottom: 0;\r\n    display: flex;\r\n    background-color: rgb(0, 0, 0);\r\n}\r\n",
+                        "m_OldPath": "Assets/UI/ControlUI.uss"
                     }
                 ],
-                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/Menu/Practice.uxml",
-                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <Style src=\"project://database/Assets/UI/Menu/UIStyleSheet.uss?fileID=7433441132597879392&amp;guid=e41e4252b4a52fa4c8696002518a7295&amp;type=3#UIStyleSheet\"/>\r\n    <ui:VisualElement name=\"main-panel\" style=\"flex-grow: 1; margin-top: 60px; margin-right: 60px; margin-bottom: 60px; margin-left: 60px; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; -unity-text-align: middle-center;\">\r\n        <ui:VisualElement name=\"back-button-panel\" tabindex=\"-1\" style=\"flex-grow: 1; flex-direction: row; height: 200px; max-height: 200px; min-height: 108px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px;\">\r\n            <ui:Button name=\"back-button\" tabindex=\"3\" style=\"background-image: url(&quot;project://database/Assets/Assets/UI%20Elements/White/2x/left.png?fileID=2800000&amp;guid=ebd50b12e871e0142afe371f911d8eb2&amp;type=3#left&quot;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 100px; height: 100px; aspect-ratio: 1; background-color: rgba(0, 0, 0, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;\"/>\r\n        </ui:VisualElement>\r\n        <ui:Label text=\"Shoot-Out\" name=\"title-label\" style=\"justify-content: center; align-content: center; font-size: 144px; margin-left: 4px; margin-bottom: 200px; margin-top: 100px; margin-right: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n        <ui:Label text=\"연습\" name=\"menu-label\" style=\"padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; font-size: 108px; margin-left: 4px; margin-bottom: 100px;\"/>\r\n        <ui:GroupBox name=\"control-group\" style=\"margin-top: 16px; margin-right: 16px; margin-bottom: 16px; margin-left: 16px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\">\r\n            <ui:DropdownField label=\"진영 선택\" choices=\"(공격/수비),공격,수비\" index=\"0\" name=\"side-dropdown\" style=\"padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; margin-top: 40px; margin-bottom: 40px; font-size: 72px;\"/>\r\n            <ui:DropdownField label=\"상대 방향\" choices=\"랜덤,선택 가능\" index=\"0\" name=\"cpu-dropdown\" tabindex=\"1\" style=\"padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; margin-top: 40px; margin-bottom: 40px; font-size: 72px;\"/>\r\n            <ui:Button text=\"시작\" name=\"start-button\" tabindex=\"2\" style=\"font-size: 72px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; margin-top: 40px; margin-right: 4px; margin-bottom: 40px; margin-left: 4px;\"/>\r\n        </ui:GroupBox>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
-                "m_ContentHash": 3620725,
+                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/Practice UI.uxml",
+                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <ui:Template name=\"button_panel\" src=\"project://database/Assets/UI/button-panel.uxml?fileID=9197481963319205126&amp;guid=73fa79bdeb5310442908db34e8492f20&amp;type=3#button-panel\"/>\r\n    <ui:Template name=\"power-slider\" src=\"project://database/Assets/UI/power-slider.uxml?fileID=9197481963319205126&amp;guid=beb5c4c8f20d8ff4dae68345bf6cc0e3&amp;type=3#power-slider\"/>\r\n    <Style src=\"project://database/Assets/UI/ControlUI.uss?fileID=7433441132597879392&amp;guid=a42d7049e045f5542a9d966f78691ed7&amp;type=3#ControlUI\"/>\r\n    <ui:VisualElement name=\"main-panel\" style=\"flex-grow: 1; justify-content: space-between;\">\r\n        <ui:VisualElement name=\"cpu-panel\" style=\"flex-grow: 1; height: 720px; max-height: 60%;\">\r\n            <ui:Button text=\"상대 조작\" name=\"toggle-visibility\" style=\"align-self: flex-start; width: 300px; height: 100px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-right: 10px; padding-left: 10px; font-size: 60px;\"/>\r\n            <ui:VisualElement name=\"cpu-control-panel\" style=\"height: 610px; align-self: flex-start; width: 488px; align-items: stretch; justify-content: flex-start; align-content: flex-start; aspect-ratio: 0.75; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; left: 30px; top: 30px;\">\r\n                <ui:Instance template=\"button_panel\" name=\"button-panel\"/>\r\n                <ui:Instance template=\"power-slider\" name=\"power-slider\"/>\r\n            </ui:VisualElement>\r\n        </ui:VisualElement>\r\n        <ui:VisualElement name=\"player-control-panel\" style=\"height: 610px; align-self: flex-end; width: 488px; align-items: stretch; justify-content: flex-start; align-content: flex-start; aspect-ratio: 0.75; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; right: 30px; bottom: 30px;\">\r\n            <ui:Instance template=\"button_panel\" name=\"button-panel\"/>\r\n            <ui:Instance template=\"power-slider\" name=\"power-slider\"/>\r\n        </ui:VisualElement>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
+                "m_ContentHash": 321428716,
                 "m_VisualTreeAssetRef": {
                     "fileID": 9197481963319205126,
-                    "guid": "6b3b0cb70de4e3c4aab192a7c673b3f6",
+                    "guid": "f0678545e7091304a9e078763588bf14",
                     "type": 3
                 },
                 "m_TemplateAssetId": 0,
                 "m_TemplateAssetIndex": -1,
                 "m_ActiveStyleSheet": {
-                    "fileID": 7433441132597879392,
-                    "guid": "e41e4252b4a52fa4c8696002518a7295",
-                    "type": 3
+                    "instanceID": 0
                 },
                 "m_Settings": {
-                    "UxmlGuid": "6b3b0cb70de4e3c4aab192a7c673b3f6",
-                    "UxmlPath": "Assets/UI/Menu/Practice.uxml",
+                    "UxmlGuid": "f0678545e7091304a9e078763588bf14",
+                    "UxmlPath": "Assets/Scenes/Practice Attack UI.uxml",
                     "CanvasX": 0,
                     "CanvasY": 0,
                     "CanvasWidth": 1080,
@@ -50,17 +48,17 @@
                     "MatchGameView": true,
                     "ZoomScale": 0.5,
                     "PanOffset": {
-                        "x": 20.0,
-                        "y": 20.0
+                        "x": 14.4000244140625,
+                        "y": 24.79998779296875
                     },
                     "ColorModeBackgroundOpacity": 1.0,
                     "ImageModeCanvasBackgroundOpacity": 1.0,
                     "CameraModeCanvasBackgroundOpacity": 1.0,
-                    "EnableCanvasBackground": true,
+                    "EnableCanvasBackground": false,
                     "CanvasBackgroundMode": 0,
                     "CanvasBackgroundColor": {
                         "r": 0.0,
-                        "g": 0.501960813999176,
+                        "g": 0.0,
                         "b": 0.0,
                         "a": 1.0
                     },

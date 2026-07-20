@@ -18,7 +18,12 @@ public class SettingsMenuControls : UIControls
     private Slider masterVolume, musicVolume, soundVolume;
     private Toggle normalChat, customChat;
     private Button signInButton, nicknameButton;
-    
+
+    void Start()
+    {
+        UnregisterEvents();
+    }
+
     protected override void Init()
     {
         isHidden = true;

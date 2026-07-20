@@ -28,5 +28,6 @@ public class BackButton : MonoBehaviour
     {
         thisMenu.MoveToRight();
         previousMenu.MoveToCenter();
+        MainMenuCamera.MoveCameraLeft();
     }
 }

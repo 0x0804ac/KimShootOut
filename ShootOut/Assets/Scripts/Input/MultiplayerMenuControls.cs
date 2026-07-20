@@ -9,6 +9,11 @@ public class MultiplayerMenuControls : UIControls
     const string RANKED = "ranked-button";
     const string CUSTOM = "custom-button";
 
+    void Start()
+    {
+        UnregisterEvents();
+    }
+
     protected override void Init()
     {
         isHidden = true;
