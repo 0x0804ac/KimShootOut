@@ -5,11 +5,18 @@ public class Practice : Gamemode
     public const string DISPLAY_NAME = "연습";
     public const int PRACTICE_MAX_TURNS = 100;
 
-    public Practice()
+    private PracticeType type;
+    private bool canControlBot;
+    private PracticeModeScript script;
+
+    public Practice(PracticeType type, bool canControlBot, PracticeModeScript script)
     {
         numberOfPlayers = 1;
         numberOfSpectators = 0;
         turn = 0;
+        this.type = type;
+        this.canControlBot = canControlBot;
+        this.script = script;
     }
 
     public override void End()
@@ -20,14 +27,12 @@ public class Practice : Gamemode
     public override void Load()
     {
         //load scene
-        //show practice options UI
     }
 
     public override void Start()
     {
-        //hide practice options UI
         //show & enable attacker|defender UI
-        //(optional) show & enable toggle "bot control UI" button
+        //show & enable show/hide "bot controls" button
     }
 
     public override void Turn()
@@ -43,3 +48,5 @@ public class Practice : Gamemode
         }
     }
 }
+
+public enum PracticeType { ATTACK = 1, DEFENSE };

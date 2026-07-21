@@ -493,6 +493,7 @@
 "Assets/Scripts/JoystickInput.cs"
 "Assets/Scripts/KickerAnimations.cs"
 "Assets/Scripts/MainMenuCamera.cs"
+"Assets/Scripts/PracticeModeScript.cs"
 "Assets/Scripts/ScriptManager.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0

@@ -4,6 +4,7 @@ public class Kicker : SoccerPlayer
 {
     private int power;
     private int accuracy;
+    private bool isLeftFooted;
 
     public int Power
     {
@@ -16,14 +17,16 @@ public class Kicker : SoccerPlayer
         set => accuracy = value;
     }
 
-    public Kicker(int height, int weight, int maxStamina, int number, bool isCaptain, bool isInjured) : base(height, weight, maxStamina, number, isCaptain, isInjured)
+    public Kicker(int height, int weight, int maxStamina, int number, bool isCaptain, bool isInjured, bool isLeftFooted) : base(height, weight, maxStamina, number, isCaptain, isInjured)
     {
         RandomizeStats();
+        this.isLeftFooted = isLeftFooted;
     }
 
-    public void Kick(Vector2 input)
+    public Vector3 Kick(Vector3 input)
     {
-        //return output;
+        Vector3 output = input;
+        return output;
     }
 
     private void RandomizeStats()

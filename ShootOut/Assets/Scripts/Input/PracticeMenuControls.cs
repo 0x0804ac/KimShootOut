@@ -3,8 +3,8 @@ using UnityEngine.UIElements;
 
 public class PracticeMenuControls : UIControls
 {
-    const string SIDE = "side-dropdown";
-    const string CPU_BEHAVIOUR = "cpu-dropdown";
+    public const string SIDE = "side-dropdown";
+    public const string CPU_BEHAVIOUR = "cpu-dropdown";
     const string START = "start-button";
     const string ATTACK = "공격";
     const string DEFENSE = "수비";
