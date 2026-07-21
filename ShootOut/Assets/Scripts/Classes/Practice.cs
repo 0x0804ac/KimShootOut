@@ -8,6 +8,24 @@ public class Practice : Gamemode
     private PracticeType type;
     private bool canControlBot;
     private PracticeModeScript script;
+    private Kicker attacker;
+    private Goalkeeper defender;
+    public PracticeType Type
+    {
+        get => type;
+    }
+    public bool CanControlBot
+    {
+        get => canControlBot;
+    }
+    public Kicker Attacker
+    {
+        get => attacker;
+    }
+    public Goalkeeper Defender
+    {
+        get => defender;
+    }
 
     public Practice(PracticeType type, bool canControlBot, PracticeModeScript script)
     {
@@ -17,6 +35,8 @@ public class Practice : Gamemode
         this.type = type;
         this.canControlBot = canControlBot;
         this.script = script;
+        attacker = Kicker.PracticeKicker();
+        defender = Goalkeeper.PracticeKeeper();
     }
 
     public override void End()
@@ -37,14 +57,15 @@ public class Practice : Gamemode
 
     public override void Turn()
     {
-        if (turn < PRACTICE_MAX_TURNS)
+        if (turn > PRACTICE_MAX_TURNS)
         {
-            turn++;
-            //reset player controls (don't reset "bot control UI")
+            //show end of practice UI (press button => End())
         }
         else
         {
-            //show end of practice UI (press button => End())
+            turn++;
+            script.ResetObjects();
+            //reset player controls (don't reset "bot control UI")
         }
     }
 }

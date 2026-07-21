@@ -325,6 +325,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2db2ea51056b734428fbac17e2f68f70, type: 3}
       insertIndex: -1
       addedObject: {fileID: 760260024}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2db2ea51056b734428fbac17e2f68f70, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 760260025}
   m_SourcePrefab: {fileID: 100100000, guid: 2db2ea51056b734428fbac17e2f68f70, type: 3}
 --- !u!1 &760260023 stripped
 GameObject:
@@ -353,6 +356,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &760260025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760260023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a914e6a347f746c42b0189b02c338218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoalkeeperAnimations
 --- !u!1001 &766665972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -411,10 +426,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2db2ea51056b734428fbac17e2f68f70, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 766665975}
+      addedObject: {fileID: 766665974}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2db2ea51056b734428fbac17e2f68f70, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 766665974}
+      addedObject: {fileID: 766665975}
   m_SourcePrefab: {fileID: 100100000, guid: 2db2ea51056b734428fbac17e2f68f70, type: 3}
 --- !u!1 &766665973 stripped
 GameObject:
@@ -485,6 +500,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PracticeModeScript
   document: {fileID: 438664574}
+  attacker: {fileID: 766665973}
+  defender: {fileID: 760260023}
+  ball: {fileID: 1872619311}
 --- !u!4 &846205842
 Transform:
   m_ObjectHideFlags: 0
@@ -561,6 +579,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+--- !u!1 &1872619311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9054799424182100633, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+  m_PrefabInstance: {fileID: 1872619310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2145238409
 GameObject:
   m_ObjectHideFlags: 0

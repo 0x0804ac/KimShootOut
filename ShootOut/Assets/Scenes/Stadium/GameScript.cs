@@ -8,8 +8,6 @@ public class GameScript : MonoBehaviour
     public GameObject goalkeeper;
     public ScriptManager manager;
 
-    private readonly Vector3 penaltySpot = new(0f, 0.11f, 41f);
-    private readonly Vector3 goalLine = new(0f, 0f, 52f);
     private readonly Vector3 ballForce = new(0f, 0.11f, 40.89f);
     private readonly Vector3 keeperForce = new(0f, 1.5f, 0f);
     private readonly float ballMultiplier = 25.0f;
@@ -35,10 +33,10 @@ public class GameScript : MonoBehaviour
     {
         ball.linearVelocity = Vector3.zero;
         ball.angularVelocity = Vector3.zero;
-        soccerBall.transform.localPosition = penaltySpot;
+        soccerBall.transform.localPosition = Constants.PENALTY_SPOT;
         keeper.linearVelocity = Vector3.zero;
         keeper.angularVelocity = Vector3.zero;
-        goalkeeper.transform.SetLocalPositionAndRotation(goalLine, Quaternion.LookRotation(Vector3.forward));
+        goalkeeper.transform.SetLocalPositionAndRotation(Constants.GOAL_LINE, Quaternion.LookRotation(Vector3.forward));
         turn++;
         manager.goalScript.Ready = true;
         isReady = true;

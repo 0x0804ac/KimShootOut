@@ -9,12 +9,19 @@ public class PracticeModeScript : MonoBehaviour
     const string PLAYER_SLIDER = "player-power-slider";
 
     [SerializeField] private UIDocument document;
+    [SerializeField] private GameObject attacker;
+    [SerializeField] private GameObject defender;
+    [SerializeField] private GameObject ball;
 
     private Practice game;
     private VisualElement root;
+    private KickerAnimations attackerAnimation;
+    private GoalkeeperAnimations defenderAnimation;
 
     void Start()
     {
+        attackerAnimation = attacker.GetComponent<KickerAnimations>();
+        defenderAnimation = defender.GetComponent<GoalkeeperAnimations>();
         root = document.rootVisualElement;
         PracticeType type = (PracticeType)root.Q<DropdownField>(PracticeMenuControls.SIDE).index;
         bool controllable = root.Q<DropdownField>(PracticeMenuControls.CPU_BEHAVIOUR).index == 1;
@@ -38,5 +45,23 @@ public class PracticeModeScript : MonoBehaviour
     private void OnToggleButtonClick()
     {
         root.Q<DropdownField>(CPU_PANEL).visible = !root.Q<DropdownField>(CPU_PANEL).visible;
+    }
+
+    public void ResetObjects()
+    {
+        Rigidbody r = attacker.GetComponent<Rigidbody>();
+        r.linearVelocity = Vector3.zero;
+        r.angularVelocity = Vector3.zero;
+        attacker.transform.position = Constants.PENALTY_SPOT + (game.Attacker.IsLeftFooted ? Constants.KICKER_OFFSET_RIGHT : Constants.KICKER_OFFSET_LEFT);
+        attackerAnimation.PlayIdleAnimation();
+        r = defender.GetComponent<Rigidbody>();
+        r.linearVelocity = Vector3.zero;
+        r.angularVelocity = Vector3.zero;
+        defender.transform.position = Constants.GOAL_LINE;
+        defenderAnimation.PlayIdleAnimation();
+        r = ball.GetComponent<Rigidbody>();
+        r.linearVelocity = Vector3.zero;
+        r.angularVelocity = Vector3.zero;
+        ball.transform.position = Constants.PENALTY_SPOT;
     }
 }
