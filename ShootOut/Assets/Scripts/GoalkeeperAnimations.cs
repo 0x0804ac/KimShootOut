@@ -35,8 +35,21 @@ public class GoalkeeperAnimations : MonoBehaviour
         else animator.Play(idle2Hash);
     }
 
-    public void PlayAnimation(Vector3 movement)
+    public void PlayAnimation(Goalkeeper goalkeeper, Vector3 movement)
     {
-        //
+        float x = movement.x / goalkeeper.Speed;
+        print(x);
+        if (x > 0.5f) animator.CrossFade(diveLongRightHash, TRANSITION);
+        else if (x < 0.5f) animator.CrossFade(diveLongLeftHash, TRANSITION);
+        else if (x > 0.25f) animator.CrossFade(diveShortRightHash, TRANSITION);
+        else if (x < 0.25f) animator.CrossFade(diveShortLeftHash, TRANSITION);
+        else
+        {
+            float y = movement.y / goalkeeper.Speed;
+            if (y > 0.5f) animator.CrossFade(catchMissHash, TRANSITION);
+            else if (y > 0.25f) animator.CrossFade(catchHighHash, TRANSITION);
+            else if (y > -0.25f) animator.CrossFade(catchHash, TRANSITION);
+            else animator.CrossFade(catchLowHash, TRANSITION);
+        }
     }
 }

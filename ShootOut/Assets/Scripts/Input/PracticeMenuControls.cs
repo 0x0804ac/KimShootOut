@@ -5,14 +5,15 @@ public class PracticeMenuControls : UIControls
 {
     public const string SIDE = "side-dropdown";
     public const string CPU_BEHAVIOUR = "cpu-dropdown";
+
     const string START = "start-button";
     const string ATTACK = "공격";
     const string DEFENSE = "수비";
     const string OPPONENT = "상대";
     const string SUFFIX = " 방향";
 
-    DropdownField sideDropdown, cpuDropdown;
-    Button startButton;
+    private DropdownField sideDropdown, cpuDropdown;
+    private Button startButton;
 
     void Start()
     {
@@ -26,7 +27,23 @@ public class PracticeMenuControls : UIControls
         sideDropdown = root.Q<DropdownField>(SIDE);
         cpuDropdown = root.Q<DropdownField>(CPU_BEHAVIOUR);
         startButton = root.Q<Button>(START);
-        startButton.SetEnabled(false);
+        switch (Settings.practiceType)
+        {
+            case PracticeType.ATTACK:
+                sideDropdown.index = 1;
+                cpuDropdown.label = DEFENSE + SUFFIX;
+                startButton.SetEnabled(true);
+                break;
+            case PracticeType.DEFENSE:
+                sideDropdown.index = 2;
+                cpuDropdown.label = ATTACK + SUFFIX;
+                startButton.SetEnabled(true);
+                break;
+            default:
+                startButton.SetEnabled(false);
+                break;
+        }
+        cpuDropdown.index = Settings.controllableCPU ? 1 : 0;
     }
 
     protected override void RegisterEvents()
@@ -64,12 +81,15 @@ public class PracticeMenuControls : UIControls
 
     private void OnStartButtonClick()
     {
+        Settings.controllableCPU = cpuDropdown.index == 1;
         switch (sideDropdown.index)
         {
             case 1:
+                Settings.practiceType = PracticeType.ATTACK;
                 print("Load attack practice");
                 break;
             case 2:
+                Settings.practiceType = PracticeType.DEFENSE;
                 print("Load defense practice");
                 break;
             default:

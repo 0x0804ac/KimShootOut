@@ -23,23 +23,31 @@ public class PracticeModeScript : MonoBehaviour
         attackerAnimation = attacker.GetComponent<KickerAnimations>();
         defenderAnimation = defender.GetComponent<GoalkeeperAnimations>();
         root = document.rootVisualElement;
-        PracticeType type = (PracticeType)root.Q<DropdownField>(PracticeMenuControls.SIDE).index;
-        bool controllable = root.Q<DropdownField>(PracticeMenuControls.CPU_BEHAVIOUR).index == 1;
+        PracticeType type = Settings.practiceType;
+        bool controllable = Settings.controllableCPU;
         game = new Practice(type, controllable, this);
         if (type == PracticeType.ATTACK) root.Q<TemplateContainer>(CPU_SLIDER).visible = false;
         else if (type == PracticeType.DEFENSE) root.Q<TemplateContainer>(PLAYER_SLIDER).visible = false;
-        if (!controllable) root.Q<Button>(BUTTON).visible = false;
+        if (!controllable)
+        {
+            Button btn = root.Q<Button>(BUTTON);
+            btn.visible = false;
+            btn.SetEnabled(false);
+            root.Q<VisualElement>(CPU_PANEL).SetEnabled(false);
+        }
         game.Load();
     }
 
     void OnEnable()
     {
-        root.Q<Button>(BUTTON).clicked += OnToggleButtonClick;
+        Button btn = root.Q<Button>(BUTTON);
+        if (btn.visible) btn.clicked += OnToggleButtonClick;
     }
 
     void OnDisable()
     {
-        root.Q<Button>(BUTTON).clicked -= OnToggleButtonClick;
+        Button btn = root.Q<Button>(BUTTON);
+        if (btn.visible) btn.clicked -= OnToggleButtonClick;
     }
 
     private void OnToggleButtonClick()

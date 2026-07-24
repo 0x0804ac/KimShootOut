@@ -476,6 +476,7 @@
 "Assets/Scripts/Classes/Player.cs"
 "Assets/Scripts/Classes/PlayerProfile.cs"
 "Assets/Scripts/Classes/Practice.cs"
+"Assets/Scripts/Classes/Settings.cs"
 "Assets/Scripts/Classes/SoccerPlayer.cs"
 "Assets/Scripts/Classes/Tutorial.cs"
 "Assets/Scripts/Classes/UIControls.cs"
