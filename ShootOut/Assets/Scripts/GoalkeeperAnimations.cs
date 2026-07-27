@@ -4,6 +4,8 @@ public class GoalkeeperAnimations : MonoBehaviour
 {
     const float TRANSITION = 0.125f;
 
+    [SerializeField] private GameObject goalkeeper;
+
     private Animator animator;
     private int idleHash, idle2Hash;
     private int sidestepLeftHash, sidestepRightHash;
@@ -37,6 +39,7 @@ public class GoalkeeperAnimations : MonoBehaviour
 
     public void PlayAnimation(Goalkeeper goalkeeper, Vector3 movement)
     {
+        this.goalkeeper.GetComponent<Rigidbody>().AddForce(movement);
         float x = movement.x / goalkeeper.Speed;
         print(x);
         if (x > 0.5f) animator.CrossFade(diveLongRightHash, TRANSITION);

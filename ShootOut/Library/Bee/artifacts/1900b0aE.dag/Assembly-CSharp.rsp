@@ -478,6 +478,7 @@
 "Assets/Scripts/Classes/Practice.cs"
 "Assets/Scripts/Classes/Settings.cs"
 "Assets/Scripts/Classes/SoccerPlayer.cs"
+"Assets/Scripts/Classes/StaticValues.cs"
 "Assets/Scripts/Classes/Tutorial.cs"
 "Assets/Scripts/Classes/UIControls.cs"
 "Assets/Scripts/Classes/Versus.cs"

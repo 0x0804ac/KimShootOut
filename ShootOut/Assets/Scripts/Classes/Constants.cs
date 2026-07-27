@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Constants
 {
+    public const string DIRECTION_BUTTON = "direction-button";
+
     public const int MIN_STAT = 0;
     public const int MAX_STAT = 100;
 

@@ -52,7 +52,10 @@ public class PracticeModeScript : MonoBehaviour
 
     private void OnToggleButtonClick()
     {
-        root.Q<DropdownField>(CPU_PANEL).visible = !root.Q<DropdownField>(CPU_PANEL).visible;
+        VisualElement panel = root.Q<VisualElement>(CPU_PANEL);
+        bool newValue = !panel.visible;
+        panel.SetEnabled(newValue);
+        panel.visible = newValue;
     }
 
     public void ResetObjects()
