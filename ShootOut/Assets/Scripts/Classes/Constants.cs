@@ -1,8 +1,15 @@
 using UnityEngine;
 
-public class Constants
+public static class Constants
 {
-    public const string DIRECTION_BUTTON = "direction-button";
+    public const string PRACTICE_MODE_CPU_BUTTON_PANEL = "cpu-button-panel";
+    public const string PRACTICE_MODE_PLAYER_BUTTON_PANEL = "player-button-panel";
+    public const string PRACTICE_MODE_CPU_PANEL = "cpu-control-panel";
+    public const string PRACTICE_MODE_TOGGLE_BUTTON = "toggle-visibility";
+    public const string PRACTICE_MODE_CPU_SLIDER = "cpu-power-slider";
+    public const string PRACTICE_MODE_PLAYER_SLIDER = "player-power-slider";
+    public const string CONTROLS_BUTTON_BOUND = "button-bound";
+    public const string CONTROLS_DIRECTION_BUTTON = "direction-button";
 
     public const int MIN_STAT = 0;
     public const int MAX_STAT = 100;

@@ -18,7 +18,7 @@ public class DirectionInput : MonoBehaviour
         if (actions == null)
         {
             actions = new InputActions();
-            button = buttonPanel.Q<Button>(Constants.DIRECTION_BUTTON);
+            button = buttonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
         }
     }
 

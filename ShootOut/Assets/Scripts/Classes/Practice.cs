@@ -65,7 +65,7 @@ public class Practice : Gamemode
         {
             turn++;
             script.ResetObjects();
-            //reset player controls (don't reset "bot control UI")
+            script.ResetControls();
         }
     }
 }
