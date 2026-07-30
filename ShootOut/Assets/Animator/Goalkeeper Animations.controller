@@ -26,7 +26,7 @@ AnimatorState:
   m_SpeedParameter: Speed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: Sidestep Time
+  m_TimeParameter: Sidestep Period
 --- !u!1109 &-8498502345994891601
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -165,6 +165,19 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
+--- !u!114 &-5325890196627770842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a914e6a347f746c42b0189b02c338218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoalkeeperAnimations
+  goalkeeper: {fileID: 0}
 --- !u!1109 &-5145289265200582036
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -509,7 +522,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Sidestep Time
+  - m_Name: Sidestep Period
     m_Type: 1
     m_DefaultFloat: 0.25
     m_DefaultInt: 0
@@ -517,6 +530,30 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: Mirror
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Velocity X
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Velocity Y
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Velocity Z
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Goalkeep
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -765,7 +802,8 @@ AnimatorStateMachine:
     - {fileID: -5145289265200582036}
     - {fileID: 5916316104232712845}
     - {fileID: 4502466621397130105}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -5325890196627770842}
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 140, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
@@ -825,7 +863,7 @@ AnimatorState:
   m_SpeedParameter: Speed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: Sidestep Time
+  m_TimeParameter: Sidestep Period
 --- !u!1102 &7090420808474019648
 AnimatorState:
   serializedVersion: 6

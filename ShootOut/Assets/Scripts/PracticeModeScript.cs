@@ -10,33 +10,36 @@ public class PracticeModeScript : MonoBehaviour
     [SerializeField] private GameObject ball;
 
     private Practice game;
-    private VisualElement root, cpuPanel, playerButtonPanel, cpuButtonPanel;
-    private KickerAnimations attackerAnimation;
-    private GoalkeeperAnimations defenderAnimation;
-
     private InputActions actions;
+    private Animator kickerAnimator, goalkeeperAnimator;
+
+    private VisualElement root, cpuPanel, playerButtonPanel, cpuButtonPanel;
     private Button playerButton, cpuButton, toggleButton, pressedButton;
+    private SliderInt playerSlider, cpuSlider;
 
     private Vector2 from, to;
     private float buttonRadius, boundRadius;
 
     void Awake()
     {
-        actions ??= new InputActions();
+        if (actions != null) return;
+        actions = new InputActions();
         PracticeType type = Settings.practiceType;
         bool controllable = Settings.controllableCPU;
         game = new Practice(type, controllable, this);
         root = document.rootVisualElement;
-        attackerAnimation = attacker.GetComponent<KickerAnimations>();
-        defenderAnimation = defender.GetComponent<GoalkeeperAnimations>();
+        kickerAnimator = attacker.GetComponent<Animator>();
+        goalkeeperAnimator = defender.GetComponent<Animator>();
         cpuPanel = root.Q<VisualElement>(Constants.PRACTICE_MODE_CPU_PANEL);
         playerButtonPanel = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_PLAYER_BUTTON_PANEL).Q<VisualElement>(Constants.CONTROLS_BUTTON_BOUND);
         cpuButtonPanel = cpuPanel.Q<TemplateContainer>(Constants.PRACTICE_MODE_CPU_BUTTON_PANEL).Q<VisualElement>(Constants.CONTROLS_BUTTON_BOUND);
         playerButton = playerButtonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
         cpuButton = cpuButtonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
         toggleButton = root.Q<Button>(Constants.PRACTICE_MODE_TOGGLE_BUTTON);
-        if (type == PracticeType.ATTACK) root.Q<TemplateContainer>(Constants.PRACTICE_MODE_CPU_SLIDER).visible = false;
-        else if (type == PracticeType.DEFENSE) root.Q<TemplateContainer>(Constants.PRACTICE_MODE_PLAYER_SLIDER).visible = false;
+        playerSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_PLAYER_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
+        cpuSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_CPU_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
+        if (type == PracticeType.ATTACK) cpuSlider.parent.visible = false;
+        else if (type == PracticeType.DEFENSE) playerSlider.parent.visible = false;
         if (!controllable)
         {
             toggleButton.visible = false;
@@ -84,22 +87,46 @@ public class PracticeModeScript : MonoBehaviour
     {
         if (pressedButton == null)
         {
-            evt.target.CaptureMouse();
-            from = evt.position;
             if (playerButton == evt.target) pressedButton = playerButton;
             else if (cpuButton == evt.target) pressedButton = cpuButton;
+            else return;
+            evt.target.CaptureMouse();
+            from = evt.position;
         }
     }
 
     private void OnButtonReleased(PointerUpEvent evt)
     {
+        Vector3 vector;
+        float x, y, z;
         if (pressedButton != null)
         {
             to = evt.position;
             MoveButton();
             if (pressedButton == playerButton)
             {
-                //Shoot
+                if (Settings.practiceType == PracticeType.ATTACK)
+                {
+                    x = pressedButton.style.translate.value.x.value;
+                    y = pressedButton.style.translate.value.y.value;
+                    z = game.Attacker.Power;
+                    vector = game.Attacker.Kick(new Vector3(x, y, z) * (playerSlider.value * 0.01f));
+                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
+                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
+                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                    kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                }
+                else if (Settings.practiceType == PracticeType.DEFENSE)
+                {
+                    x = cpuButton.style.translate.value.x.value;
+                    y = cpuButton.style.translate.value.y.value;
+                    z = game.Attacker.Power;
+                    vector = game.Attacker.Kick(new Vector3(x, y, z) * (cpuSlider.value * 0.01f));
+                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
+                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
+                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                    kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                }
             }
             pressedButton = null;
         }
@@ -160,12 +187,12 @@ public class PracticeModeScript : MonoBehaviour
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
         attacker.transform.position = Constants.PENALTY_SPOT + (game.Attacker.IsLeftFooted ? Constants.KICKER_OFFSET_RIGHT : Constants.KICKER_OFFSET_LEFT);
-        attackerAnimation.PlayIdleAnimation();
+        attacker.GetComponent<Animator>().Play(Constants.ANIMATOR_KICKER_IDLE);
         r = defender.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
         defender.transform.position = Constants.GOAL_LINE;
-        defenderAnimation.PlayIdleAnimation();
+        //defenderAnimation.PlayIdleAnimation();
         r = ball.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
