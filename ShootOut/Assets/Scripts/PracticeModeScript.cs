@@ -187,12 +187,14 @@ public class PracticeModeScript : MonoBehaviour
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
         attacker.transform.position = Constants.PENALTY_SPOT + (game.Attacker.IsLeftFooted ? Constants.KICKER_OFFSET_RIGHT : Constants.KICKER_OFFSET_LEFT);
-        attacker.GetComponent<Animator>().Play(Constants.ANIMATOR_KICKER_IDLE);
+        kickerAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+        kickerAnimator.Play(Constants.ANIMATOR_KICKER_IDLE);
         r = defender.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
         defender.transform.position = Constants.GOAL_LINE;
-        //defenderAnimation.PlayIdleAnimation();
+        goalkeeperAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
+        goalkeeperAnimator.Play(Constants.ANIMATOR_GOALKEEPER_IDLE);
         r = ball.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;

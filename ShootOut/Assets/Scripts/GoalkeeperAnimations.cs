@@ -7,9 +7,14 @@ public class GoalkeeperAnimations : StateMachineBehaviour
 
     [SerializeField] private GameObject goalkeeper;
 
+    private Rigidbody body;
+    private Vector3 velocity;
+    private bool isMoving;
+
     void Awake()
     {
-        //
+        body = goalkeeper.GetComponent<Rigidbody>();
+        isMoving = false;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,12 +29,17 @@ public class GoalkeeperAnimations : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //
+        if (!isMoving && animator.GetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP))
+        {
+            isMoving = true;
+            velocity = new Vector3(animator.GetFloat(Constants.ANIMATOR_VELOCITY_X), animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y), animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z));
+            PlayAnimation(animator, velocity);
+        }
     }
 
     public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
-        //
+        if (stateMachinePathHash == Constants.ANIMATOR_GOALKEEPER_IDLE) isMoving = false;
     }
 
     public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
@@ -37,11 +47,10 @@ public class GoalkeeperAnimations : StateMachineBehaviour
         //
     }
 
-    public void PlayAnimation(Goalkeeper goalkeeper, Vector3 movement)
+    private void PlayAnimation(Animator animator, Vector3 movement)
     {
-        Animator animator = this.goalkeeper.GetComponent<Animator>();
-        this.goalkeeper.GetComponent<Rigidbody>().AddForce(movement);
-        float x = movement.x / goalkeeper.Speed;
+        body.AddForce(movement);
+        float x = movement.x / StaticValues.defender.Speed;
         Debug.Log(x);
         if (x > 0.5f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_RIGHT, TRANSITION);
         else if (x < 0.5f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_LEFT, TRANSITION);
@@ -49,7 +58,7 @@ public class GoalkeeperAnimations : StateMachineBehaviour
         else if (x < 0.25f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_SHORT_LEFT, TRANSITION);
         else
         {
-            float y = movement.y / goalkeeper.Speed;
+            float y = movement.y / StaticValues.defender.Speed;
             if (y > 0.5f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_JUMP_MISS, TRANSITION);
             else if (y > 0.25f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_HIGH, TRANSITION);
             else if (y > -0.25f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_NORMAL, TRANSITION);
