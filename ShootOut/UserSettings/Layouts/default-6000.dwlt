@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2048
     height: 1204.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Animator
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -506,7 +506,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/Classes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/Classes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitHub\KimShootOut\ShootOut
   m_LockTracker:
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 70.79993}
     m_SelectedIDs:
-    - m_Data: 50186
+    - m_Data: 50512
     m_LastClickedID:
-      m_Data: 50186
+      m_Data: 50512
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 50182
@@ -615,8 +615,8 @@ MonoBehaviour:
     - m_Data: 47748
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PracticeModeScript
-      m_OriginalName: PracticeModeScript
+      m_Name: PracticeMenuControls
+      m_OriginalName: PracticeMenuControls
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_Data: 35614
+        m_Data: 40090
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -954,8 +954,10 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -2826
+      - m_Data: -5012
+      - m_Data: -3126
       - m_Data: -1362
+      - m_Data: 50604
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

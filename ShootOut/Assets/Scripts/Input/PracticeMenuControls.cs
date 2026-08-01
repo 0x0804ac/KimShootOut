@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PracticeMenuControls : UIControls
@@ -86,11 +87,11 @@ public class PracticeMenuControls : UIControls
         {
             case 1:
                 Settings.practiceType = PracticeType.ATTACK;
-                print("Load attack practice");
+                SceneManager.LoadScene("Practice Mode");
                 break;
             case 2:
                 Settings.practiceType = PracticeType.DEFENSE;
-                print("Load defense practice");
+                SceneManager.LoadScene("Practice Mode");
                 break;
             default:
                 print("Please choose side before starting practice");

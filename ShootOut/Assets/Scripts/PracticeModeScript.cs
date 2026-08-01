@@ -18,7 +18,7 @@ public class PracticeModeScript : MonoBehaviour
     private SliderInt playerSlider, cpuSlider;
 
     private Vector2 from, to;
-    private float buttonRadius, boundRadius;
+    private float buttonRadius, boundRadius, lastMoveTime;
 
     void Awake()
     {
@@ -52,6 +52,7 @@ public class PracticeModeScript : MonoBehaviour
     void Start()
     {
         pressedButton = null;
+        game.Start();
     }
 
     void OnEnable()
@@ -62,6 +63,14 @@ public class PracticeModeScript : MonoBehaviour
     void OnDisable()
     {
         UnregisterEvents();
+    }
+
+    void Update()
+    {
+        if (!game.IsReady && (Time.unscaledTime - lastMoveTime > 3 || ball.transform.position.y < -33))
+        {
+            game.Turn();
+        }
     }
 
     private void OngoingSwipe(InputAction.CallbackContext context)
@@ -103,7 +112,7 @@ public class PracticeModeScript : MonoBehaviour
         {
             to = evt.position;
             MoveButton();
-            if (pressedButton == playerButton)
+            if (game.IsReady && pressedButton == playerButton)
             {
                 if (Settings.practiceType == PracticeType.ATTACK)
                 {
@@ -115,6 +124,8 @@ public class PracticeModeScript : MonoBehaviour
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
                     kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                    lastMoveTime = Time.unscaledTime;
+                    game.IsReady = false;
                 }
                 else if (Settings.practiceType == PracticeType.DEFENSE)
                 {
@@ -126,6 +137,8 @@ public class PracticeModeScript : MonoBehaviour
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
                     kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                    lastMoveTime = Time.unscaledTime;
+                    game.IsReady = false;
                 }
             }
             pressedButton = null;
@@ -169,9 +182,13 @@ public class PracticeModeScript : MonoBehaviour
 
     public void ResetControls()
     {
-        Button btn = pressedButton;
         pressedButton = null;
-        btn.style.translate = Vector2.zero;
+        playerButton.style.translate = Vector2.zero;
+        if (!Settings.controllableCPU)
+        {
+            cpuButton.style.translate = new Vector2(Random.value - 0.5f, Random.value - 0.5f) * (boundRadius - buttonRadius);
+            cpuSlider.value = Random.Range(cpuSlider.lowValue, cpuSlider.highValue + 1);
+        }
     }
 
     private void OnToggleButtonClick()
@@ -188,16 +205,21 @@ public class PracticeModeScript : MonoBehaviour
         r.angularVelocity = Vector3.zero;
         attacker.transform.position = Constants.PENALTY_SPOT + (game.Attacker.IsLeftFooted ? Constants.KICKER_OFFSET_RIGHT : Constants.KICKER_OFFSET_LEFT);
         kickerAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
-        kickerAnimator.Play(Constants.ANIMATOR_KICKER_IDLE);
         r = defender.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
         defender.transform.position = Constants.GOAL_LINE;
         goalkeeperAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
-        goalkeeperAnimator.Play(Constants.ANIMATOR_GOALKEEPER_IDLE);
         r = ball.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
         ball.transform.position = Constants.PENALTY_SPOT;
+        PlayIdleAnimation();
+    }
+
+    public void PlayIdleAnimation()
+    {
+        kickerAnimator.Play(Constants.ANIMATOR_KICKER_IDLE);
+        goalkeeperAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_IDLE);
     }
 }

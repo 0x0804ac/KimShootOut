@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Practice : Gamemode
 {
@@ -26,6 +27,7 @@ public class Practice : Gamemode
     {
         get => defender;
     }
+    public bool IsReady { get; set; }
 
     public Practice(PracticeType type, bool canControlBot, PracticeModeScript script)
     {
@@ -37,35 +39,40 @@ public class Practice : Gamemode
         this.script = script;
         attacker = Kicker.PracticeKicker();
         defender = Goalkeeper.PracticeKeeper();
+        IsReady = false;
     }
 
     public override void End()
     {
-        //load previous scene (main menu => singleplayer)
+        Debug.Log("Ending Practice mode");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public override void Load()
     {
-        //load scene
+        Debug.Log("Loading Practice mode");
+        script.PlayIdleAnimation();
     }
 
     public override void Start()
     {
-        //show & enable attacker|defender UI
-        //show & enable show/hide "bot controls" button
+        Debug.Log("Starting Practice mode");
+        IsReady = true;
     }
 
     public override void Turn()
     {
         if (turn > PRACTICE_MAX_TURNS)
         {
-            //show end of practice UI (press button => End())
+            Debug.Log("Maximum turns reached");
+            End(); //replace with a panel (label + button with End() attached)
         }
         else
         {
             turn++;
             script.ResetObjects();
             script.ResetControls();
+            IsReady = true;
         }
     }
 }

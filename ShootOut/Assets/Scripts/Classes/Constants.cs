@@ -40,6 +40,7 @@ public static class Constants
     public static readonly int ANIMATOR_GOALKEEPER_CATCH_LOW = Animator.StringToHash("Base Layer.Catch.Low");
     public static readonly int ANIMATOR_GOALKEEPER_CATCH_JUMP_MISS = Animator.StringToHash("Base Layer.Catch.Jump Miss");
 
+    public static readonly string ANIMATOR_TRIGGER_IDLE = "Idle";
     public static readonly string ANIMATOR_TRIGGER_SHOOT = "Shoot";
     public static readonly string ANIMATOR_TRIGGER_GOALKEEP = "Goalkeep";
     public static readonly string ANIMATOR_VELOCITY_X = "Velocity X";

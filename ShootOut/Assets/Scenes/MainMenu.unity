@@ -492,7 +492,7 @@ Transform:
   m_GameObject: {fileID: 834903034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.83252, y: 6.80537, z: 44.35796}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1036,6 +1036,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4463137627667240005, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: goalkeeper
+      value: 
+      objectReference: {fileID: 1984950749}
     - target: {fileID: 5069770025725966758, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
       propertyPath: m_Enabled
       value: 0

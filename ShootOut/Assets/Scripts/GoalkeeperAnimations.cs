@@ -35,6 +35,12 @@ public class GoalkeeperAnimations : StateMachineBehaviour
             velocity = new Vector3(animator.GetFloat(Constants.ANIMATOR_VELOCITY_X), animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y), animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z));
             PlayAnimation(animator, velocity);
         }
+        else if (animator.GetBool(Constants.ANIMATOR_TRIGGER_IDLE))
+        {
+            if (Random.Range(0, 8) > 0) animator.Play(Constants.ANIMATOR_GOALKEEPER_IDLE_ARMS_SIDE);
+            else animator.Play(Constants.ANIMATOR_GOALKEEPER_IDLE_ARMS_FRONT);
+            animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_IDLE);
+        }
     }
 
     public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
