@@ -5,14 +5,14 @@ public class GoalkeeperAnimations : StateMachineBehaviour
 {
     public const float TRANSITION = 0.125f;
 
-    [SerializeField] private GameObject goalkeeper;
-
+    private GameObject goalkeeper;
     private Rigidbody body;
     private Vector3 velocity;
     private bool isMoving;
 
     void Awake()
     {
+        goalkeeper = GameObject.FindWithTag(Constants.TAG_GOALKEEPER);
         body = goalkeeper.GetComponent<Rigidbody>();
         isMoving = false;
     }

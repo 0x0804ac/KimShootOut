@@ -2,6 +2,10 @@ using UnityEngine;
 
 public static class Constants
 {
+    public const string TAG_KICKER = "Kicker";
+    public const string TAG_GOALKEEPER = "Goalkeeper";
+    public const string TAG_BALL = "Ball";
+
     public const string PRACTICE_MODE_CPU_BUTTON_PANEL = "cpu-button-panel";
     public const string PRACTICE_MODE_PLAYER_BUTTON_PANEL = "player-button-panel";
     public const string PRACTICE_MODE_CPU_PANEL = "cpu-control-panel";
@@ -40,12 +44,12 @@ public static class Constants
     public static readonly int ANIMATOR_GOALKEEPER_CATCH_LOW = Animator.StringToHash("Base Layer.Catch.Low");
     public static readonly int ANIMATOR_GOALKEEPER_CATCH_JUMP_MISS = Animator.StringToHash("Base Layer.Catch.Jump Miss");
 
-    public static readonly string ANIMATOR_TRIGGER_IDLE = "Idle";
-    public static readonly string ANIMATOR_TRIGGER_SHOOT = "Shoot";
-    public static readonly string ANIMATOR_TRIGGER_GOALKEEP = "Goalkeep";
-    public static readonly string ANIMATOR_VELOCITY_X = "Velocity X";
-    public static readonly string ANIMATOR_VELOCITY_Y = "Velocity Y";
-    public static readonly string ANIMATOR_VELOCITY_Z = "Velocity Z";
+    public const string ANIMATOR_TRIGGER_IDLE = "Idle";
+    public const string ANIMATOR_TRIGGER_SHOOT = "Shoot";
+    public const string ANIMATOR_TRIGGER_GOALKEEP = "Goalkeep";
+    public const string ANIMATOR_VELOCITY_X = "Velocity X";
+    public const string ANIMATOR_VELOCITY_Y = "Velocity Y";
+    public const string ANIMATOR_VELOCITY_Z = "Velocity Z";
 
     public static readonly Vector3 PENALTY_SPOT = new(0f, 0.11f, 41f);
     public static readonly Vector3 GOAL_LINE = new(0f, 0f, 52f);

@@ -1,12 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [SharedBetweenAnimators]
 public class KickerAnimations : StateMachineBehaviour
 {
     public const float TRANSITION = 0.25f;
 
-    [SerializeField] private GameObject kicker, goalkeeper, ball;
-
+    private GameObject kicker, goalkeeper, ball;
     private Animator goalkeeperAnimator;
     private Rigidbody body;
     private Vector3 movement;
@@ -14,6 +14,9 @@ public class KickerAnimations : StateMachineBehaviour
 
     void Awake()
     {
+        kicker = GameObject.FindWithTag(Constants.TAG_KICKER);
+        goalkeeper = GameObject.FindWithTag(Constants.TAG_GOALKEEPER);
+        ball = GameObject.FindWithTag(Constants.TAG_BALL);
         goalkeeperAnimator = goalkeeper.GetComponent<Animator>();
         body = kicker.GetComponent<Rigidbody>();
         movement = new Vector3();

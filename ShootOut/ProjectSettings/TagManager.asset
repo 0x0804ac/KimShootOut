@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Goal
+  - Ball
+  - Kicker
+  - Goalkeeper
   layers:
   - Default
   - TransparentFX

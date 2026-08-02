@@ -149,12 +149,12 @@ public class PracticeModeScript : MonoBehaviour
     {
         actions.Gameplay.Swipe.performed += OngoingSwipe;
         actions.Gameplay.Enable();
-        if (toggleButton.visible) toggleButton.clicked += OnToggleButtonClick;
         playerButton.RegisterCallback<GeometryChangedEvent>(UpdateRadius);
         playerButton.RegisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
         playerButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
         if (Settings.controllableCPU)
         {
+            toggleButton.clicked += OnToggleButtonClick;
             cpuButton.RegisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
             cpuButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
         }
@@ -208,7 +208,7 @@ public class PracticeModeScript : MonoBehaviour
         r = defender.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
         r.angularVelocity = Vector3.zero;
-        defender.transform.position = Constants.GOAL_LINE;
+        defender.transform.SetLocalPositionAndRotation(Constants.GOAL_LINE, Quaternion.LookRotation(Vector3.back));
         goalkeeperAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
         r = ball.GetComponent<Rigidbody>();
         r.linearVelocity = Vector3.zero;
