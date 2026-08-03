@@ -9,8 +9,7 @@ public class Practice : Gamemode
     private PracticeType type;
     private bool canControlBot;
     private PracticeModeScript script;
-    private Kicker attacker;
-    private Goalkeeper defender;
+    
     public PracticeType Type
     {
         get => type;
@@ -18,14 +17,6 @@ public class Practice : Gamemode
     public bool CanControlBot
     {
         get => canControlBot;
-    }
-    public Kicker Attacker
-    {
-        get => attacker;
-    }
-    public Goalkeeper Defender
-    {
-        get => defender;
     }
     public bool IsReady { get; set; }
 
@@ -37,8 +28,8 @@ public class Practice : Gamemode
         this.type = type;
         this.canControlBot = canControlBot;
         this.script = script;
-        attacker = Kicker.PracticeKicker();
-        defender = Goalkeeper.PracticeKeeper();
+        StaticValues.attacker = Kicker.PracticeKicker();
+        StaticValues.defender = Goalkeeper.PracticeKeeper();
         IsReady = false;
     }
 
@@ -51,7 +42,7 @@ public class Practice : Gamemode
     public override void Load()
     {
         Debug.Log("Loading Practice mode");
-        script.PlayIdleAnimation();
+        script.ResetObjects();
     }
 
     public override void Start()

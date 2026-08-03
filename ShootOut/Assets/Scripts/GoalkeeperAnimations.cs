@@ -4,22 +4,17 @@ using UnityEngine;
 public class GoalkeeperAnimations : StateMachineBehaviour
 {
     public const float TRANSITION = 0.125f;
+    public const float MOVEMENT_MULTIPLIER = 0.55f;
+    public const float JUMP_MULTIPLIER = 0.11f;
 
     private GameObject goalkeeper;
     private Rigidbody body;
     private Vector3 velocity;
     private bool isMoving;
 
-    void Awake()
-    {
-        goalkeeper = GameObject.FindWithTag(Constants.TAG_GOALKEEPER);
-        body = goalkeeper.GetComponent<Rigidbody>();
-        isMoving = false;
-    }
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //
+        if (goalkeeper == null) Init();
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -32,8 +27,14 @@ public class GoalkeeperAnimations : StateMachineBehaviour
         if (!isMoving && animator.GetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP))
         {
             isMoving = true;
-            velocity = new Vector3(animator.GetFloat(Constants.ANIMATOR_VELOCITY_X), animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y), animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z));
+            velocity.x = animator.GetFloat(Constants.ANIMATOR_VELOCITY_X);
+            velocity.y = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y) * JUMP_MULTIPLIER;
+            velocity.z = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z);
             PlayAnimation(animator, velocity);
+        }
+        else if (isMoving)
+        {
+            body.MovePosition(body.position + velocity * (Time.deltaTime * MOVEMENT_MULTIPLIER));
         }
         else if (animator.GetBool(Constants.ANIMATOR_TRIGGER_IDLE))
         {
@@ -45,6 +46,7 @@ public class GoalkeeperAnimations : StateMachineBehaviour
 
     public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
+        if (goalkeeper == null) Init();
         if (stateMachinePathHash == Constants.ANIMATOR_GOALKEEPER_IDLE) isMoving = false;
     }
 
@@ -53,9 +55,16 @@ public class GoalkeeperAnimations : StateMachineBehaviour
         //
     }
 
+    private void Init()
+    {
+        goalkeeper = GameObject.FindWithTag(Constants.TAG_GOALKEEPER);
+        body = goalkeeper.GetComponent<Rigidbody>();
+        velocity = new Vector3();
+        isMoving = false;
+    }
+
     private void PlayAnimation(Animator animator, Vector3 movement)
     {
-        body.AddForce(movement);
         float x = movement.x / StaticValues.defender.Speed;
         Debug.Log(x);
         if (x > 0.5f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_RIGHT, TRANSITION);
@@ -65,9 +74,9 @@ public class GoalkeeperAnimations : StateMachineBehaviour
         else
         {
             float y = movement.y / StaticValues.defender.Speed;
-            if (y > 0.5f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_JUMP_MISS, TRANSITION);
-            else if (y > 0.25f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_HIGH, TRANSITION);
-            else if (y > -0.25f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_NORMAL, TRANSITION);
+            if (y > 0.125f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_JUMP_MISS, TRANSITION);
+            else if (y > 0.0625f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_HIGH, TRANSITION);
+            else if (y > -0.0625f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_NORMAL, TRANSITION);
             else animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_LOW, TRANSITION);
         }
     }

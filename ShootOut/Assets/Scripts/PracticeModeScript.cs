@@ -67,9 +67,16 @@ public class PracticeModeScript : MonoBehaviour
 
     void Update()
     {
-        if (!game.IsReady && (Time.unscaledTime - lastMoveTime > 3 || ball.transform.position.y < -33))
+        if (!game.IsReady)
         {
-            game.Turn();
+            if (ball.GetComponent<Rigidbody>().GetPointVelocity(ball.transform.position).magnitude > 0f)
+            {
+                lastMoveTime = Time.unscaledTime;
+            }
+            else if (Time.unscaledTime - lastMoveTime > 3f || ball.transform.position.y < -33f)
+            {
+                game.Turn();
+            }
         }
     }
 
@@ -116,26 +123,40 @@ public class PracticeModeScript : MonoBehaviour
             {
                 if (Settings.practiceType == PracticeType.ATTACK)
                 {
-                    x = pressedButton.style.translate.value.x.value;
-                    y = pressedButton.style.translate.value.y.value;
-                    z = game.Attacker.Power;
-                    vector = game.Attacker.Kick(new Vector3(x, y, z) * (playerSlider.value * 0.01f));
+                    x = pressedButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+                    y = (boundRadius - buttonRadius) / 2 + pressedButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                    z = StaticValues.attacker.Power;
+                    vector = StaticValues.attacker.Kick(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
+                    print(vector);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                    x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+                    y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                    z = StaticValues.defender.Speed * -Constants.MULTIPLIER;
+                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, x);
+                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, y);
+                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, z);
                     kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
                     lastMoveTime = Time.unscaledTime;
                     game.IsReady = false;
                 }
                 else if (Settings.practiceType == PracticeType.DEFENSE)
                 {
-                    x = cpuButton.style.translate.value.x.value;
-                    y = cpuButton.style.translate.value.y.value;
-                    z = game.Attacker.Power;
-                    vector = game.Attacker.Kick(new Vector3(x, y, z) * (cpuSlider.value * 0.01f));
+                    x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+                    y = (boundRadius - buttonRadius) / 2 + cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                    z = StaticValues.attacker.Power;
+                    vector = StaticValues.attacker.Kick(new Vector3(x, y, z) * (cpuSlider.value * Constants.MULTIPLIER));
+                    print(vector);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                    x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+                    y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                    z = StaticValues.defender.Speed * -Constants.MULTIPLIER;
+                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, x);
+                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, y);
+                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, z);
                     kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
                     lastMoveTime = Time.unscaledTime;
                     game.IsReady = false;
@@ -186,7 +207,7 @@ public class PracticeModeScript : MonoBehaviour
         playerButton.style.translate = Vector2.zero;
         if (!Settings.controllableCPU)
         {
-            cpuButton.style.translate = new Vector2(Random.value - 0.5f, Random.value - 0.5f) * (boundRadius - buttonRadius);
+            cpuButton.style.translate = new Vector2(RandomValue(), RandomValue());
             cpuSlider.value = Random.Range(cpuSlider.lowValue, cpuSlider.highValue + 1);
         }
     }
@@ -200,19 +221,10 @@ public class PracticeModeScript : MonoBehaviour
 
     public void ResetObjects()
     {
-        Rigidbody r = attacker.GetComponent<Rigidbody>();
-        r.linearVelocity = Vector3.zero;
-        r.angularVelocity = Vector3.zero;
-        attacker.transform.position = Constants.PENALTY_SPOT + (game.Attacker.IsLeftFooted ? Constants.KICKER_OFFSET_RIGHT : Constants.KICKER_OFFSET_LEFT);
+        attacker.transform.position = Constants.PENALTY_SPOT + (StaticValues.attacker.IsLeftFooted ? Constants.KICKER_OFFSET_RIGHT : Constants.KICKER_OFFSET_LEFT);
         kickerAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
-        r = defender.GetComponent<Rigidbody>();
-        r.linearVelocity = Vector3.zero;
-        r.angularVelocity = Vector3.zero;
         defender.transform.SetLocalPositionAndRotation(Constants.GOAL_LINE, Quaternion.LookRotation(Vector3.back));
         goalkeeperAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
-        r = ball.GetComponent<Rigidbody>();
-        r.linearVelocity = Vector3.zero;
-        r.angularVelocity = Vector3.zero;
         ball.transform.position = Constants.PENALTY_SPOT;
         PlayIdleAnimation();
     }
@@ -221,5 +233,10 @@ public class PracticeModeScript : MonoBehaviour
     {
         kickerAnimator.Play(Constants.ANIMATOR_KICKER_IDLE);
         goalkeeperAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_IDLE);
+    }
+
+    private float RandomValue()
+    {
+        return (Random.value - 0.5f) * (boundRadius - buttonRadius) * 2f;
     }
 }

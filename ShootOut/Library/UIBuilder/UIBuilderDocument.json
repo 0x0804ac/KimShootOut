@@ -20,29 +20,27 @@
                             "guid": "a42d7049e045f5542a9d966f78691ed7",
                             "type": 3
                         },
-                        "m_ContentHash": 2008348696,
+                        "m_ContentHash": 395032618,
                         "m_UssPreview": ":root {\r\n    justify-content: center;\r\n}\r\n\r\n#unity-tracker {\r\n    position: absolute;\r\n    height: 64px;\r\n    top: 50%;\r\n    margin-left: 0;\r\n    padding-top: 0;\r\n    margin-top: -32px;\r\n}\r\n\r\n#unity-dragger {\r\n    top: 50%;\r\n    left: auto;\r\n    right: auto;\r\n    bottom: auto;\r\n    height: 64px;\r\n    margin-left: 0;\r\n    margin-right: 0;\r\n    margin-top: -32px;\r\n    margin-bottom: 0;\r\n    display: flex;\r\n    background-color: rgb(0, 0, 0);\r\n}\r\n",
                         "m_OldPath": "Assets/UI/ControlUI.uss"
                     }
                 ],
-                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/Practice UI.uxml",
-                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <ui:Template name=\"button_panel\" src=\"project://database/Assets/UI/button-panel.uxml?fileID=9197481963319205126&amp;guid=73fa79bdeb5310442908db34e8492f20&amp;type=3#button-panel\"/>\r\n    <ui:Template name=\"power-slider\" src=\"project://database/Assets/UI/power-slider.uxml?fileID=9197481963319205126&amp;guid=beb5c4c8f20d8ff4dae68345bf6cc0e3&amp;type=3#power-slider\"/>\r\n    <Style src=\"project://database/Assets/UI/ControlUI.uss?fileID=7433441132597879392&amp;guid=a42d7049e045f5542a9d966f78691ed7&amp;type=3#ControlUI\"/>\r\n    <ui:VisualElement name=\"main-panel\" style=\"flex-grow: 1; justify-content: space-between;\">\r\n        <ui:VisualElement name=\"cpu-panel\" style=\"flex-grow: 1; height: 720px; max-height: 60%;\">\r\n            <ui:Button text=\"상대 조작\" name=\"toggle-visibility\" style=\"align-self: flex-start; width: 300px; height: 100px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-right: 10px; padding-left: 10px; font-size: 60px;\"/>\r\n            <ui:VisualElement name=\"cpu-control-panel\" enabled=\"false\" style=\"height: 610px; align-self: flex-start; width: 488px; align-items: stretch; justify-content: flex-start; align-content: flex-start; aspect-ratio: 0.75; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; left: 30px; visibility: hidden;\">\r\n                <ui:Instance template=\"button_panel\" name=\"cpu-button-panel\"/>\r\n                <ui:Instance template=\"power-slider\" name=\"cpu-power-slider\"/>\r\n            </ui:VisualElement>\r\n        </ui:VisualElement>\r\n        <ui:VisualElement name=\"player-control-panel\" style=\"height: 610px; align-self: flex-end; width: 488px; align-items: stretch; justify-content: flex-start; align-content: flex-start; aspect-ratio: 0.75; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; right: 30px; bottom: 30px;\">\r\n            <ui:Instance template=\"button_panel\" name=\"player-button-panel\"/>\r\n            <ui:Instance template=\"power-slider\" name=\"player-power-slider\"/>\r\n        </ui:VisualElement>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
-                "m_ContentHash": 835751936,
+                "m_OpenendVisualTreeAssetOldPath": "Assets/Scenes/AttackerUI.uxml",
+                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <ui:Template name=\"button_panel\" src=\"project://database/Assets/UI/button-panel.uxml?fileID=9197481963319205126&amp;guid=73fa79bdeb5310442908db34e8492f20&amp;type=3#button-panel\"/>\r\n    <Style src=\"project://database/Assets/UI/ControlUI.uss?fileID=7433441132597879392&amp;guid=a42d7049e045f5542a9d966f78691ed7&amp;type=3#ControlUI\"/>\r\n    <ui:GroupBox name=\"box\" style=\"height: 610px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-right: 5px; padding-left: 5px; aspect-ratio: 0.75; align-self: flex-end; max-width: 45%; max-height: 60%; width: 488px; transform-origin: bottom; translate: 0 100%;\">\r\n        <ui:VisualElement name=\"panel\" style=\"height: 100%; align-self: center; width: 100%; align-items: stretch; justify-content: space-evenly; align-content: center;\">\r\n            <ui:Instance template=\"button_panel\" name=\"button_panel\"/>\r\n            <ui:SliderInt label=\"파워\" value=\"60\" name=\"power-slider\" low-value=\"20\" high-value=\"100\" fill=\"true\" focusable=\"false\" style=\"height: 100px; font-size: 64px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; flex-direction: row; align-self: stretch;\"/>\r\n        </ui:VisualElement>\r\n    </ui:GroupBox>\r\n</ui:UXML>\r\n",
+                "m_ContentHash": 106304482,
                 "m_VisualTreeAssetRef": {
                     "fileID": 9197481963319205126,
-                    "guid": "f0678545e7091304a9e078763588bf14",
+                    "guid": "e90c6bb96c0dc5146bade970c8730b49",
                     "type": 3
                 },
                 "m_TemplateAssetId": 0,
                 "m_TemplateAssetIndex": -1,
                 "m_ActiveStyleSheet": {
-                    "fileID": 7433441132597879392,
-                    "guid": "a42d7049e045f5542a9d966f78691ed7",
-                    "type": 3
+                    "instanceID": 0
                 },
                 "m_Settings": {
-                    "UxmlGuid": "f0678545e7091304a9e078763588bf14",
-                    "UxmlPath": "Assets/Scenes/Practice Attack UI.uxml",
+                    "UxmlGuid": "e90c6bb96c0dc5146bade970c8730b49",
+                    "UxmlPath": "Assets/Scenes/AttackerUI.uxml",
                     "CanvasX": 0,
                     "CanvasY": 0,
                     "CanvasWidth": 1080,
@@ -50,8 +48,8 @@
                     "MatchGameView": true,
                     "ZoomScale": 0.5,
                     "PanOffset": {
-                        "x": 14.4000244140625,
-                        "y": 24.79998779296875
+                        "x": 12.1776123046875,
+                        "y": 57.95531463623047
                     },
                     "ColorModeBackgroundOpacity": 1.0,
                     "ImageModeCanvasBackgroundOpacity": 1.0,
@@ -59,10 +57,10 @@
                     "EnableCanvasBackground": false,
                     "CanvasBackgroundMode": 0,
                     "CanvasBackgroundColor": {
-                        "r": 0.0,
-                        "g": 0.0,
-                        "b": 0.0,
-                        "a": 1.0
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0,
+                        "a": 0.250980406999588
                     },
                     "CanvasBackgroundImage": {
                         "instanceID": 0
