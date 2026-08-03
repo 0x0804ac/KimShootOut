@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameScript
   soccerBall: {fileID: 9054799424182100633}
   goalNet: {fileID: 454217641513141888}
-  goalScript: {fileID: 5069770025725966758}
+  goalkeeper: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1001 &5644611785432792721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163,17 +164,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5194906615340283921, guid: 9a7081d8996f796418007f6196c13bf3, type: 3}
   m_PrefabInstance: {fileID: 5644611785432792721}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5069770025725966758 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 580613029677614903, guid: 9a7081d8996f796418007f6196c13bf3, type: 3}
-  m_PrefabInstance: {fileID: 5644611785432792721}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454217641513141888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65171e92c06fc949b6f2c42f2ad5021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoalScript
 --- !u!4 &7850305380246028001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2496212064328122480, guid: 9a7081d8996f796418007f6196c13bf3, type: 3}
@@ -271,7 +261,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

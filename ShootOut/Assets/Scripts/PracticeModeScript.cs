@@ -124,8 +124,8 @@ public class PracticeModeScript : MonoBehaviour
                 if (Settings.practiceType == PracticeType.ATTACK)
                 {
                     x = pressedButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                    y = (boundRadius - buttonRadius) / 2 + pressedButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                    z = StaticValues.attacker.Power;
+                    y = pressedButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                    z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
                     vector = StaticValues.attacker.Kick(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
                     print(vector);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
@@ -144,8 +144,8 @@ public class PracticeModeScript : MonoBehaviour
                 else if (Settings.practiceType == PracticeType.DEFENSE)
                 {
                     x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                    y = (boundRadius - buttonRadius) / 2 + cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                    z = StaticValues.attacker.Power;
+                    y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                    z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
                     vector = StaticValues.attacker.Kick(new Vector3(x, y, z) * (cpuSlider.value * Constants.MULTIPLIER));
                     print(vector);
                     kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);

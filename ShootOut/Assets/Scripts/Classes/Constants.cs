@@ -21,6 +21,7 @@ public static class Constants
 
     public const float MULTIPLIER_X = 0.1f;
     public const float MULTIPLIER_Y = -0.1f;
+    public const float MULTIPLIER_Z = 0.4f;
     public const float MULTIPLIER = 0.01f;
 
     public static readonly int ANIMATOR_KICKER_IDLE = Animator.StringToHash("Base Layer.Idle");

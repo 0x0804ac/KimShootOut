@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class KickerAnimations : StateMachineBehaviour
 {
     public const float TRANSITION = 0.25f;
-    public const float MOVEMENT_MULTIPLIER = 11f;
+    public const float MOVEMENT_MULTIPLIER = 0.77f;
     public const float HIGH_POWER = 120f;
     public const float LOW_POWER = 40f;
 
@@ -53,7 +53,7 @@ public class KickerAnimations : StateMachineBehaviour
                 x = animator.GetFloat(Constants.ANIMATOR_VELOCITY_X);
                 y = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y);
                 z = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z);
-                ball.GetComponent<Rigidbody>().MovePosition(ball.transform.position + new Vector3(x, y, z)); //velocity?
+                ball.GetComponent<Rigidbody>().AddForce(new Vector3(x, y, z), ForceMode.Impulse);
                 goalkeeperAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
                 animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
                 isMoving = false;
