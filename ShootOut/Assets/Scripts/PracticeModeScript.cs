@@ -5,9 +5,7 @@ using UnityEngine.UIElements;
 public class PracticeModeScript : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
-    [SerializeField] private GameObject attacker;
-    [SerializeField] private GameObject defender;
-    [SerializeField] private GameObject ball;
+    [SerializeField] private GameObject attacker, defender, ball, preview;
 
     private Practice game;
     private InputActions actions;
@@ -84,10 +82,25 @@ public class PracticeModeScript : MonoBehaviour
     {
         if (pressedButton != null)
         {
+            float x, y, z;
             Vector2 pos = context.ReadValue<Vector2>();
             to.x = pos.x;
             to.y = Screen.height - pos.y;
             MoveButton();
+            if (pressedButton == playerButton && Settings.practiceType == PracticeType.ATTACK)
+            {
+                x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+                y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
+                ShowPreview(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
+            }
+            else if (pressedButton == cpuButton && Settings.practiceType == PracticeType.DEFENSE)
+            {
+                x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+                y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
+                ShowPreview(new Vector3(x, y, z) * (cpuSlider.value * Constants.MULTIPLIER));
+            }
         }
     }
 
@@ -119,12 +132,13 @@ public class PracticeModeScript : MonoBehaviour
         {
             to = evt.position;
             MoveButton();
+            HidePreview();
             if (game.IsReady && pressedButton == playerButton)
             {
                 if (Settings.practiceType == PracticeType.ATTACK)
                 {
-                    x = pressedButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                    y = pressedButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+                    x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+                    y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
                     z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
                     vector = StaticValues.attacker.Kick(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
                     print(vector);
@@ -166,6 +180,25 @@ public class PracticeModeScript : MonoBehaviour
         }
     }
 
+    private void OnSliderClick(ChangeEvent<int> evt)
+    {
+        float x, y, z;
+        if (pressedButton == playerButton && Settings.practiceType == PracticeType.ATTACK)
+        {
+            x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+            y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+            z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
+            ShowPreview(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
+        }
+        else if (pressedButton == cpuButton && Settings.practiceType == PracticeType.DEFENSE)
+        {
+            x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
+            y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
+            z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
+            ShowPreview(new Vector3(x, y, z) * (cpuSlider.value * Constants.MULTIPLIER));
+        }
+    }
+
     private void RegisterEvents()
     {
         actions.Gameplay.Swipe.performed += OngoingSwipe;
@@ -173,11 +206,13 @@ public class PracticeModeScript : MonoBehaviour
         playerButton.RegisterCallback<GeometryChangedEvent>(UpdateRadius);
         playerButton.RegisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
         playerButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
+        if (Settings.practiceType == PracticeType.ATTACK) playerSlider.RegisterValueChangedCallback(OnSliderClick);
         if (Settings.controllableCPU)
         {
             toggleButton.clicked += OnToggleButtonClick;
             cpuButton.RegisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
             cpuButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
+            if (Settings.practiceType == PracticeType.DEFENSE) cpuSlider.RegisterValueChangedCallback(OnSliderClick);
         }
     }
 
@@ -189,10 +224,12 @@ public class PracticeModeScript : MonoBehaviour
         playerButton.UnregisterCallback<GeometryChangedEvent>(UpdateRadius);
         playerButton.UnregisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
         playerButton.UnregisterCallback<PointerUpEvent>(OnButtonReleased);
+        if (Settings.practiceType == PracticeType.ATTACK) playerSlider.UnregisterValueChangedCallback(OnSliderClick);
         if (Settings.controllableCPU)
         {
             cpuButton.UnregisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
             cpuButton.UnregisterCallback<PointerUpEvent>(OnButtonReleased);
+            if (Settings.practiceType == PracticeType.DEFENSE) cpuSlider.UnregisterValueChangedCallback(OnSliderClick);
         }
     }
 
@@ -238,5 +275,22 @@ public class PracticeModeScript : MonoBehaviour
     private float RandomValue()
     {
         return (Random.value - 0.5f) * (boundRadius - buttonRadius) * 2f;
+    }
+
+    private void ShowPreview(Vector3 initialVelocity)
+    {
+        float time = 11 / initialVelocity.z + 0.5f * Physics.gravity.y;
+        Vector3 destination = Constants.PENALTY_SPOT + initialVelocity * time + 0.5f * time * Physics.gravity;
+        if (destination.y > 0)
+        {
+            preview.transform.position = destination;
+            preview.SetActive(true);
+        }
+        else HidePreview();
+    }
+
+    private void HidePreview()
+    {
+        preview.SetActive(false);
     }
 }
