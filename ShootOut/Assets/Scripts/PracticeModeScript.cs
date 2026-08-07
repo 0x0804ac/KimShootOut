@@ -279,8 +279,10 @@ public class PracticeModeScript : MonoBehaviour
 
     private void ShowPreview(Vector3 initialVelocity)
     {
-        float time = 11 / initialVelocity.z + 0.5f * Physics.gravity.y;
-        Vector3 destination = Constants.PENALTY_SPOT + initialVelocity * time + 0.5f * time * Physics.gravity;
+        float g = Physics.gravity.y;
+        float v = initialVelocity.z;
+        float t = (Mathf.Sqrt(v * v + g * 22) - v) / g;
+        Vector3 destination = (Constants.PENALTY_SPOT + initialVelocity * t + 0.5f * t * t * Physics.gravity) / ball.GetComponent<Rigidbody>().mass;
         if (destination.y > 0)
         {
             preview.transform.position = destination;

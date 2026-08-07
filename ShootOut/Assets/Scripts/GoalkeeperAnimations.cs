@@ -4,7 +4,7 @@ using UnityEngine;
 public class GoalkeeperAnimations : StateMachineBehaviour
 {
     public const float TRANSITION = 0.125f;
-    public const float MOVEMENT_MULTIPLIER = 0.55f;
+    public const float MOVEMENT_MULTIPLIER = 55f;
     public const float JUMP_MULTIPLIER = 0.11f;
 
     private GameObject goalkeeper;
@@ -25,9 +25,9 @@ public class GoalkeeperAnimations : StateMachineBehaviour
     {
         if (animator.GetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP))
         {
-            velocity.x = animator.GetFloat(Constants.ANIMATOR_VELOCITY_X);
+            velocity.x = animator.GetFloat(Constants.ANIMATOR_VELOCITY_X) * MOVEMENT_MULTIPLIER;
             velocity.y = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y) * JUMP_MULTIPLIER;
-            velocity.z = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z);
+            velocity.z = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z) * Constants.MULTIPLIER_Z;
             PlayAnimation(animator, velocity);
             animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
         }
@@ -72,6 +72,6 @@ public class GoalkeeperAnimations : StateMachineBehaviour
             else if (y > -0.0625f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_NORMAL, TRANSITION);
             else animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_LOW, TRANSITION);
         }
-        body.AddForce(movement, ForceMode.VelocityChange);
+        body.AddForce(movement, ForceMode.Impulse);
     }
 }
