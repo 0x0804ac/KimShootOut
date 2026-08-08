@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class KickerAnimations : StateMachineBehaviour
 {
     public const float TRANSITION = 0.25f;
-    public const float MOVEMENT_MULTIPLIER = 0.77f;
+    public const float MOVEMENT_MULTIPLIER = 0.52f;
     public const float HIGH_POWER = 120f;
     public const float LOW_POWER = 40f;
 
@@ -17,6 +18,7 @@ public class KickerAnimations : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log($"On State Enter: {stateInfo.shortNameHash}");
         if (kicker == null) Init();
         if (!isMoving && animator.GetBool(Constants.ANIMATOR_TRIGGER_SHOOT))
         {
@@ -26,7 +28,7 @@ public class KickerAnimations : StateMachineBehaviour
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //
+        Debug.Log($"On State Exit: {stateInfo.shortNameHash}");
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -63,6 +65,7 @@ public class KickerAnimations : StateMachineBehaviour
 
     public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
+        Debug.Log($"On State Machine Enter: {stateMachinePathHash}");
         if (kicker == null) Init();
         if (stateMachinePathHash == Constants.ANIMATOR_KICKER_SHOOT) isMoving = true;
         else if (stateMachinePathHash == Constants.ANIMATOR_KICKER_IDLE) animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
@@ -70,7 +73,7 @@ public class KickerAnimations : StateMachineBehaviour
 
     public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
-        //
+        Debug.Log($"On State Machine Exit: {stateMachinePathHash}");
     }
 
     private void Init()
@@ -83,6 +86,7 @@ public class KickerAnimations : StateMachineBehaviour
         movement = new Vector3();
         if (StaticValues.attacker.IsLeftFooted)
         {
+            kicker.GetComponent<Animator>().SetBool(Constants.ANIMATOR_MIRRORED, true);
             movement.x = Constants.KICKER_OFFSET_RIGHT.x;
             movement.z = Constants.KICKER_OFFSET_RIGHT.z;
         }

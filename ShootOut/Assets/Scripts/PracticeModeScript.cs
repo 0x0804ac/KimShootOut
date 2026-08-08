@@ -71,7 +71,7 @@ public class PracticeModeScript : MonoBehaviour
             {
                 lastMoveTime = Time.unscaledTime;
             }
-            else if (Time.unscaledTime - lastMoveTime > 3f || ball.transform.position.y < -33f)
+            else if (Time.unscaledTime - lastMoveTime > 3f || ball.transform.position.y < -3f)
             {
                 game.Turn();
             }
@@ -82,24 +82,19 @@ public class PracticeModeScript : MonoBehaviour
     {
         if (pressedButton != null)
         {
-            float x, y, z;
             Vector2 pos = context.ReadValue<Vector2>();
             to.x = pos.x;
             to.y = Screen.height - pos.y;
             MoveButton();
             if (pressedButton == playerButton && Settings.practiceType == PracticeType.ATTACK)
             {
-                x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
-                ShowPreview(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
+                Vector3 vector = AttackerVelocity(playerButton, playerSlider);
+                ShowPreview(vector);
             }
             else if (pressedButton == cpuButton && Settings.practiceType == PracticeType.DEFENSE)
             {
-                x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
-                ShowPreview(new Vector3(x, y, z) * (cpuSlider.value * Constants.MULTIPLIER));
+                Vector3 vector = AttackerVelocity(cpuButton, cpuSlider);
+                ShowPreview(vector);
             }
         }
     }
@@ -126,54 +121,48 @@ public class PracticeModeScript : MonoBehaviour
 
     private void OnButtonReleased(PointerUpEvent evt)
     {
-        Vector3 vector;
-        float x, y, z;
         if (pressedButton != null)
         {
             to = evt.position;
             MoveButton();
             HidePreview();
-            if (game.IsReady && pressedButton == playerButton)
-            {
-                if (Settings.practiceType == PracticeType.ATTACK)
+            if (game.IsReady) {
+                if (!Settings.controllableCPU)
                 {
-                    x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                    y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                    z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
-                    vector = StaticValues.attacker.Kick(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
-                    print(vector);
-                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
-                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
-                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
-                    x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                    y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                    z = StaticValues.defender.Speed * -Constants.MULTIPLIER;
-                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, x);
-                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, y);
-                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, z);
-                    kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
-                    lastMoveTime = Time.unscaledTime;
-                    game.IsReady = false;
+                    cpuButton.style.translate = new Vector2(RandomValue(), RandomValue());
+                    cpuSlider.value = Random.Range(cpuSlider.lowValue, cpuSlider.highValue + 1);
                 }
-                else if (Settings.practiceType == PracticeType.DEFENSE)
+                if (pressedButton == playerButton)
                 {
-                    x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                    y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                    z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
-                    vector = StaticValues.attacker.Kick(new Vector3(x, y, z) * (cpuSlider.value * Constants.MULTIPLIER));
-                    print(vector);
-                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
-                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
-                    kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
-                    x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-                    y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-                    z = StaticValues.defender.Speed * -Constants.MULTIPLIER;
-                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, x);
-                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, y);
-                    goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, z);
-                    kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
-                    lastMoveTime = Time.unscaledTime;
-                    game.IsReady = false;
+                    Vector3 vector;
+                    if (Settings.practiceType == PracticeType.ATTACK)
+                    {
+                        vector = StaticValues.attacker.Kick(AttackerVelocity(playerButton, playerSlider));
+                        kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
+                        kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
+                        kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                        vector = DefenderVelocity(cpuButton);
+                        goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
+                        goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
+                        goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                        kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                        lastMoveTime = Time.unscaledTime;
+                        game.IsReady = false;
+                    }
+                    else if (Settings.practiceType == PracticeType.DEFENSE)
+                    {
+                        vector = StaticValues.attacker.Kick(AttackerVelocity(cpuButton, cpuSlider));
+                        kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
+                        kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
+                        kickerAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                        vector = DefenderVelocity(playerButton);
+                        goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
+                        goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
+                        goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+                        kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                        lastMoveTime = Time.unscaledTime;
+                        game.IsReady = false;
+                    }
                 }
             }
             pressedButton = null;
@@ -182,21 +171,19 @@ public class PracticeModeScript : MonoBehaviour
 
     private void OnSliderClick(ChangeEvent<int> evt)
     {
-        float x, y, z;
-        if (pressedButton == playerButton && Settings.practiceType == PracticeType.ATTACK)
+        if (Settings.practiceType == PracticeType.ATTACK)
         {
-            x = playerButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-            y = playerButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-            z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
-            ShowPreview(new Vector3(x, y, z) * (playerSlider.value * Constants.MULTIPLIER));
+            ShowPreview(AttackerVelocity(playerButton, playerSlider));
         }
-        else if (pressedButton == cpuButton && Settings.practiceType == PracticeType.DEFENSE)
+        else if (Settings.practiceType == PracticeType.DEFENSE)
         {
-            x = cpuButton.style.translate.value.x.value * Constants.MULTIPLIER_X;
-            y = cpuButton.style.translate.value.y.value * Constants.MULTIPLIER_Y;
-            z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z;
-            ShowPreview(new Vector3(x, y, z) * (cpuSlider.value * Constants.MULTIPLIER));
+            ShowPreview(AttackerVelocity(cpuButton, cpuSlider));
         }
+    }
+
+    private void OnSliderReleased(PointerUpEvent evt)
+    {
+        HidePreview();
     }
 
     private void RegisterEvents()
@@ -206,13 +193,21 @@ public class PracticeModeScript : MonoBehaviour
         playerButton.RegisterCallback<GeometryChangedEvent>(UpdateRadius);
         playerButton.RegisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
         playerButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
-        if (Settings.practiceType == PracticeType.ATTACK) playerSlider.RegisterValueChangedCallback(OnSliderClick);
+        if (Settings.practiceType == PracticeType.ATTACK)
+        {
+            playerSlider.RegisterCallback<PointerUpEvent>(OnSliderReleased);
+            playerSlider.RegisterValueChangedCallback(OnSliderClick);
+        }
         if (Settings.controllableCPU)
         {
             toggleButton.clicked += OnToggleButtonClick;
             cpuButton.RegisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
             cpuButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
-            if (Settings.practiceType == PracticeType.DEFENSE) cpuSlider.RegisterValueChangedCallback(OnSliderClick);
+            if (Settings.practiceType == PracticeType.DEFENSE)
+            {
+                cpuSlider.RegisterCallback<PointerUpEvent>(OnSliderReleased);
+                cpuSlider.RegisterValueChangedCallback(OnSliderClick);
+            }
         }
     }
 
@@ -220,16 +215,24 @@ public class PracticeModeScript : MonoBehaviour
     {
         actions.Gameplay.Swipe.performed -= OngoingSwipe;
         actions.Gameplay.Disable();
-        if (toggleButton.visible) toggleButton.clicked -= OnToggleButtonClick;
         playerButton.UnregisterCallback<GeometryChangedEvent>(UpdateRadius);
         playerButton.UnregisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
         playerButton.UnregisterCallback<PointerUpEvent>(OnButtonReleased);
-        if (Settings.practiceType == PracticeType.ATTACK) playerSlider.UnregisterValueChangedCallback(OnSliderClick);
+        if (Settings.practiceType == PracticeType.ATTACK)
+        {
+            playerSlider.UnregisterCallback<PointerUpEvent>(OnSliderReleased);
+            playerSlider.UnregisterValueChangedCallback(OnSliderClick);
+        }
         if (Settings.controllableCPU)
         {
+            toggleButton.clicked -= OnToggleButtonClick;
             cpuButton.UnregisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
             cpuButton.UnregisterCallback<PointerUpEvent>(OnButtonReleased);
-            if (Settings.practiceType == PracticeType.DEFENSE) cpuSlider.UnregisterValueChangedCallback(OnSliderClick);
+            if (Settings.practiceType == PracticeType.DEFENSE)
+            {
+                cpuSlider.UnregisterCallback<PointerUpEvent>(OnSliderReleased);
+                cpuSlider.UnregisterValueChangedCallback(OnSliderClick);
+            }
         }
     }
 
@@ -242,11 +245,6 @@ public class PracticeModeScript : MonoBehaviour
     {
         pressedButton = null;
         playerButton.style.translate = Vector2.zero;
-        if (!Settings.controllableCPU)
-        {
-            cpuButton.style.translate = new Vector2(RandomValue(), RandomValue());
-            cpuSlider.value = Random.Range(cpuSlider.lowValue, cpuSlider.highValue + 1);
-        }
     }
 
     private void OnToggleButtonClick()
@@ -274,7 +272,28 @@ public class PracticeModeScript : MonoBehaviour
 
     private float RandomValue()
     {
-        return (Random.value - 0.5f) * (boundRadius - buttonRadius) * 2f;
+        return (Random.value * 2 - 1) * (boundRadius - buttonRadius);
+    }
+
+    private Vector3 AttackerVelocity(Button button, SliderInt slider)
+    {
+        Vector3 v = new()
+        {
+            x = button.style.translate.value.x.value * Constants.MULTIPLIER_X,
+            y = (button.style.translate.value.y.value + buttonRadius - boundRadius) * Constants.MULTIPLIER_Y,
+            z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z
+        };
+        return v * (slider.value * Constants.MULTIPLIER);
+    }
+
+    private Vector3 DefenderVelocity(Button button)
+    {
+        return new()
+        {
+            x = button.style.translate.value.x.value * Constants.MULTIPLIER_X,
+            y = button.style.translate.value.y.value * Constants.MULTIPLIER_Y,
+            z = StaticValues.defender.Speed * -Constants.MULTIPLIER
+        };
     }
 
     private void ShowPreview(Vector3 initialVelocity)

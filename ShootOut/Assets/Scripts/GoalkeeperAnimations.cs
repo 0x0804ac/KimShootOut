@@ -18,7 +18,7 @@ public class GoalkeeperAnimations : StateMachineBehaviour
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //
+        if (animator.GetBool(Constants.ANIMATOR_MIRRORED)) animator.SetBool(Constants.ANIMATOR_MIRRORED, false);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -60,13 +60,20 @@ public class GoalkeeperAnimations : StateMachineBehaviour
     {
         float x = movement.x / StaticValues.defender.Speed;
         Debug.Log(x);
-        if (x > 0.5f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_RIGHT, TRANSITION);
-        else if (x < 0.5f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_LEFT, TRANSITION);
-        else if (x > 0.25f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_SHORT_RIGHT, TRANSITION);
-        else if (x < 0.25f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_SHORT_LEFT, TRANSITION);
+        if (x > 5) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_LEFT, TRANSITION);
+        else if (x < 5) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_RIGHT, TRANSITION);
+        else if (x > 3) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_NORMAL_LEFT, TRANSITION);
+        else if (x < 3)
+        {
+            animator.SetBool(Constants.ANIMATOR_MIRRORED, true);
+            animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_LONG_LEFT, TRANSITION);
+        }
+        else if (x > 1) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_SHORT_LEFT, TRANSITION);
+        else if (x < 1) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_DIVE_SHORT_RIGHT, TRANSITION);
         else
         {
             float y = movement.y / StaticValues.defender.Speed;
+            Debug.Log(y);
             if (y > 0.125f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_JUMP_MISS, TRANSITION);
             else if (y > 0.0625f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_HIGH, TRANSITION);
             else if (y > -0.0625f) animator.CrossFade(Constants.ANIMATOR_GOALKEEPER_CATCH_NORMAL, TRANSITION);

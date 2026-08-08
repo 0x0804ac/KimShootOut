@@ -20,7 +20,7 @@ public static class Constants
     public const int MAX_STAT = 100;
 
     public const float MULTIPLIER_X = 0.1f;
-    public const float MULTIPLIER_Y = -0.1f;
+    public const float MULTIPLIER_Y = -0.06f;
     public const float MULTIPLIER_Z = 0.4f;
     public const float MULTIPLIER = 0.01f;
 
@@ -52,6 +52,7 @@ public static class Constants
     public const string ANIMATOR_TRIGGER_IDLE = "Idle";
     public const string ANIMATOR_TRIGGER_SHOOT = "Shoot";
     public const string ANIMATOR_TRIGGER_GOALKEEP = "Goalkeep";
+    public const string ANIMATOR_MIRRORED = "Mirrored";
     public const string ANIMATOR_VELOCITY_X = "Velocity X";
     public const string ANIMATOR_VELOCITY_Y = "Velocity Y";
     public const string ANIMATOR_VELOCITY_Z = "Velocity Z";

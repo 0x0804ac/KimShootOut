@@ -48,6 +48,7 @@ public class Practice : Gamemode
     public override void Start()
     {
         Debug.Log("Starting Practice mode");
+        script.ResetControls();
         IsReady = true;
     }
 
