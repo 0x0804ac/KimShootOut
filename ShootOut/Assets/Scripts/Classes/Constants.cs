@@ -26,8 +26,8 @@ public static class Constants
 
     public static readonly int ANIMATOR_KICKER_IDLE = Animator.StringToHash("Base Layer.Idle");
     public static readonly int ANIMATOR_KICKER_SHOOT = Animator.StringToHash("Base Layer.Shoot");
-    public static readonly int ANIMATOR_KICKER_SHOOT_WEAK_LEFT = Animator.StringToHash("Base Layer.Shoot.Weak Left");
-    public static readonly int ANIMATOR_KICKER_SHOOT_WEAK_RIGHT = Animator.StringToHash("Base Layer.Shoot.Weak Right");
+    public static readonly int ANIMATOR_KICKER_SHOOT_WEAK_LEFT = Animator.StringToHash("Base Layer.Shoot.Move Forward Left");
+    public static readonly int ANIMATOR_KICKER_SHOOT_WEAK_RIGHT = Animator.StringToHash("Base Layer.Shoot.Move Forward Right");
     public static readonly int ANIMATOR_KICKER_SHOOT_NORMAL = Animator.StringToHash("Base Layer.Shoot.Normal");
     public static readonly int ANIMATOR_KICKER_SHOOT_STRONG = Animator.StringToHash("Base Layer.Shoot.Strong");
     public static readonly int ANIMATOR_GOALKEEPER_IDLE = Animator.StringToHash("Base Layer.Idle");

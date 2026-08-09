@@ -145,7 +145,7 @@ public class PracticeModeScript : MonoBehaviour
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
-                        kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                        kickerAnimator.SetBool(Constants.ANIMATOR_TRIGGER_SHOOT, true);
                         lastMoveTime = Time.unscaledTime;
                         game.IsReady = false;
                     }
@@ -159,7 +159,7 @@ public class PracticeModeScript : MonoBehaviour
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
-                        kickerAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+                        kickerAnimator.SetBool(Constants.ANIMATOR_TRIGGER_SHOOT, true);
                         lastMoveTime = Time.unscaledTime;
                         game.IsReady = false;
                     }

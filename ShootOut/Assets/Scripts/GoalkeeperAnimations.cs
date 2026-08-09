@@ -25,28 +25,18 @@ public class GoalkeeperAnimations : StateMachineBehaviour
     {
         if (animator.GetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP))
         {
+            animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
             velocity.x = animator.GetFloat(Constants.ANIMATOR_VELOCITY_X) * MOVEMENT_MULTIPLIER;
             velocity.y = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y) * JUMP_MULTIPLIER;
             velocity.z = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z) * Constants.MULTIPLIER_Z;
             PlayAnimation(animator, velocity);
-            animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
         }
         else if (animator.GetBool(Constants.ANIMATOR_TRIGGER_IDLE))
         {
+            animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_IDLE);
             if (Random.Range(0, 8) > 0) animator.Play(Constants.ANIMATOR_GOALKEEPER_IDLE_ARMS_SIDE);
             else animator.Play(Constants.ANIMATOR_GOALKEEPER_IDLE_ARMS_FRONT);
-            animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_IDLE);
         }
-    }
-
-    public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
-    {
-        if (goalkeeper == null) Init();
-    }
-
-    public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
-    {
-        //
     }
 
     private void Init()
