@@ -435,6 +435,7 @@ MonoBehaviour:
   attacker: {fileID: 1361914583}
   defender: {fileID: 1141662752}
   ball: {fileID: 1872619311}
+  goal: {fileID: 1872619312}
   preview: {fileID: 138213461}
 --- !u!4 &846205842
 Transform:
@@ -827,6 +828,11 @@ PrefabInstance:
 --- !u!1 &1872619311 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9054799424182100633, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+  m_PrefabInstance: {fileID: 1872619310}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1872619312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 454217641513141888, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
   m_PrefabInstance: {fileID: 1872619310}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2145238409

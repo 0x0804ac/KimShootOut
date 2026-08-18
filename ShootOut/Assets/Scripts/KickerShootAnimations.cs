@@ -21,7 +21,7 @@ public class KickerShootAnimations : StateMachineBehaviour
         movement = new Vector3();
         if (StaticValues.attacker != null && StaticValues.attacker.IsLeftFooted)
         {
-            kicker.GetComponent<Animator>().SetBool(Constants.ANIMATOR_MIRRORED, true);
+            animator.SetBool(Constants.ANIMATOR_MIRRORED, true);
             movement.x = Constants.KICKER_OFFSET_RIGHT.x;
             movement.z = Constants.KICKER_OFFSET_RIGHT.z;
         }

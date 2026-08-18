@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class PracticeModeScript : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
-    [SerializeField] private GameObject attacker, defender, ball, preview;
+    [SerializeField] private GameObject attacker, defender, ball, goal, preview;
 
     private Practice game;
     private InputActions actions;
@@ -16,7 +16,7 @@ public class PracticeModeScript : MonoBehaviour
     private SliderInt playerSlider, cpuSlider;
 
     private Vector2 from, to;
-    private float buttonRadius, boundRadius, lastMoveTime;
+    private float buttonRadius, boundRadius, lastMoveTime, lastClickTime;
 
     void Awake()
     {
@@ -36,6 +36,8 @@ public class PracticeModeScript : MonoBehaviour
         toggleButton = root.Q<Button>(Constants.PRACTICE_MODE_TOGGLE_BUTTON);
         playerSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_PLAYER_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
         cpuSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_CPU_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
+        from = new Vector2();
+        to = new Vector2();
         if (type == PracticeType.ATTACK) cpuSlider.parent.visible = false;
         else if (type == PracticeType.DEFENSE) playerSlider.parent.visible = false;
         if (!controllable)
@@ -63,18 +65,18 @@ public class PracticeModeScript : MonoBehaviour
         UnregisterEvents();
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        float currentTime = Time.fixedTime;
+        if (preview.activeSelf && currentTime - lastClickTime > 1f) preview.SetActive(false);
         if (!game.IsReady)
         {
-            if (ball.GetComponent<Rigidbody>().GetPointVelocity(ball.transform.position).magnitude > 0f)
+            if (ball.transform.position.y < -3f) game.Turn();
+            else if (ball.GetComponent<Rigidbody>().GetPointVelocity(ball.transform.position).magnitude > 0f)
             {
-                lastMoveTime = Time.unscaledTime;
+                lastMoveTime = currentTime;
             }
-            else if (Time.unscaledTime - lastMoveTime > 3f || ball.transform.position.y < -3f)
-            {
-                game.Turn();
-            }
+            else if (currentTime - lastMoveTime > 3f) game.Turn();
         }
     }
 
@@ -146,7 +148,7 @@ public class PracticeModeScript : MonoBehaviour
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
                         kickerAnimator.SetBool(Constants.ANIMATOR_TRIGGER_SHOOT, true);
-                        lastMoveTime = Time.unscaledTime;
+                        lastMoveTime = Time.fixedTime;
                         game.IsReady = false;
                     }
                     else if (Settings.practiceType == PracticeType.DEFENSE)
@@ -160,7 +162,7 @@ public class PracticeModeScript : MonoBehaviour
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
                         goalkeeperAnimator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
                         kickerAnimator.SetBool(Constants.ANIMATOR_TRIGGER_SHOOT, true);
-                        lastMoveTime = Time.unscaledTime;
+                        lastMoveTime = Time.fixedTime;
                         game.IsReady = false;
                     }
                 }
@@ -181,8 +183,15 @@ public class PracticeModeScript : MonoBehaviour
         }
     }
 
+    private void OnSliderPressed(PointerDownEvent evt)
+    {
+        lastClickTime = Time.fixedTime;
+        evt.target.CaptureMouse();
+    }
+
     private void OnSliderReleased(PointerUpEvent evt)
     {
+        print("Slider Release Event");
         HidePreview();
     }
 
@@ -205,6 +214,7 @@ public class PracticeModeScript : MonoBehaviour
             cpuButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
             if (Settings.practiceType == PracticeType.DEFENSE)
             {
+                cpuSlider.RegisterCallback<PointerDownEvent>(OnSliderPressed);
                 cpuSlider.RegisterCallback<PointerUpEvent>(OnSliderReleased);
                 cpuSlider.RegisterValueChangedCallback(OnSliderClick);
             }
@@ -230,6 +240,7 @@ public class PracticeModeScript : MonoBehaviour
             cpuButton.UnregisterCallback<PointerUpEvent>(OnButtonReleased);
             if (Settings.practiceType == PracticeType.DEFENSE)
             {
+                cpuSlider.UnregisterCallback<PointerDownEvent>(OnSliderPressed);
                 cpuSlider.UnregisterCallback<PointerUpEvent>(OnSliderReleased);
                 cpuSlider.UnregisterValueChangedCallback(OnSliderClick);
             }
@@ -256,10 +267,16 @@ public class PracticeModeScript : MonoBehaviour
 
     public void ResetObjects()
     {
+        attacker.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        attacker.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         attacker.transform.position = Constants.PENALTY_SPOT + (StaticValues.attacker.IsLeftFooted ? Constants.KICKER_OFFSET_RIGHT : Constants.KICKER_OFFSET_LEFT);
         kickerAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_SHOOT);
+        defender.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        defender.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         defender.transform.SetLocalPositionAndRotation(Constants.GOAL_LINE, Quaternion.LookRotation(Vector3.back));
-        goalkeeperAnimator.ResetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
+        goalkeeperAnimator.SetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP, false);
+        ball.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         ball.transform.position = Constants.PENALTY_SPOT;
         PlayIdleAnimation();
     }
@@ -298,11 +315,17 @@ public class PracticeModeScript : MonoBehaviour
 
     private void ShowPreview(Vector3 initialVelocity)
     {
+        lastClickTime = Time.fixedTime;
         float g = Physics.gravity.y;
         float v = initialVelocity.z;
         float t = (Mathf.Sqrt(v * v + g * 22) - v) / g;
+        if (float.IsNaN(t))
+        {
+            HidePreview();
+            return;
+        }
         Vector3 destination = (Constants.PENALTY_SPOT + initialVelocity * t + 0.5f * t * t * Physics.gravity) / ball.GetComponent<Rigidbody>().mass;
-        if (destination.y > 0)
+        if (goal.GetComponent<BoxCollider>().bounds.Contains(destination + Vector3.forward))
         {
             preview.transform.position = destination;
             preview.SetActive(true);
