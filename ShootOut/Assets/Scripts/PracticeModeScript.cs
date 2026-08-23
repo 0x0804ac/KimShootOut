@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PracticeModeScript : MonoBehaviour
 {
-    [SerializeField] private UIDocument document;
+    [SerializeField] private UIDocument controlUI, resultUI;
     [SerializeField] private GameObject attacker, defender, ball, goal, preview;
 
     private Practice game;
@@ -12,8 +13,9 @@ public class PracticeModeScript : MonoBehaviour
     private Animator kickerAnimator, goalkeeperAnimator;
 
     private VisualElement root, cpuPanel, playerButtonPanel, cpuButtonPanel;
-    private Button playerButton, cpuButton, toggleButton, pressedButton;
+    private Button playerButton, cpuButton, toggleButton, pressedButton, quitButton;
     private SliderInt playerSlider, cpuSlider;
+    private Label titleLabel;
 
     private Vector2 from, to;
     private float buttonRadius, boundRadius, lastMoveTime, lastClickTime;
@@ -25,7 +27,7 @@ public class PracticeModeScript : MonoBehaviour
         PracticeType type = Settings.practiceType;
         bool controllable = Settings.controllableCPU;
         game = new Practice(type, controllable, this);
-        root = document.rootVisualElement;
+        root = controlUI.rootVisualElement;
         kickerAnimator = attacker.GetComponent<Animator>();
         goalkeeperAnimator = defender.GetComponent<Animator>();
         cpuPanel = root.Q<VisualElement>(Constants.PRACTICE_MODE_CPU_PANEL);
@@ -34,12 +36,23 @@ public class PracticeModeScript : MonoBehaviour
         playerButton = playerButtonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
         cpuButton = cpuButtonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
         toggleButton = root.Q<Button>(Constants.PRACTICE_MODE_TOGGLE_BUTTON);
+        quitButton = root.Q<Button>(Constants.QUIT_BUTTON);
         playerSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_PLAYER_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
         cpuSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_CPU_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
+        titleLabel = resultUI.rootVisualElement.Q<Label>("title-label");
         from = new Vector2();
         to = new Vector2();
-        if (type == PracticeType.ATTACK) cpuSlider.parent.visible = false;
-        else if (type == PracticeType.DEFENSE) playerSlider.parent.visible = false;
+        if (type == PracticeType.ATTACK)
+        {
+            cpuSlider.parent.visible = false;
+            titleLabel.text = Practice.ATTACK + " 연습 결과";
+        }
+        else if (type == PracticeType.DEFENSE)
+        {
+            playerSlider.parent.visible = false;
+            titleLabel.text = Practice.DEFENSE + " 연습 결과";
+        }
+
         if (!controllable)
         {
             toggleButton.visible = false;
@@ -199,6 +212,7 @@ public class PracticeModeScript : MonoBehaviour
     {
         actions.Gameplay.Swipe.performed += OngoingSwipe;
         actions.Gameplay.Enable();
+        quitButton.clicked += OnQuitButtonClick;
         playerButton.RegisterCallback<GeometryChangedEvent>(UpdateRadius);
         playerButton.RegisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
         playerButton.RegisterCallback<PointerUpEvent>(OnButtonReleased);
@@ -225,6 +239,7 @@ public class PracticeModeScript : MonoBehaviour
     {
         actions.Gameplay.Swipe.performed -= OngoingSwipe;
         actions.Gameplay.Disable();
+        quitButton.clicked -= OnQuitButtonClick;
         playerButton.UnregisterCallback<GeometryChangedEvent>(UpdateRadius);
         playerButton.UnregisterCallback<PointerDownEvent>(OnButtonPressed, TrickleDown.TrickleDown);
         playerButton.UnregisterCallback<PointerUpEvent>(OnButtonReleased);
@@ -265,6 +280,13 @@ public class PracticeModeScript : MonoBehaviour
         cpuPanel.visible = newValue;
     }
 
+    private void OnQuitButtonClick()
+    {
+        if (!game.IsReady) return;
+        if (game.Attempts > 0) ShowResults();
+        else SceneManager.LoadScene("MainMenu");
+    }
+
     public void ResetObjects()
     {
         attacker.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
@@ -285,6 +307,16 @@ public class PracticeModeScript : MonoBehaviour
     {
         kickerAnimator.Play(Constants.ANIMATOR_KICKER_IDLE);
         goalkeeperAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_IDLE);
+    }
+
+    public void ShowResults()
+    {
+        VisualElement e = resultUI.rootVisualElement;
+        e.Q<Label>(Constants.PRACTICE_MODE_ATTEMPTS_VALUE).text = $"{game.Attempts}";
+        e.Q<Label>(Constants.PRACTICE_MODE_GOALS_VALUE).text = $"{game.Goals}";
+        e.Q<Label>(Constants.PRACTICE_MODE_SAVES_VALUE).text = $"{game.Saves}";
+        controlUI.gameObject.SetActive(false);
+        resultUI.gameObject.SetActive(true);
     }
 
     private float RandomValue()

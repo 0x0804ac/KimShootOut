@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 public class Practice : Gamemode
 {
     public const string DISPLAY_NAME = "연습";
+    public const string ATTACK = "공격";
+    public const string DEFENSE = "수비";
     public const int PRACTICE_MAX_TURNS = 100;
 
-    private PracticeType type;
-    private bool canControlBot;
-    private PracticeModeScript script;
+    private readonly PracticeType type;
+    private readonly bool canControlBot;
+    private readonly PracticeModeScript script;
     
     public PracticeType Type
     {
@@ -20,11 +22,33 @@ public class Practice : Gamemode
     }
     public bool IsReady { get; set; }
 
+    public string DisplayName
+    {
+        get
+        {
+            return type switch
+            {
+                PracticeType.ATTACK => ATTACK,
+                PracticeType.DEFENSE => DEFENSE,
+                _ => DISPLAY_NAME,
+            };
+        }
+    }
+
+    public int Attempts { get => Mathf.Max(0, turn); }
+    public int Goals { get; private set; }
+    public int Saves { get; private set; }
+    public bool Goal { get; set; }
+    public bool Save { get; set; }
+
     public Practice(PracticeType type, bool canControlBot, PracticeModeScript script)
     {
         numberOfPlayers = 1;
         numberOfSpectators = 0;
         turn = 0;
+        Goals = 0;
+        Saves = 0;
+        Goal = false;
         this.type = type;
         this.canControlBot = canControlBot;
         this.script = script;
@@ -35,8 +59,7 @@ public class Practice : Gamemode
 
     public override void End()
     {
-        Debug.Log("Ending Practice mode");
-        SceneManager.LoadScene("MainMenu");
+        script.ShowResults();
     }
 
     public override void Load()
@@ -54,16 +77,23 @@ public class Practice : Gamemode
 
     public override void Turn()
     {
-        if (turn > PRACTICE_MAX_TURNS)
+        if (turn >= PRACTICE_MAX_TURNS)
         {
             Debug.Log("Maximum turns reached");
-            End(); //replace with a panel (label + button with End() attached)
+            End();
         }
         else
         {
             turn++;
             script.ResetObjects();
             script.ResetControls();
+            if (Goal)
+            {
+                Goals++;
+                Goal = false;
+            }
+            else if (Save) Saves++;
+            Save = false;
             IsReady = true;
         }
     }

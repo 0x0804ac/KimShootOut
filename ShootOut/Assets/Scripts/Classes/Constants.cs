@@ -12,9 +12,13 @@ public static class Constants
     public const string PRACTICE_MODE_TOGGLE_BUTTON = "toggle-visibility";
     public const string PRACTICE_MODE_CPU_SLIDER = "cpu-power-slider";
     public const string PRACTICE_MODE_PLAYER_SLIDER = "player-power-slider";
+    public const string PRACTICE_MODE_ATTEMPTS_VALUE = "attempts-value";
+    public const string PRACTICE_MODE_GOALS_VALUE = "goals-value";
+    public const string PRACTICE_MODE_SAVES_VALUE = "saves-value";
     public const string CONTROLS_BUTTON_BOUND = "button-bound";
     public const string CONTROLS_DIRECTION_BUTTON = "direction-button";
     public const string CONTROLS_POWER_SLIDER = "power-slider";
+    public const string QUIT_BUTTON = "quit-button";
 
     public const int MIN_STAT = 0;
     public const int MAX_STAT = 100;

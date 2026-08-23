@@ -13,24 +13,13 @@
         "m_CodePreviewVisible": true,
         "m_OpenUXMLFiles": [
             {
-                "m_OpenUSSFiles": [
-                    {
-                        "m_StyleSheet": {
-                            "fileID": 7433441132597879392,
-                            "guid": "a42d7049e045f5542a9d966f78691ed7",
-                            "type": 3
-                        },
-                        "m_ContentHash": 395032618,
-                        "m_UssPreview": ":root {\r\n    justify-content: center;\r\n}\r\n\r\n#unity-tracker {\r\n    position: absolute;\r\n    height: 64px;\r\n    top: 50%;\r\n    margin-left: 0;\r\n    padding-top: 0;\r\n    margin-top: -32px;\r\n}\r\n\r\n#unity-dragger {\r\n    top: 50%;\r\n    left: auto;\r\n    right: auto;\r\n    bottom: auto;\r\n    height: 64px;\r\n    margin-left: 0;\r\n    margin-right: 0;\r\n    margin-top: -32px;\r\n    margin-bottom: 0;\r\n    display: flex;\r\n    background-color: rgb(0, 0, 0);\r\n}\r\n",
-                        "m_OldPath": "Assets/UI/ControlUI.uss"
-                    }
-                ],
-                "m_OpenendVisualTreeAssetOldPath": "Assets/Scenes/AttackerUI.uxml",
-                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <ui:Template name=\"button_panel\" src=\"project://database/Assets/UI/button-panel.uxml?fileID=9197481963319205126&amp;guid=73fa79bdeb5310442908db34e8492f20&amp;type=3#button-panel\"/>\r\n    <Style src=\"project://database/Assets/UI/ControlUI.uss?fileID=7433441132597879392&amp;guid=a42d7049e045f5542a9d966f78691ed7&amp;type=3#ControlUI\"/>\r\n    <ui:GroupBox name=\"box\" style=\"height: 610px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-right: 5px; padding-left: 5px; aspect-ratio: 0.75; align-self: flex-end; max-width: 45%; max-height: 60%; width: 488px; transform-origin: bottom; translate: 0 100%;\">\r\n        <ui:VisualElement name=\"panel\" style=\"height: 100%; align-self: center; width: 100%; align-items: stretch; justify-content: space-evenly; align-content: center;\">\r\n            <ui:Instance template=\"button_panel\" name=\"button_panel\"/>\r\n            <ui:SliderInt label=\"파워\" value=\"60\" name=\"power-slider\" low-value=\"20\" high-value=\"100\" fill=\"true\" focusable=\"false\" style=\"height: 100px; font-size: 64px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; flex-direction: row; align-self: stretch;\"/>\r\n        </ui:VisualElement>\r\n    </ui:GroupBox>\r\n</ui:UXML>\r\n",
-                "m_ContentHash": 106304482,
+                "m_OpenUSSFiles": [],
+                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/Practice Result.uxml",
+                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <ui:VisualElement name=\"main-panel\" tabindex=\"-1\" style=\"align-self: center; align-content: center; height: 720px; width: 720px; top: 600px; background-color: rgba(255, 255, 255, 0.125);\">\r\n        <ui:Label text=\"연습 모드 결과\" name=\"title-label\" style=\"align-self: center; font-size: 96px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;\"/>\r\n        <ui:VisualElement name=\"chart-panel\" tabindex=\"-1\" style=\"flex-grow: 1; flex-direction: column; justify-content: space-between; margin-top: 30px; margin-right: 10px; margin-bottom: 30px; margin-left: 10px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; align-content: stretch;\">\r\n            <ui:VisualElement name=\"attempts-panel\" tabindex=\"-1\" style=\"flex-grow: 1; flex-direction: row; justify-content: space-between; align-content: stretch;\">\r\n                <ui:Label text=\"시도 횟수\" name=\"attempts-label\" style=\"font-size: 60px; width: 70%; -unity-text-align: middle-center; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n                <ui:Label text=\"0\" name=\"attempts-value\" style=\"font-size: 60px; width: 30%; -unity-text-align: middle-center; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n            </ui:VisualElement>\r\n            <ui:VisualElement name=\"goals-panel\" tabindex=\"-1\" style=\"flex-grow: 1; flex-direction: row; justify-content: space-between; align-content: stretch;\">\r\n                <ui:Label text=\"공격 성공\" name=\"goals-label\" style=\"font-size: 60px; width: 70%; -unity-text-align: middle-center; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n                <ui:Label text=\"0\" name=\"goals-value\" style=\"font-size: 60px; width: 30%; -unity-text-align: middle-center; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n            </ui:VisualElement>\r\n            <ui:VisualElement name=\"saves-panel\" tabindex=\"-1\" style=\"flex-grow: 1; flex-direction: row; justify-content: space-between; align-content: stretch;\">\r\n                <ui:Label text=\"수비 성공\" name=\"saves-label\" style=\"font-size: 60px; width: 70%; -unity-text-align: middle-center; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n                <ui:Label text=\"0\" name=\"saves-value\" style=\"font-size: 60px; width: 30%; -unity-text-align: middle-center; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n            </ui:VisualElement>\r\n        </ui:VisualElement>\r\n        <ui:Button text=\"메인 메뉴로 나가기\" name=\"quit-button\" style=\"margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; font-size: 60px;\"/>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
+                "m_ContentHash": -1904585456,
                 "m_VisualTreeAssetRef": {
                     "fileID": 9197481963319205126,
-                    "guid": "e90c6bb96c0dc5146bade970c8730b49",
+                    "guid": "01e236d1261b8a5458b97866282ddb30",
                     "type": 3
                 },
                 "m_TemplateAssetId": 0,
@@ -39,8 +28,8 @@
                     "instanceID": 0
                 },
                 "m_Settings": {
-                    "UxmlGuid": "e90c6bb96c0dc5146bade970c8730b49",
-                    "UxmlPath": "Assets/Scenes/AttackerUI.uxml",
+                    "UxmlGuid": "01e236d1261b8a5458b97866282ddb30",
+                    "UxmlPath": "Assets/UI/Practice Result.uxml",
                     "CanvasX": 0,
                     "CanvasY": 0,
                     "CanvasWidth": 1080,
@@ -48,8 +37,8 @@
                     "MatchGameView": true,
                     "ZoomScale": 0.5,
                     "PanOffset": {
-                        "x": 12.1776123046875,
-                        "y": 57.95531463623047
+                        "x": 20.0,
+                        "y": 20.0
                     },
                     "ColorModeBackgroundOpacity": 1.0,
                     "ImageModeCanvasBackgroundOpacity": 1.0,
@@ -57,10 +46,10 @@
                     "EnableCanvasBackground": false,
                     "CanvasBackgroundMode": 0,
                     "CanvasBackgroundColor": {
-                        "r": 1.0,
-                        "g": 1.0,
-                        "b": 1.0,
-                        "a": 0.250980406999588
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
                     },
                     "CanvasBackgroundImage": {
                         "instanceID": 0
