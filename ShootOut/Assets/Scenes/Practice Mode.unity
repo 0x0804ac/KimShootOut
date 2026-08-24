@@ -411,6 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 846205842}
+  - component: {fileID: 846205843}
   - component: {fileID: 846205841}
   m_Layer: 0
   m_Name: Script
@@ -431,6 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f31f8f4a383d39419590b082206b5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PracticeModeScript
+  manager: {fileID: 846205843}
   controlUI: {fileID: 438664574}
   resultUI: {fileID: 1111345685}
   attacker: {fileID: 1361914583}
@@ -453,6 +455,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &846205843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846205840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06024ca46315d7d4ca095944668dda7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScriptManager
+  gameScript: {fileID: 1872619314}
+  goalScript: {fileID: 1872619313}
 --- !u!1 &1111345684
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,13 +845,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463137627667240005, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 846205843}
+    - target: {fileID: 4463137627667240005, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463137627667240005, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
       propertyPath: goalkeeper
       value: 
       objectReference: {fileID: 1141662752}
+    - target: {fileID: 5069770025725966758, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 846205843}
     - target: {fileID: 7964573876358409902, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -891,6 +915,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 454217641513141888, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
   m_PrefabInstance: {fileID: 1872619310}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1872619313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5069770025725966758, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+  m_PrefabInstance: {fileID: 1872619310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872619312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65171e92c06fc949b6f2c42f2ad5021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoalScript
+--- !u!114 &1872619314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4463137627667240005, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+  m_PrefabInstance: {fileID: 1872619310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bf961702a35f54d9b8a062c20203be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameScript
 --- !u!1 &2145238409
 GameObject:
   m_ObjectHideFlags: 0

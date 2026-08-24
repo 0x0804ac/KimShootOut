@@ -82,18 +82,18 @@ public class ButtonScript : MonoBehaviour
         if (isPressed)
         {
             to = evt.position;
-            MoveButton();
-            if (manager.gameScript.IsReady())
+            MoveButton();/*
+            if (manager.Game.IsReady())
             {
-                if (manager.gameScript.Turn % 2 == 0)
+                if (manager.Game.Turn % 2 == 0)
                 {
-                    manager.gameScript.Shoot(new Vector2(vec.x, -vec.y) / (boundRadius - buttonRadius), slider.value * 0.01f);
+                    manager.Game.Shoot(new Vector2(vec.x, -vec.y) / (boundRadius - buttonRadius), slider.value * 0.01f);
                 }
                 else
                 {
-                    manager.gameScript.Goalkeep(new Vector2(vec.x, -vec.y));
+                    manager.Game.Goalkeep(new Vector2(vec.x, -vec.y));
                 }
-            }
+            }*/
             isPressed = false;
         }
     }
@@ -122,7 +122,7 @@ public class ButtonScript : MonoBehaviour
         isPressed = false;
         button.style.translate = Vector2.zero;
         slider.value = (slider.lowValue + slider.highValue) / 2;
-        slider.visible = manager.gameScript.Turn % 2 == 0;
+        //slider.visible = manager.Game.Turn % 2 == 0;
     }
     /*
 using UnityEngine;

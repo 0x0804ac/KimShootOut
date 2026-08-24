@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Practice : Gamemode
 {
@@ -38,8 +37,6 @@ public class Practice : Gamemode
     public int Attempts { get => Mathf.Max(0, turn); }
     public int Goals { get; private set; }
     public int Saves { get; private set; }
-    public bool Goal { get; set; }
-    public bool Save { get; set; }
 
     public Practice(PracticeType type, bool canControlBot, PracticeModeScript script)
     {
@@ -48,7 +45,6 @@ public class Practice : Gamemode
         turn = 0;
         Goals = 0;
         Saves = 0;
-        Goal = false;
         this.type = type;
         this.canControlBot = canControlBot;
         this.script = script;
@@ -87,13 +83,9 @@ public class Practice : Gamemode
             turn++;
             script.ResetObjects();
             script.ResetControls();
-            if (Goal)
-            {
-                Goals++;
-                Goal = false;
-            }
-            else if (Save) Saves++;
-            Save = false;
+            if (script.Manager.Game.IsGoal) Goals++;
+            else if (script.Manager.Game.IsSave) Saves++;
+            script.Manager.Game.ResetValues();
             IsReady = true;
         }
     }

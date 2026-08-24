@@ -466,7 +466,6 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.4.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/Scenes/Stadium/Field/Goal/GoalScript.cs"
 "Assets/Scenes/Stadium/GameScript.cs"
-"Assets/Scripts/ButtonScript.cs"
 "Assets/Scripts/Classes/BotMatch.cs"
 "Assets/Scripts/Classes/Constants.cs"
 "Assets/Scripts/Classes/Gamemode.cs"
@@ -500,6 +499,7 @@
 "Assets/Scripts/MainMenuCamera.cs"
 "Assets/Scripts/PracticeModeScript.cs"
 "Assets/Scripts/ScriptManager.cs"
+"Assets/Scripts/Unused/ButtonScript.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

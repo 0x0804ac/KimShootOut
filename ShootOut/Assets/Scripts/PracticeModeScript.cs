@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class PracticeModeScript : MonoBehaviour
 {
+    public const string TITLE_TEXT = " 연습 결과";
+
+    [SerializeField] private ScriptManager manager;
     [SerializeField] private UIDocument controlUI, resultUI;
     [SerializeField] private GameObject attacker, defender, ball, goal, preview;
 
@@ -19,6 +22,8 @@ public class PracticeModeScript : MonoBehaviour
 
     private Vector2 from, to;
     private float buttonRadius, boundRadius, lastMoveTime, lastClickTime;
+
+    public ScriptManager Manager => manager;
 
     void Awake()
     {
@@ -39,18 +44,18 @@ public class PracticeModeScript : MonoBehaviour
         quitButton = root.Q<Button>(Constants.QUIT_BUTTON);
         playerSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_PLAYER_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
         cpuSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_CPU_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
-        titleLabel = resultUI.rootVisualElement.Q<Label>("title-label");
+        titleLabel = resultUI.rootVisualElement.Q<Label>(Constants.TITLE_LABEL);
         from = new Vector2();
         to = new Vector2();
         if (type == PracticeType.ATTACK)
         {
             cpuSlider.parent.visible = false;
-            titleLabel.text = Practice.ATTACK + " 연습 결과";
+            titleLabel.text = Practice.ATTACK + TITLE_TEXT;
         }
         else if (type == PracticeType.DEFENSE)
         {
             playerSlider.parent.visible = false;
-            titleLabel.text = Practice.DEFENSE + " 연습 결과";
+            titleLabel.text = Practice.DEFENSE + TITLE_TEXT;
         }
 
         if (!controllable)
