@@ -498,6 +498,8 @@
 "Assets/Scripts/KickerShootAnimations.cs"
 "Assets/Scripts/MainMenuCamera.cs"
 "Assets/Scripts/PracticeModeScript.cs"
+"Assets/Scripts/PracticeResultScript.cs"
+"Assets/Scripts/SaveScript.cs"
 "Assets/Scripts/ScriptManager.cs"
 "Assets/Scripts/Unused/ButtonScript.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"

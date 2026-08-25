@@ -5,10 +5,9 @@ using UnityEngine.UIElements;
 
 public class PracticeModeScript : MonoBehaviour
 {
-    public const string TITLE_TEXT = " 연습 결과";
-
     [SerializeField] private ScriptManager manager;
-    [SerializeField] private UIDocument controlUI, resultUI;
+    [SerializeField] private PracticeResultScript result;
+    [SerializeField] private UIDocument controlUI;
     [SerializeField] private GameObject attacker, defender, ball, goal, preview;
 
     private Practice game;
@@ -18,12 +17,12 @@ public class PracticeModeScript : MonoBehaviour
     private VisualElement root, cpuPanel, playerButtonPanel, cpuButtonPanel;
     private Button playerButton, cpuButton, toggleButton, pressedButton, quitButton;
     private SliderInt playerSlider, cpuSlider;
-    private Label titleLabel;
 
     private Vector2 from, to;
     private float buttonRadius, boundRadius, lastMoveTime, lastClickTime;
 
     public ScriptManager Manager => manager;
+    public Practice Game => game;
 
     void Awake()
     {
@@ -44,20 +43,10 @@ public class PracticeModeScript : MonoBehaviour
         quitButton = root.Q<Button>(Constants.QUIT_BUTTON);
         playerSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_PLAYER_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
         cpuSlider = root.Q<TemplateContainer>(Constants.PRACTICE_MODE_CPU_SLIDER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
-        titleLabel = resultUI.rootVisualElement.Q<Label>(Constants.TITLE_LABEL);
         from = new Vector2();
         to = new Vector2();
-        if (type == PracticeType.ATTACK)
-        {
-            cpuSlider.parent.visible = false;
-            titleLabel.text = Practice.ATTACK + TITLE_TEXT;
-        }
-        else if (type == PracticeType.DEFENSE)
-        {
-            playerSlider.parent.visible = false;
-            titleLabel.text = Practice.DEFENSE + TITLE_TEXT;
-        }
-
+        if (type == PracticeType.ATTACK) cpuSlider.parent.visible = false;
+        else if (type == PracticeType.DEFENSE) playerSlider.parent.visible = false;
         if (!controllable)
         {
             toggleButton.visible = false;
@@ -316,12 +305,8 @@ public class PracticeModeScript : MonoBehaviour
 
     public void ShowResults()
     {
-        VisualElement e = resultUI.rootVisualElement;
-        e.Q<Label>(Constants.PRACTICE_MODE_ATTEMPTS_VALUE).text = $"{game.Attempts}";
-        e.Q<Label>(Constants.PRACTICE_MODE_GOALS_VALUE).text = $"{game.Goals}";
-        e.Q<Label>(Constants.PRACTICE_MODE_SAVES_VALUE).text = $"{game.Saves}";
         controlUI.gameObject.SetActive(false);
-        resultUI.gameObject.SetActive(true);
+        result.Show();
     }
 
     private float RandomValue()

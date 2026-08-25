@@ -16,7 +16,6 @@ public class GoalkeeperAnimations : StateMachineBehaviour
         if (goalkeeper == null) Init();
         if (animator.GetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP) && stateInfo.IsTag(Constants.ANIMATOR_TRIGGER_GOALKEEP))
         {
-            Debug.Log(1);
             animator.SetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP, false);
             velocity.x = animator.GetFloat(Constants.ANIMATOR_VELOCITY_X) * (MOVEMENT_MULTIPLIER * StaticValues.defender.Speed);
             velocity.y = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y) * JUMP_MULTIPLIER;
