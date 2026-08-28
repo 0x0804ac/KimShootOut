@@ -18,6 +18,9 @@ public static class Constants
     public const string CONTROLS_BUTTON_BOUND = "button-bound";
     public const string CONTROLS_DIRECTION_BUTTON = "direction-button";
     public const string CONTROLS_POWER_SLIDER = "power-slider";
+    public const string DIRECTION_CONTAINER = "direction";
+    public const string POWER_CONTAINER = "power";
+    public const string MAIN_PANEL = "main-panel";
     public const string TITLE_LABEL = "title-label";
     public const string QUIT_BUTTON = "quit-button";
 

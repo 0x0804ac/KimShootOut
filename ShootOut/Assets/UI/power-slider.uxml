@@ -1,3 +1,4 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:SliderInt label="파워" value="60" name="power-slider" low-value="20" high-value="100" fill="true" focusable="false" style="height: 100px; font-size: 64px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; flex-direction: row; align-self: stretch;"/>
+    <Style src="project://database/Assets/UI/Slider.uss?fileID=7433441132597879392&amp;guid=a42d7049e045f5542a9d966f78691ed7&amp;type=3#Slider"/>
+    <ui:SliderInt label="파워" value="60" name="power-slider" low-value="20" high-value="100" fill="true" focusable="false" style="font-size: 64px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; align-self: stretch; height: 100px; padding-left: 4px; padding-right: 4px;"/>
 </ui:UXML>

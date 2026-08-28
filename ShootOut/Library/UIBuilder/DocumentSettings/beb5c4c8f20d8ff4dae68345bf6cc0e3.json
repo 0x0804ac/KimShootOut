@@ -3,13 +3,13 @@
     "UxmlPath": "Assets/UI/power-slider.uxml",
     "CanvasX": 0,
     "CanvasY": 0,
-    "CanvasWidth": 350,
-    "CanvasHeight": 450,
+    "CanvasWidth": 450,
+    "CanvasHeight": 100,
     "MatchGameView": false,
     "ZoomScale": 1.0,
     "PanOffset": {
-        "x": 20.0,
-        "y": 20.0
+        "x": 49.406036376953128,
+        "y": 66.3200912475586
     },
     "ColorModeBackgroundOpacity": 1.0,
     "ImageModeCanvasBackgroundOpacity": 1.0,

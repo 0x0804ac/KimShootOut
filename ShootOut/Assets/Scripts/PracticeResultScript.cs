@@ -31,7 +31,6 @@ public class PracticeResultScript : MonoBehaviour
 
     public void Show()
     {
-        print($"{root.name}");
         mainPanel.Q<Label>(Constants.PRACTICE_MODE_ATTEMPTS_VALUE).text = $"{script.Game.Attempts}";
         mainPanel.Q<Label>(Constants.PRACTICE_MODE_GOALS_VALUE).text = $"{script.Game.Goals}";
         mainPanel.Q<Label>(Constants.PRACTICE_MODE_SAVES_VALUE).text = $"{script.Game.Saves}";
@@ -52,7 +51,6 @@ public class PracticeResultScript : MonoBehaviour
         {
             titleLabel.text = Practice.DEFENSE + TITLE_TEXT;
         }
-        print($"{root.layout.width} x {root.layout.height}");
         root.visible = false;
     }
 }

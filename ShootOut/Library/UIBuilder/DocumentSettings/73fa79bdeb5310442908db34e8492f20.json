@@ -3,8 +3,8 @@
     "UxmlPath": "Assets/UI/button_panel.uxml",
     "CanvasX": 0,
     "CanvasY": 0,
-    "CanvasWidth": 350,
-    "CanvasHeight": 450,
+    "CanvasWidth": 480,
+    "CanvasHeight": 480,
     "MatchGameView": false,
     "ZoomScale": 1.0,
     "PanOffset": {
