@@ -129,9 +129,10 @@ GameObject:
   m_Component:
   - component: {fileID: 374492257}
   - component: {fileID: 374492256}
+  - component: {fileID: 374492259}
   - component: {fileID: 374492258}
   m_Layer: 5
-  m_Name: Main Menu
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: e8722a4f9ba199a42bcd41ea86ce1c70, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 9b7dd934734569644bedada4e36fc769, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 3b7a159050517704aa61d3419cefdd4d, type: 3}
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
@@ -184,14 +185,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 374492255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0797cece76b81014ea647324fef564d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 8216142e683e3b047a4324b13d69d483, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainMenuControls
-  singleplayerDocument: {fileID: 0}
-  multiplayerDocument: {fileID: 0}
-  cosmeticsDocument: {fileID: 0}
-  settingsDocument: {fileID: 0}
-  creditsDocument: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::DefenseScript
+  defender: {fileID: 0}
+  goal: {fileID: 0}
+  preview: {fileID: 0}
+--- !u!114 &374492259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374492255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418bf5129acfb534480447e7bd45678c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackScript
+  attacker: {fileID: 0}
+  goal: {fileID: 0}
+  ball: {fileID: 0}
+  preview: {fileID: 0}
 --- !u!1 &1180227101
 GameObject:
   m_ObjectHideFlags: 0

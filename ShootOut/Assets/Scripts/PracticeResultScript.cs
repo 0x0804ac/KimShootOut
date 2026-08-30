@@ -26,7 +26,7 @@ public class PracticeResultScript : MonoBehaviour
 
     private void ReturnToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(Constants.SCENE_MAIN_MENU);
     }
 
     public void Show()

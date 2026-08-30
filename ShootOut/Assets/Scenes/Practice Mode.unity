@@ -357,6 +357,8 @@ GameObject:
   m_Component:
   - component: {fileID: 438664575}
   - component: {fileID: 438664574}
+  - component: {fileID: 438664577}
+  - component: {fileID: 438664576}
   m_Layer: 5
   m_Name: Controls UI
   m_TagString: Untagged
@@ -378,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: e8722a4f9ba199a42bcd41ea86ce1c70, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: f0678545e7091304a9e078763588bf14, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 3b7a159050517704aa61d3419cefdd4d, type: 3}
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
@@ -402,6 +404,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &438664576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438664573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8216142e683e3b047a4324b13d69d483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DefenseScript
+  defender: {fileID: 1141662752}
+  goal: {fileID: 1872619312}
+  preview: {fileID: 138213461}
+  showPreview: 0
+--- !u!114 &438664577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438664573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418bf5129acfb534480447e7bd45678c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackScript
+  attacker: {fileID: 1361914583}
+  goal: {fileID: 1872619312}
+  ball: {fileID: 1872619311}
+  preview: {fileID: 138213461}
 --- !u!1 &767042749
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,8 +481,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PracticeModeScript
   manager: {fileID: 909882907}
+  attackScript: {fileID: 438664577}
+  defenseScript: {fileID: 438664576}
   result: {fileID: 1111345687}
-  controlUI: {fileID: 438664574}
+  document: {fileID: 438664574}
   attacker: {fileID: 1361914583}
   defender: {fileID: 1141662752}
   ball: {fileID: 1872619311}

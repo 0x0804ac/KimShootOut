@@ -4,12 +4,13 @@ using UnityEngine.UIElements;
 
 public class AttackScript : MonoBehaviour
 {
-    [SerializeField] private UIDocument document;
     [SerializeField] private GameObject attacker, goal, ball, preview;
+
+    public TemplateContainer root;
 
     private InputActions input;
     private Animator animator;
-    private VisualElement root, mainPanel, buttonPanel;
+    private VisualElement mainPanel, buttonPanel;
     private Button directionButton;
     private SliderInt powerSlider;
     private Vector2 from, to;
@@ -21,7 +22,6 @@ public class AttackScript : MonoBehaviour
         if (input != null) return;
         input = new InputActions();
         animator = attacker.GetComponent<Animator>();
-        root = document.rootVisualElement;
         mainPanel = root.Q<VisualElement>(Constants.MAIN_PANEL);
         buttonPanel = mainPanel.Q<TemplateContainer>(Constants.DIRECTION_CONTAINER).Q<Button>(Constants.CONTROLS_BUTTON_BOUND);
         directionButton = buttonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
@@ -177,6 +177,12 @@ public class AttackScript : MonoBehaviour
         directionButton.style.translate = Vector2.zero;
     }
 
+    public void RandomizeControls()
+    {
+        directionButton.style.translate = new Vector2(RandomValue(), RandomValue());
+        powerSlider.value = Random.Range(powerSlider.lowValue, powerSlider.highValue + 1);
+    }
+
     private Vector3 AttackerVelocity(Button button, SliderInt slider)
     {
         Vector3 v = new()
@@ -186,5 +192,10 @@ public class AttackScript : MonoBehaviour
             z = StaticValues.attacker.Power * Constants.MULTIPLIER_Z
         };
         return v * (slider.value * Constants.MULTIPLIER);
+    }
+
+    private float RandomValue()
+    {
+        return (Random.value * 2 - 1) * (boundRadius - buttonRadius);
     }
 }

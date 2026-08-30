@@ -4,12 +4,14 @@ using UnityEngine.UIElements;
 
 public class DefenseScript : MonoBehaviour
 {
-    [SerializeField] private UIDocument document;
     [SerializeField] private GameObject defender, goal, preview;
+    [SerializeField] private bool showPreview;
+
+    public TemplateContainer root;
 
     private InputActions input;
     private Animator animator;
-    private VisualElement root, mainPanel, buttonPanel;
+    private VisualElement mainPanel, buttonPanel;
     private Button directionButton;
     private Vector2 from, to;
     private float buttonRadius, boundRadius, lastClickTime;
@@ -19,7 +21,6 @@ public class DefenseScript : MonoBehaviour
     {
         if (input != null) return;
         input = new InputActions();
-        root = document.rootVisualElement;
         animator = defender.GetComponent<Animator>();
         mainPanel = root.Q<VisualElement>(Constants.MAIN_PANEL);
         buttonPanel = mainPanel.Q<TemplateContainer>(Constants.DIRECTION_CONTAINER).Q<Button>(Constants.CONTROLS_BUTTON_BOUND);
@@ -81,7 +82,7 @@ public class DefenseScript : MonoBehaviour
             to.x = pos.x;
             to.y = Screen.height - pos.y;
             MoveButton();
-            ShowPreview(DefenderVelocity(directionButton));
+            if (showPreview) ShowPreview(DefenderVelocity(directionButton));
         }
     }
 
@@ -142,6 +143,11 @@ public class DefenseScript : MonoBehaviour
         directionButton.style.translate = Vector2.zero;
     }
 
+    public void RandomizeControls()
+    {
+        directionButton.style.translate = new Vector2(RandomValue(), RandomValue());
+    }
+
     private Vector3 DefenderVelocity(Button button)
     {
         return new()
@@ -150,5 +156,10 @@ public class DefenseScript : MonoBehaviour
             y = button.style.translate.value.y.value * Constants.MULTIPLIER_Y,
             z = StaticValues.defender.Speed * -Constants.MULTIPLIER
         };
+    }
+
+    private float RandomValue()
+    {
+        return (Random.value * 2 - 1) * (boundRadius - buttonRadius);
     }
 }

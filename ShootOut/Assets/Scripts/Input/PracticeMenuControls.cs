@@ -87,11 +87,11 @@ public class PracticeMenuControls : UIControls
         {
             case 1:
                 Settings.practiceType = PracticeType.ATTACK;
-                SceneManager.LoadScene("Practice Mode");
+                SceneManager.LoadScene(Constants.SCENE_PRACTICE_MODE);
                 break;
             case 2:
                 Settings.practiceType = PracticeType.DEFENSE;
-                SceneManager.LoadScene("Practice Mode");
+                SceneManager.LoadScene(Constants.SCENE_PRACTICE_MODE);
                 break;
             default:
                 print("Please choose side before starting practice");
