@@ -7,11 +7,11 @@ public class DefenseScript : MonoBehaviour
     [SerializeField] private GameObject defender, goal, preview;
     [SerializeField] private bool showPreview;
 
-    public TemplateContainer root;
+    public VisualElement mainPanel;
 
     private InputActions input;
     private Animator animator;
-    private VisualElement mainPanel, buttonPanel;
+    private VisualElement buttonPanel;
     private Button directionButton;
     private Vector2 from, to;
     private float buttonRadius, boundRadius, lastClickTime;
@@ -20,10 +20,10 @@ public class DefenseScript : MonoBehaviour
     void Awake()
     {
         if (input != null) return;
+        mainPanel = gameObject.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>(Constants.MAIN_PANEL);
         input = new InputActions();
         animator = defender.GetComponent<Animator>();
-        mainPanel = root.Q<VisualElement>(Constants.MAIN_PANEL);
-        buttonPanel = mainPanel.Q<TemplateContainer>(Constants.DIRECTION_CONTAINER).Q<Button>(Constants.CONTROLS_BUTTON_BOUND);
+        buttonPanel = mainPanel.Q<TemplateContainer>(Constants.DIRECTION_CONTAINER).Q<VisualElement>(Constants.CONTROLS_BUTTON_BOUND);
         directionButton = buttonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
         from = new Vector2();
         to = new Vector2();

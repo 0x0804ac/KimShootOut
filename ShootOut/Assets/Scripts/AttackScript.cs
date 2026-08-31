@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -6,11 +7,11 @@ public class AttackScript : MonoBehaviour
 {
     [SerializeField] private GameObject attacker, goal, ball, preview;
 
-    public TemplateContainer root;
+    public VisualElement mainPanel;
 
     private InputActions input;
     private Animator animator;
-    private VisualElement mainPanel, buttonPanel;
+    private VisualElement buttonPanel;
     private Button directionButton;
     private SliderInt powerSlider;
     private Vector2 from, to;
@@ -20,10 +21,10 @@ public class AttackScript : MonoBehaviour
     void Awake()
     {
         if (input != null) return;
+        mainPanel = gameObject.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>(Constants.MAIN_PANEL);
         input = new InputActions();
         animator = attacker.GetComponent<Animator>();
-        mainPanel = root.Q<VisualElement>(Constants.MAIN_PANEL);
-        buttonPanel = mainPanel.Q<TemplateContainer>(Constants.DIRECTION_CONTAINER).Q<Button>(Constants.CONTROLS_BUTTON_BOUND);
+        buttonPanel = mainPanel.Q<TemplateContainer>(Constants.DIRECTION_CONTAINER).Q<VisualElement>(Constants.CONTROLS_BUTTON_BOUND);
         directionButton = buttonPanel.Q<Button>(Constants.CONTROLS_DIRECTION_BUTTON);
         powerSlider = mainPanel.Q<TemplateContainer>(Constants.POWER_CONTAINER).Q<SliderInt>(Constants.CONTROLS_POWER_SLIDER);
         from = new Vector2();

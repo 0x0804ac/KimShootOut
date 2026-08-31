@@ -37,16 +37,6 @@ public class PracticeModeScript : MonoBehaviour
         toggleButton = buttonPanel.Q<Button>(Constants.PRACTICE_MODE_TOGGLE_BUTTON);
         confirmButton = buttonPanel.Q<Button>(Constants.CONFIRM_BUTTON);
         quitButton = buttonPanel.Q<Button>(Constants.QUIT_BUTTON);
-        if (type == PracticeType.ATTACK)
-        {
-            playerPanel.Add(attackScript.root);
-            cpuPanel.Add(defenseScript.root);
-        }
-        else if (type == PracticeType.DEFENSE)
-        {
-            playerPanel.Add(defenseScript.root);
-            cpuPanel.Add(attackScript.root);
-        }
         if (!controllable)
         {
             toggleButton.visible = false;
@@ -58,6 +48,16 @@ public class PracticeModeScript : MonoBehaviour
 
     void Start()
     {
+        if (game.Type == PracticeType.ATTACK)
+        {
+            playerPanel.Add(attackScript.mainPanel);
+            cpuPanel.Add(defenseScript.mainPanel);
+        }
+        else if (game.Type == PracticeType.DEFENSE)
+        {
+            playerPanel.Add(defenseScript.mainPanel);
+            cpuPanel.Add(attackScript.mainPanel);
+        }
         game.Start();
     }
 
