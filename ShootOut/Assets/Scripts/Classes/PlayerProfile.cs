@@ -1,17 +1,12 @@
-using UnityEngine;
-
 public class PlayerProfile
 {
-    private long id;
     private string name;
     private bool isBot;
     private double rating;
-    //skins, uniforms, cosmetics, statistics
+    private PlayerStats stats;
+    //skins, uniforms, cosmetics
 
-    public long ID
-    {
-        get => id;
-    }
+    public long ID { get; }
     public string Name
     {
         get => name;
@@ -28,14 +23,14 @@ public class PlayerProfile
 
     private PlayerProfile()
     {
-        id = 0L; //randomize
+        ID = 0L; //randomize
         name = "Bot"; //random name
         isBot = true;
     }
 
     public PlayerProfile(long playerID)
     {
-        id = playerID;
+        ID = playerID;
         //get profile data from player ID
         name = "Player"; //get name from player ID
         isBot = false;
@@ -44,8 +39,10 @@ public class PlayerProfile
 
     public static PlayerProfile BotProfile(double difficulty)
     {
-        PlayerProfile bot = new();
-        bot.rating = difficulty;
+        PlayerProfile bot = new()
+        {
+            rating = difficulty
+        };
         return bot;
     }
 }

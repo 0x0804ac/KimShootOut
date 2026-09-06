@@ -43,7 +43,7 @@ public class DefenseScript : MonoBehaviour
     void FixedUpdate()
     {
         float currentTime = Time.fixedTime;
-        preview.SetActive(isSwiping || currentTime - lastClickTime < 1f);
+        preview.SetActive(showPreview && (isSwiping || currentTime - lastClickTime < 1f));
     }
 
     private void RegisterEvents()
@@ -97,6 +97,7 @@ public class DefenseScript : MonoBehaviour
             animator.SetFloat(Constants.ANIMATOR_VELOCITY_X, vector.x);
             animator.SetFloat(Constants.ANIMATOR_VELOCITY_Y, vector.y);
             animator.SetFloat(Constants.ANIMATOR_VELOCITY_Z, vector.z);
+            animator.SetBool(Constants.ANIMATOR_MIRRORED, vector.x < 0f);
             isSwiping = false;
         }
     }

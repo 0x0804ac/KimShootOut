@@ -5,6 +5,7 @@ public class Player
     public PlayerProfile profile;
     private Item[] inventory;
     private double score;
+    private int goals, saves;
 
     public Player(PlayerProfile profile)
     {
@@ -21,6 +22,18 @@ public class Player
     {
         get => score;
         set => score = value < 0.0 ? value : 0.0;
+    }
+
+    public int Goals
+    {
+        get => goals;
+        set => goals = value < 0 ? value : 0;
+    }
+
+    public int Saves
+    {
+        get => saves;
+        set => saves = value < 0 ? value : 0;
     }
 
     public void InitializeInventory(int size)

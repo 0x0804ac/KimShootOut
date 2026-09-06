@@ -66,7 +66,7 @@ public class KickerShootAnimations : StateMachineBehaviour
                 float y = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Y);
                 float z = animator.GetFloat(Constants.ANIMATOR_VELOCITY_Z);
                 ball.GetComponent<Rigidbody>().AddForce(new Vector3(x, y, z), ForceMode.Impulse);
-                goalkeeperAnimator.SetTrigger(Constants.ANIMATOR_TRIGGER_GOALKEEP);
+                goalkeeperAnimator.SetBool(Constants.ANIMATOR_TRIGGER_GOALKEEP, true);
             }
         }
     }

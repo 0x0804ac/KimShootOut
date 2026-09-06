@@ -6,6 +6,7 @@ public class GoalkeeperAnimations : StateMachineBehaviour
     public const float TRANSITION = 0.125f;
     public const float MOVEMENT_MULTIPLIER = 0.55f;
     public const float JUMP_MULTIPLIER = 0.5f;
+    public readonly int IDLE_HASH = Animator.StringToHash("A");
 
     private GameObject goalkeeper;
     private Rigidbody body;
@@ -25,8 +26,7 @@ public class GoalkeeperAnimations : StateMachineBehaviour
         else if (stateInfo.IsTag(Constants.ANIMATOR_TRIGGER_IDLE))
         {
             animator.ResetTrigger(Constants.ANIMATOR_TRIGGER_IDLE);
-            if (Random.Range(0, 8) > 0) animator.SetInteger("A", 0);
-            else animator.SetInteger("A", 1);
+            animator.SetInteger(IDLE_HASH, Random.Range(0, 8) == 0 ? 1 : 0);
         }
     }
 

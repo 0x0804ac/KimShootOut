@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public abstract class Versus : Gamemode
 {
     protected Player[] players;
