@@ -13,24 +13,13 @@
         "m_CodePreviewVisible": true,
         "m_OpenUXMLFiles": [
             {
-                "m_OpenUSSFiles": [
-                    {
-                        "m_StyleSheet": {
-                            "fileID": 7433441132597879392,
-                            "guid": "a42d7049e045f5542a9d966f78691ed7",
-                            "type": 3
-                        },
-                        "m_ContentHash": 1725836591,
-                        "m_UssPreview": "#unity-tracker {\r\n    top: 18px;\r\n    height: 64px;\r\n    margin-top: 0;\r\n    margin-right: 0;\r\n    margin-bottom: 0;\r\n    margin-left: 0;\r\n    padding-top: 0;\r\n    padding-right: 0;\r\n    padding-bottom: 0;\r\n    padding-left: 0;\r\n}\r\n\r\n#unity-dragger {\r\n    height: 64px;\r\n    top: 18px;\r\n    margin-top: 0;\r\n    margin-right: 0;\r\n    margin-bottom: 0;\r\n    margin-left: 0;\r\n    padding-top: 0;\r\n    padding-right: 0;\r\n    padding-bottom: 0;\r\n    padding-left: 0;\r\n    background-color: rgb(0, 0, 0);\r\n}\r\n\r\n#power-slider > Label {\r\n    margin-top: 0;\r\n    margin-right: 0;\r\n    margin-bottom: 0;\r\n    margin-left: 0;\r\n    padding-top: 4px;\r\n    padding-right: 4px;\r\n    padding-bottom: 4px;\r\n    padding-left: 4px;\r\n    -unity-text-align: middle-left;\r\n}\r\n",
-                        "m_OldPath": "Assets/UI/Slider.uss"
-                    }
-                ],
-                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/Attack UI.uxml",
-                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <ui:Template name=\"button_panel\" src=\"project://database/Assets/UI/button-panel.uxml?fileID=9197481963319205126&amp;guid=73fa79bdeb5310442908db34e8492f20&amp;type=3#button-panel\"/>\r\n    <ui:Template name=\"power-slider\" src=\"project://database/Assets/UI/power-slider.uxml?fileID=9197481963319205126&amp;guid=beb5c4c8f20d8ff4dae68345bf6cc0e3&amp;type=3#power-slider\"/>\r\n    <Style src=\"project://database/Assets/UI/Slider.uss?fileID=7433441132597879392&amp;guid=a42d7049e045f5542a9d966f78691ed7&amp;type=3#Slider\"/>\r\n    <ui:VisualElement name=\"main-panel\" style=\"flex-grow: 1; justify-content: space-between; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px;\">\r\n        <ui:Instance template=\"button_panel\" name=\"direction\"/>\r\n        <ui:Instance template=\"power-slider\" name=\"power\"/>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
-                "m_ContentHash": 153774351,
+                "m_OpenUSSFiles": [],
+                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/Dialog.uxml",
+                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <ui:VisualElement name=\"main-panel\" style=\"flex-grow: 1; justify-content: center;\">\r\n        <ui:VisualElement name=\"top-panel\" style=\"height: 100px; flex-direction: row; justify-content: space-between;\">\r\n            <ui:VisualElement name=\"title-panel\" style=\"margin-top: 20px; margin-left: 20px; margin-right: 20px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-top-width: 8px; border-right-width: 8px; border-bottom-width: 0; border-left-width: 8px; background-color: rgb(255, 240, 184); border-left-color: rgb(217, 180, 45); border-right-color: rgb(217, 180, 45); border-top-color: rgb(217, 180, 45); border-bottom-color: rgb(217, 180, 45); align-self: flex-start; justify-content: center; left: 34px;\">\r\n                <ui:Label text=\"튜토리얼\" name=\"title-label\" style=\"font-size: 50px; -unity-text-align: middle-center; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;\"/>\r\n            </ui:VisualElement>\r\n            <ui:Button text=\"확인\" name=\"confirm-button\" style=\"right: 34px; font-size: 50px; margin-top: 16px; margin-right: 0; margin-bottom: 4px; margin-left: 0; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px; border-top-width: 8px; border-right-width: 8px; border-bottom-width: 8px; border-left-width: 8px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px;\"/>\r\n        </ui:VisualElement>\r\n        <ui:VisualElement name=\"dialog-panel\" style=\"height: 480px; margin-top: 0; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; background-color: rgb(255, 240, 184); border-left-color: rgb(217, 180, 45); border-right-color: rgb(217, 180, 45); border-top-color: rgb(217, 180, 45); border-bottom-color: rgb(217, 180, 45); border-top-width: 8px; border-right-width: 8px; border-bottom-width: 8px; border-left-width: 8px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px;\">\r\n            <ui:Label text=\"이것저것 설명&#10;아아아아아아아아아아&#10;여러줄테스트\" name=\"title-label\" style=\"font-size: 50px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;\"/>\r\n        </ui:VisualElement>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
+                "m_ContentHash": -1470680215,
                 "m_VisualTreeAssetRef": {
                     "fileID": 9197481963319205126,
-                    "guid": "208b0eb584f163842b4b0d149237790f",
+                    "guid": "63aa7312ae4daee44a9bc8e5b1ae5408",
                     "type": 3
                 },
                 "m_TemplateAssetId": 0,
@@ -39,14 +28,14 @@
                     "instanceID": 0
                 },
                 "m_Settings": {
-                    "UxmlGuid": "208b0eb584f163842b4b0d149237790f",
-                    "UxmlPath": "Assets/UI/Attack UI.uxml",
+                    "UxmlGuid": "63aa7312ae4daee44a9bc8e5b1ae5408",
+                    "UxmlPath": "Assets/UI/Dialog.uxml",
                     "CanvasX": 0,
                     "CanvasY": 0,
-                    "CanvasWidth": 488,
-                    "CanvasHeight": 610,
+                    "CanvasWidth": 1000,
+                    "CanvasHeight": 1000,
                     "MatchGameView": false,
-                    "ZoomScale": 1.0,
+                    "ZoomScale": 0.5,
                     "PanOffset": {
                         "x": 20.0,
                         "y": 20.0
