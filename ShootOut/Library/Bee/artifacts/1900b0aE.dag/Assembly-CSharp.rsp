@@ -486,6 +486,7 @@
 "Assets/Scripts/Classes/UIControls.cs"
 "Assets/Scripts/Classes/Versus.cs"
 "Assets/Scripts/DefenseScript.cs"
+"Assets/Scripts/DialogText.cs"
 "Assets/Scripts/GoalkeeperAnimations.cs"
 "Assets/Scripts/Input/BackButton.cs"
 "Assets/Scripts/Input/CustomizeMenuControls.cs"

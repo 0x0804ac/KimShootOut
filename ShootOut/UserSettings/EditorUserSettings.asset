@@ -27,13 +27,13 @@ EditorUserSettings:
       value: 5a08575f5207595a0f5d59741173094444164f7d7d2a23317c7a4465bbe1646d
       flags: 0
     RecentlyUsedSceneGuid-4:
-      value: 0757570357545f5d590d5b7412770c44454f4c282a7f75627d704c6be6b43560
-      flags: 0
-    RecentlyUsedSceneGuid-5:
       value: 5652055654015e5e5f5b5f7643260944134e497f7d7176657a2f1c64b6b76560
       flags: 0
-    RecentlyUsedSceneGuid-6:
+    RecentlyUsedSceneGuid-5:
       value: 5054065351575e5855575821167a5b44454f1c7f792a70357d7c4a36e6b36d3e
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 0757570357545f5d590d5b7412770c44454f4c282a7f75627d704c6be6b43560
       flags: 0
     UIToolkit.EnableLayoutDebugger:
       value: 2550581500

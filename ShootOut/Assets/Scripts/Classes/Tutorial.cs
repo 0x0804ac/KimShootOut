@@ -70,12 +70,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public GameObject dialoguePanel;
 
-    [Header("Settings")]
-    public float typeSpeed = 0.05f;
-
     private Queue<string> sentences;
-    private bool isTyping = false;
-    private string currentSentence = "";
 
     void Awake()
     {
@@ -100,15 +95,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if (isTyping)
-        {
-            // If the user clicks while text is typing, instantly finish the line
-            StopAllCoroutines();
-            dialogueText.text = currentSentence;
-            isTyping = false;
-            return;
-        }
-
+        SkipAnimation();
         if (sentences.Count == 0)
         {
             EndDialogue();
@@ -117,20 +104,6 @@ public class DialogueManager : MonoBehaviour
 
         currentSentence = sentences.Dequeue();
         StartCoroutine(TypeSentence(currentSentence));
-    }
-
-    IEnumerator TypeSentence(string sentence)
-    {
-        dialogueText.text = "";
-        isTyping = true;
-
-        foreach (char letter in sentence.ToCharArray())
-        {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typeSpeed); // Creates a typewriter effect
-        }
-
-        isTyping = false;
     }
 
     void EndDialogue()
