@@ -490,6 +490,7 @@
 "Assets/Scripts/GoalkeeperAnimations.cs"
 "Assets/Scripts/Input/BackButton.cs"
 "Assets/Scripts/Input/CustomizeMenuControls.cs"
+"Assets/Scripts/Input/DialogButton.cs"
 "Assets/Scripts/Input/DirectionInput.cs"
 "Assets/Scripts/Input/InputActions.cs"
 "Assets/Scripts/Input/Joystick.cs"
@@ -507,6 +508,7 @@
 "Assets/Scripts/PracticeResultScript.cs"
 "Assets/Scripts/SaveScript.cs"
 "Assets/Scripts/ScriptManager.cs"
+"Assets/Scripts/TutorialModeScript.cs"
 "Assets/Scripts/Unused/ButtonScript.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0

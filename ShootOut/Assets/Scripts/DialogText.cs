@@ -14,10 +14,22 @@ public class DialogText : MonoBehaviour
     private Label titleLabel, textLabel;
     private bool isTyping;
 
+    public string Title
+    {
+        get => title;
+        set { if (!string.IsNullOrWhiteSpace(value)) title = value; }
+    }
+    [Multiline]
+    public string Text
+    {
+        get => text;
+        set { if (string.IsNullOrWhiteSpace(value)) text = value; }
+    }
+
     void OnEnable()
     {
         VisualElement panel = document.rootVisualElement.Q<VisualElement>(Constants.MAIN_PANEL);
-        titleLabel = panel.Q<VisualElement>("top-panel").Q<VisualElement>("title-panel").Q<Label>(Constants.TITLE_LABEL);
+        titleLabel = panel.Q<VisualElement>(Constants.TOP_PANEL).Q<VisualElement>("title-panel").Q<Label>(Constants.TITLE_LABEL);
         textPanel = panel.Q<VisualElement>("dialog-panel");
         textLabel = textPanel.Q<Label>("text-label");
         isTyping = false;

@@ -26,6 +26,7 @@ public static class Constants
     public const string BUTTON_PANEL = "button-panel";
     public const string CPU_PANEL = "cpu-panel";
     public const string PLAYER_PANEL = "player-panel";
+    public const string TOP_PANEL = "top-panel";
     public const string TITLE_LABEL = "title-label";
     public const string CONFIRM_BUTTON = "confirm-button";
     public const string QUIT_BUTTON = "quit-button";
