@@ -1,3 +1,11 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="main-panel" style="flex-grow: 1;"/>
+    <Style src="project://database/Assets/UI/InGameUIButton.uss?fileID=7433441132597879392&amp;guid=fae175efa06ef8749a7f4f7087563752&amp;type=3#InGameUIButton"/>
+    <ui:VisualElement name="main-panel" style="flex-grow: 1;">
+        <ui:VisualElement name="button-panel" class="buttonPanel">
+            <ui:Button text="종료" name="unused-button" class="uiButton" style="visibility: hidden;"/>
+            <ui:Button text="결정" name="confirm-button" class="uiButton"/>
+            <ui:Button text="종료" name="quit-button" class="uiButton"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="control-panel" style="flex-grow: 1;"/>
+    </ui:VisualElement>
 </ui:UXML>
