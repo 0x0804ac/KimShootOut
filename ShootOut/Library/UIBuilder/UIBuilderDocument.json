@@ -20,14 +20,24 @@
                             "guid": "fae175efa06ef8749a7f4f7087563752",
                             "type": 3
                         },
-                        "m_ContentHash": 2014002718,
+                        "m_ContentHash": 1976959195,
                         "m_UssPreview": ".buttonPanel {\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    height: 120px;\r\n}\r\n\r\n.uiButton {\r\n    height: 100px;\r\n    margin-top: 10px;\r\n    margin-right: 10px;\r\n    margin-bottom: 10px;\r\n    margin-left: 10px;\r\n    padding-top: 10px;\r\n    padding-right: 10px;\r\n    padding-bottom: 10px;\r\n    padding-left: 10px;\r\n    font-size: 60px;\r\n}\r\n",
                         "m_OldPath": "Assets/UI/InGameUIButton.uss"
+                    },
+                    {
+                        "m_StyleSheet": {
+                            "fileID": 7433441132597879392,
+                            "guid": "8121a5017358c564ca3aab24ab0fd5a6",
+                            "type": 3
+                        },
+                        "m_ContentHash": 1985255799,
+                        "m_UssPreview": ".controlPanel {\r\n    justify-content: space-between;\r\n    align-items: stretch;\r\n    width: 488px;\r\n    height: 610px;\r\n    margin-top: 30px;\r\n    margin-right: 30px;\r\n    margin-bottom: 30px;\r\n    margin-left: 30px;\r\n    padding-top: 5px;\r\n    padding-right: 5px;\r\n    padding-bottom: 5px;\r\n    padding-left: 5px;\r\n}\r\n",
+                        "m_OldPath": "Assets/UI/Control.uss"
                     }
                 ],
                 "m_OpenendVisualTreeAssetOldPath": "Assets/UI/Tutorial Mode.uxml",
-                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <Style src=\"project://database/Assets/UI/InGameUIButton.uss?fileID=7433441132597879392&amp;guid=fae175efa06ef8749a7f4f7087563752&amp;type=3#InGameUIButton\"/>\r\n    <ui:VisualElement name=\"main-panel\" style=\"flex-grow: 1;\">\r\n        <ui:VisualElement name=\"button-panel\" class=\"buttonPanel\">\r\n            <ui:Button text=\"종료\" name=\"unused-button\" class=\"uiButton\" style=\"visibility: hidden;\"/>\r\n            <ui:Button text=\"결정\" name=\"confirm-button\" class=\"uiButton\"/>\r\n            <ui:Button text=\"종료\" name=\"quit-button\" class=\"uiButton\"/>\r\n        </ui:VisualElement>\r\n        <ui:VisualElement name=\"control-panel\" style=\"flex-grow: 1;\"/>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
-                "m_ContentHash": -743465446,
+                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <Style src=\"project://database/Assets/UI/InGameUIButton.uss?fileID=7433441132597879392&amp;guid=fae175efa06ef8749a7f4f7087563752&amp;type=3#InGameUIButton\"/>\r\n    <Style src=\"project://database/Assets/UI/Control.uss?fileID=7433441132597879392&amp;guid=8121a5017358c564ca3aab24ab0fd5a6&amp;type=3#Control\"/>\r\n    <ui:VisualElement name=\"main-panel\" style=\"flex-grow: 1; justify-content: space-between;\">\r\n        <ui:VisualElement name=\"button-panel\" class=\"buttonPanel\">\r\n            <ui:Button text=\"종료\" name=\"unused-button\" class=\"uiButton\" style=\"visibility: hidden;\"/>\r\n            <ui:Button text=\"결정\" name=\"confirm-button\" class=\"uiButton\"/>\r\n            <ui:Button text=\"종료\" name=\"quit-button\" class=\"uiButton\"/>\r\n        </ui:VisualElement>\r\n        <ui:VisualElement name=\"control-panel\">\r\n            <ui:VisualElement name=\"player-control-panel\" class=\"controlPanel\" style=\"align-self: flex-end;\"/>\r\n        </ui:VisualElement>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
+                "m_ContentHash": 83485663,
                 "m_VisualTreeAssetRef": {
                     "fileID": 9197481963319205126,
                     "guid": "c9c97535196496243a7e9e6929cf34ab",

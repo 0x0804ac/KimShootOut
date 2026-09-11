@@ -9,11 +9,9 @@ public static class Constants
     public const string TAG_GOALKEEPER = "Goalkeeper";
     public const string TAG_BALL = "Ball";
 
-    public const string PRACTICE_MODE_CPU_PANEL = "cpu-control-panel";
-    public const string PRACTICE_MODE_PLAYER_PANEL = "player-control-panel";
+    public const string CPU_CONROL_PANEL = "cpu-control-panel";
+    public const string PLAYER_CONTROL_PANEL = "player-control-panel";
     public const string PRACTICE_MODE_TOGGLE_BUTTON = "toggle-visibility";
-    public const string PRACTICE_MODE_CPU_SLIDER = "cpu-power-slider";
-    public const string PRACTICE_MODE_PLAYER_SLIDER = "player-power-slider";
     public const string PRACTICE_MODE_ATTEMPTS_VALUE = "attempts-value";
     public const string PRACTICE_MODE_GOALS_VALUE = "goals-value";
     public const string PRACTICE_MODE_SAVES_VALUE = "saves-value";
@@ -24,6 +22,7 @@ public static class Constants
     public const string POWER_CONTAINER = "power";
     public const string MAIN_PANEL = "main-panel";
     public const string BUTTON_PANEL = "button-panel";
+    public const string CONTROL_PANEL = "control-panel";
     public const string CPU_PANEL = "cpu-panel";
     public const string PLAYER_PANEL = "player-panel";
     public const string TOP_PANEL = "top-panel";

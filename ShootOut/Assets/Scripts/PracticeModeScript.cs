@@ -31,8 +31,8 @@ public class PracticeModeScript : MonoBehaviour
         goalkeeperAnimator = defender.GetComponent<Animator>();
         mainPanel = root.Q<VisualElement>(Constants.MAIN_PANEL);
         buttonPanel = mainPanel.Q<VisualElement>(Constants.BUTTON_PANEL);
-        cpuPanel = mainPanel.Q<VisualElement>(Constants.CPU_PANEL).Q<VisualElement>(Constants.PRACTICE_MODE_CPU_PANEL);
-        playerPanel = mainPanel.Q<VisualElement>(Constants.PLAYER_PANEL).Q<VisualElement>(Constants.PRACTICE_MODE_PLAYER_PANEL);
+        cpuPanel = mainPanel.Q<VisualElement>(Constants.CPU_PANEL).Q<VisualElement>(Constants.CPU_CONROL_PANEL);
+        playerPanel = mainPanel.Q<VisualElement>(Constants.PLAYER_PANEL).Q<VisualElement>(Constants.PLAYER_CONTROL_PANEL);
         toggleButton = buttonPanel.Q<Button>(Constants.PRACTICE_MODE_TOGGLE_BUTTON);
         confirmButton = buttonPanel.Q<Button>(Constants.CONFIRM_BUTTON);
         quitButton = buttonPanel.Q<Button>(Constants.QUIT_BUTTON);

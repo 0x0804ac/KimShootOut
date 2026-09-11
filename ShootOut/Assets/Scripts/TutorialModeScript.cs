@@ -15,6 +15,8 @@ public class TutorialModeScript : MonoBehaviour
     private Tutorial game;
     private Animator kickerAnimator, goalkeeperAnimator;
 
+    private VisualElement playerPanel;
+
     public ScriptManager Manager => manager;
     public Tutorial Game => game;
 
@@ -24,5 +26,10 @@ public class TutorialModeScript : MonoBehaviour
         kickerAnimator = attacker.GetComponent<Animator>();
         goalkeeperAnimator = defender.GetComponent<Animator>();
         game.Load();
-    }    
+    }
+
+    void OnEnable()
+    {
+        playerPanel = document.rootVisualElement.Q<VisualElement>(Constants.MAIN_PANEL).Q<VisualElement>(Constants.CONTROL_PANEL).Q<VisualElement>(Constants.PLAYER_CONTROL_PANEL);
+    }
 }
