@@ -281,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &253299262
 Transform:
   m_ObjectHideFlags: 0
@@ -592,7 +592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &498409067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba671cb374402a4f9f0892e61ca07c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogButton
+  script: {fileID: 1941370902}
   document: {fileID: 498409067}
 --- !u!1 &681861027
 GameObject:
@@ -685,7 +686,7 @@ Transform:
   m_GameObject: {fileID: 681861027}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.28566, y: 0, z: 42.51891}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -768,7 +769,7 @@ PrefabInstance:
     - target: {fileID: 3514882522796053617, guid: 882be7002638d2b4fb307e1d1a605e33, type: 3}
       propertyPath: m_ParentUI
       value: 
-      objectReference: {fileID: 1401465855}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -988,7 +989,7 @@ PrefabInstance:
     - target: {fileID: 6712792535946764461, guid: f566ec28af7bf804b8e93806421b28fc, type: 3}
       propertyPath: m_ParentUI
       value: 
-      objectReference: {fileID: 1401465855}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1019,37 +1020,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1401465856}
-  - component: {fileID: 1401465855}
   m_Layer: 5
   m_Name: Controls UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1401465855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401465854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: e8722a4f9ba199a42bcd41ea86ce1c70, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: c9c97535196496243a7e9e6929cf34ab, type: 3}
-  m_SortingOrder: 0
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
+  m_IsActive: 1
 --- !u!4 &1401465856
 Transform:
   m_ObjectHideFlags: 0
@@ -1144,6 +1121,10 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 1971320669}
+    - target: {fileID: 5069770025725966758, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7964573876358409902, guid: f8a6cba8747542a4abe0a2e87e2dd6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1360,8 +1341,8 @@ MonoBehaviour:
   manager: {fileID: 1971320669}
   attackScript: {fileID: 689358162}
   defenseScript: {fileID: 1169642456}
-  textScript: {fileID: 0}
-  buttonScript: {fileID: 0}
+  textScript: {fileID: 498409069}
+  buttonScript: {fileID: 498409070}
   document: {fileID: 253299263}
   attacker: {fileID: 170472486}
   defender: {fileID: 352997266}

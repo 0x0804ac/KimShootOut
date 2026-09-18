@@ -49,13 +49,13 @@ public class PracticeModeScript : MonoBehaviour
     {
         if (game.Type == PracticeType.ATTACK)
         {
-            playerPanel.Add(attackScript.mainPanel);
-            cpuPanel.Add(defenseScript.mainPanel);
+            attackScript.AddPanel(playerPanel);
+            defenseScript.AddPanel(cpuPanel);
         }
         else if (game.Type == PracticeType.DEFENSE)
         {
-            playerPanel.Add(defenseScript.mainPanel);
-            cpuPanel.Add(attackScript.mainPanel);
+            attackScript.AddPanel(cpuPanel);
+            defenseScript.AddPanel(playerPanel);
         }
         game.Start();
     }

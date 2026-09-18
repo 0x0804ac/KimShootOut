@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -7,11 +6,9 @@ public class AttackScript : MonoBehaviour
 {
     [SerializeField] private GameObject attacker, goal, ball, preview;
 
-    public VisualElement mainPanel;
-
     private InputActions input;
     private Animator animator;
-    private VisualElement buttonPanel;
+    private VisualElement mainPanel, buttonPanel;
     private Button directionButton;
     private SliderInt powerSlider;
     private Vector2 from, to;
@@ -170,6 +167,12 @@ public class AttackScript : MonoBehaviour
     private void HidePreview()
     {
         preview.SetActive(false);
+    }
+
+    public void AddPanel(VisualElement parent)
+    {
+        parent.Clear();
+        parent.Add(mainPanel);
     }
 
     public void ResetControls()

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class TutorialModeScript : MonoBehaviour
@@ -22,7 +21,7 @@ public class TutorialModeScript : MonoBehaviour
 
     void Awake()
     {
-        game = new Tutorial();
+        game = new Tutorial(this);
         kickerAnimator = attacker.GetComponent<Animator>();
         goalkeeperAnimator = defender.GetComponent<Animator>();
         game.Load();
@@ -31,5 +30,38 @@ public class TutorialModeScript : MonoBehaviour
     void OnEnable()
     {
         playerPanel = document.rootVisualElement.Q<VisualElement>(Constants.MAIN_PANEL).Q<VisualElement>(Constants.CONTROL_PANEL).Q<VisualElement>(Constants.PLAYER_CONTROL_PANEL);
+    }
+
+    public void SetDialogTitle(string title)
+    {
+        textScript.Title = title;
+    }
+
+    public void SetDialogText(string text)
+    {
+        textScript.Text = text;
+    }
+
+    public void ShowAttackUI()
+    {
+        attackScript.AddPanel(playerPanel);
+        document.gameObject.SetActive(true);
+    }
+
+    public void ShowDefenseUI()
+    {
+        defenseScript.AddPanel(playerPanel);
+        document.gameObject.SetActive(true);
+    }
+
+    public void HideUI()
+    {
+        playerPanel.Clear();
+        document.gameObject.SetActive(false);
+    }
+
+    public void SetDialogEnabled(bool flag)
+    {
+        buttonScript.SetEnabled(flag);
     }
 }

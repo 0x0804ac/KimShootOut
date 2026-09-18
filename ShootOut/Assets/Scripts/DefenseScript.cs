@@ -7,11 +7,9 @@ public class DefenseScript : MonoBehaviour
     [SerializeField] private GameObject defender, goal, preview;
     [SerializeField] private bool showPreview;
 
-    public VisualElement mainPanel;
-
     private InputActions input;
     private Animator animator;
-    private VisualElement buttonPanel;
+    private VisualElement mainPanel, buttonPanel;
     private Button directionButton;
     private Vector2 from, to;
     private float buttonRadius, boundRadius, lastClickTime;
@@ -136,6 +134,11 @@ public class DefenseScript : MonoBehaviour
     private void HidePreview()
     {
         preview.SetActive(false);
+    }
+
+    public void AddPanel(VisualElement parent)
+    {
+        parent.Add(mainPanel);
     }
 
     public void ResetControls()

@@ -4,11 +4,14 @@ public class Tutorial : Gamemode
 {
     public const string DISPLAY_NAME = "튜토리얼";
 
-    public Tutorial()
+    private readonly TutorialModeScript script;
+
+    public Tutorial(TutorialModeScript script)
     {
         numberOfPlayers = 1;
         numberOfSpectators = 0;
         turn = 0;
+        this.script = script;
     }
 
     public override void End()
@@ -19,14 +22,13 @@ public class Tutorial : Gamemode
 
     public override void Load()
     {
-        //load scene
-        //show attacker UI
-        //show tutorial dialog
+        //script.SetDialogTitle(title);
+        //script.SetDialogText(text);
     }
 
     public override void Start()
     {
-        //enable attacker UI
+        script.SetDialogEnabled(true);
     }
 
     public override void Turn()
@@ -34,13 +36,13 @@ public class Tutorial : Gamemode
         switch (turn)
         {
             case 0:
-                //hide attacker UI
-                //show defender UI
+                //fill text for defense tutorial
+                //hide control UI & show dialog
                 turn++;
                 break;
             case 1:
-                //hide defender UI
-                //show item UI
+                //fill text for item tutorial
+                //hide control UI & show dialog
                 turn++;
                 break;
             default:
@@ -48,7 +50,23 @@ public class Tutorial : Gamemode
                 break;
         }
     }
+
+    public TutorialType Phase
+    {
+        get
+        {
+            return turn switch
+            {
+                0 => TutorialType.ATTACK,
+                1 => TutorialType.DEFENSE,
+                2 => TutorialType.ITEM,
+                _ => throw new System.NotImplementedException(),
+            };
+        }
+    }
 }
+
+public enum TutorialType { ATTACK = 1, DEFENSE, ITEM }
 /*
 using System.Collections;
 using System.Collections.Generic;
