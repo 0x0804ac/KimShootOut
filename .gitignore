@@ -106,3 +106,11 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+ShootOut/Library/*
+ShootOut/Logs/*
+ShootOut/Temp/*
+ShootOut/UserSettings/*
+ShootOut/ShootOut_*
+
+
