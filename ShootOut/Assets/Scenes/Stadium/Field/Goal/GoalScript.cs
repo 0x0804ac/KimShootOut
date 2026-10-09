@@ -7,12 +7,12 @@ public class GoalScript : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (manager.Game.IsGoal) return;
+        //if (manager.Game.IsGoal) return;
         if (other.gameObject.CompareTag("Ball"))
         {
             if (col.bounds.Contains(other.bounds.min) && col.bounds.Contains(other.bounds.max))
             {
-                manager.Game.IsGoal = true;
+                //manager.Game.IsGoal = true;
             }
         }
     }

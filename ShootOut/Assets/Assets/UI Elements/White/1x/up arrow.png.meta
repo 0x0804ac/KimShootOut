@@ -8,7 +8,10 @@ AssetOrigin:
   assetPath: Assets/Assets/UI Elements/White/1x/up arrow.png
   uploadId: 96991
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5900544861045525605
+    second: up arrow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +118,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: up arrow_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 50
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b93ff1816bd0d1ea0800000000000000
+      internalID: -5900544861045525605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

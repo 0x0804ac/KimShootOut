@@ -10,7 +10,7 @@ public class SaveScript : MonoBehaviour
         if (!collision.thisGameObject || !collision.gameObject) return;
         if (collision.thisGameObject == gameObject && collision.gameObject == ball)
         {
-            manager.Game.IsSave = true;
+            //manager.Game.IsSave = true;
         }
     }
 }

@@ -8,7 +8,10 @@ AssetOrigin:
   assetPath: Assets/Assets/UI Elements/Extras/circle64.png
   uploadId: 96991
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1122568432166746741
+    second: circle64_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +118,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: circle64_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8542a465f5db60f0800000000000000
+      internalID: -1122568432166746741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

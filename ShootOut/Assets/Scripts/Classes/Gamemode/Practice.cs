@@ -83,9 +83,9 @@ public class Practice : Gamemode
             turn++;
             script.ResetObjects();
             script.ResetControls();
-            if (script.Manager.Game.IsGoal) Goals++;
-            else if (script.Manager.Game.IsSave) Saves++;
-            script.Manager.Game.ResetValues();
+            //if (script.Manager.Game.IsGoal) Goals++;
+            //else if (script.Manager.Game.IsSave) Saves++;
+            //script.Manager.Game.ResetValues();
             IsReady = true;
         }
     }
