@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ShootOut/Assets/Hyper_Casual_Cartoon_Character_Soccer_Player.meta
 guid: 071a99783543b894d90e7c1fc55ca1b2
+========
+guid: e251658acfc38d04e8ce55e47ae445c1
+>>>>>>>> main:ShootOut/Assets/_Recovery.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
