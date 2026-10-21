@@ -19,6 +19,7 @@ public class Referee
     //다음 턴으로 진행(공수교대)하는 함수
     public void NextTurn()
     {
+        //GameScoreboard의 RegisterScore()를 호출하여 이번 턴의 득점 여부를 기록
         isGoal = false;
     }
 

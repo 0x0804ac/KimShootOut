@@ -1,1 +1,1 @@
-public enum Team { HOME, AWAY }
+public enum Team { Home, Away }

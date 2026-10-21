@@ -34,8 +34,8 @@ public class GameScoreboard
     public Dictionary<Team, bool[]> GetCurrentRoundScores()
     {
         Dictionary<Team, bool[]> scores = new Dictionary<Team, bool[]>();
-        scores.Add(Team.HOME, bArrCurrentRoundHomeTeamScore);
-        scores.Add(Team.AWAY, bArrCurrentRoundAwayTeamScore);
+        scores.Add(Team.Home, bArrCurrentRoundHomeTeamScore);
+        scores.Add(Team.Away, bArrCurrentRoundAwayTeamScore);
         return scores;
     }
 
@@ -44,10 +44,10 @@ public class GameScoreboard
     {
         switch(team)
         {
-            case Team.HOME:
+            case Team.Home:
                 bArrCurrentRoundHomeTeamScore[currentRound] = true;
                 break;
-            case Team.AWAY:
+            case Team.Away:
                 bArrCurrentRoundAwayTeamScore[currentRound] = true;
                 break;
         }
