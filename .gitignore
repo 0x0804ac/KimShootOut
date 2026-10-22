@@ -112,6 +112,7 @@ ShootOut/Logs/*
 ShootOut/Temp/*
 ShootOut/UserSettings/*
 ShootOut/ShootOut_*
-
+ShootOut/UserSettings
+ShootOut/UserSettings/*
 
 ShootOut/ProjectSettings/EditorBuildSettings.asset
