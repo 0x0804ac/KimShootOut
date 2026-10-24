@@ -114,5 +114,10 @@ ShootOut/UserSettings/*
 ShootOut/ShootOut_*
 ShootOut/UserSettings
 ShootOut/UserSettings/*
+ShootOut/obj
+ShootOut/obj/*
 
 ShootOut/ProjectSettings/EditorBuildSettings.asset
+/ShootOut/obj
+*.cache
+*.cache
