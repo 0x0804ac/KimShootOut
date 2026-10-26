@@ -31,23 +31,23 @@ public class GameScoreboard
     }
 
     //이번 매치의 득점 기록을 반환하는 함수 (꼭 Dictionary가 필요한지는 모르겠음)
-    public Dictionary<Team, bool[]> GetCurrentRoundScores()
+    public Dictionary<TeamSide, bool[]> GetCurrentRoundScores()
     {
-        Dictionary<Team, bool[]> scores = new Dictionary<Team, bool[]>();
-        scores.Add(Team.Home, bArrCurrentRoundHomeTeamScore);
-        scores.Add(Team.Away, bArrCurrentRoundAwayTeamScore);
+        Dictionary<TeamSide, bool[]> scores = new Dictionary<TeamSide, bool[]>();
+        scores.Add(TeamSide.Home, bArrCurrentRoundHomeTeamScore);
+        scores.Add(TeamSide.Away, bArrCurrentRoundAwayTeamScore);
         return scores;
     }
 
     //득점을 기록하는 함수 (team도 다른 곳에서 받아올 수 있지 않을까?)
-    public void RegisterScore(Team team)
+    public void RegisterScore(TeamSide team)
     {
         switch(team)
         {
-            case Team.Home:
+            case TeamSide.Home:
                 bArrCurrentRoundHomeTeamScore[currentRound] = true;
                 break;
-            case Team.Away:
+            case TeamSide.Away:
                 bArrCurrentRoundAwayTeamScore[currentRound] = true;
                 break;
         }
