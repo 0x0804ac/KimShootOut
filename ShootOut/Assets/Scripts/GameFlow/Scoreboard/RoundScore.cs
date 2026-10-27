@@ -17,11 +17,11 @@ public sealed class RoundScore
     {
         get
         {
-            return Home != ShotResult.Pending && Away != ShotResult.Pending;
+            return Home.IsCompleted() && Away.IsCompleted();
         }
     }
 
-    //생성자(라운드 초기 상태)
+    //라운드 번호를 받아서 해당 라운드를 생성
     public RoundScore(int roundNumber)
     {
         RoundNumber = roundNumber;
@@ -29,7 +29,7 @@ public sealed class RoundScore
         Away = ShotResult.Pending;
     }
 
-    //결과를 기록 후 기록 성공 여부를 반환
+    //결과를 기록 (성공 여부를 반환)
     public bool Record(TeamSide team, ShotResult result)
     {
         //홈 팀 결과 기록

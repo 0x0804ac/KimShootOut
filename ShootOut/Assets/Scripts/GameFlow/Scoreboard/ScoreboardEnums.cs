@@ -23,20 +23,3 @@ public enum GameResult
     //¿øÁ¤ ÆÀ ±â±Ç(Æ÷±â, ¿¬°á ²÷±è µî)
     AwayGiveUp
 }
-
-//¸ÅÄ¡ °á°ú
-public enum MatchResult
-{
-    //ÁøÇà Áß
-    Ongoing,
-    //È¨ ÆÀ ½Â¸®
-    HomeWin,
-    //¿øÁ¤ ÆÀ ½Â¸®
-    AwayWin,
-    //¹«½ÂºÎ
-    Draw,
-    //È¨ ÆÀ ±â±Ç(Æ÷±â, ¿¬°á ²÷±è µî)
-    HomeGiveUp,
-    //¿øÁ¤ ÆÀ ±â±Ç(Æ÷±â, ¿¬°á ²÷±è µî)
-    AwayGiveUp
-}
