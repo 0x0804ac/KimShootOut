@@ -2,143 +2,192 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-//점수판 클래스
+//점수 관리 클래스
 public sealed class Scoreboard
 {
     //매치 리스트
     private readonly List<MatchScore> matchList = new List<MatchScore>();
-    
+
     //총 매치 수
     public int TotalMatches { get; }
-}
-/*
-    public int CurrentMatchNumber => _matches.Count;
 
-    public IReadOnlyList<MatchScore> Matches => _matches;
+    //현재 매치 번호 (첫 매치 번호 = 1)
+    public int CurrentMatchNumber
+    {
+        get
+        {
+            return matchList.Count;
+        }
+    }
 
-    public MatchScore CurrentMatch =>
-        _matches.Count > 0 ? _matches[^1] : null;
+    //매치 목록 (수정 불가)
+    public IReadOnlyList<MatchScore> Matches
+    {
+        get
+        {
+            return matchList;
+        }
+    }
 
-    public event Action<Scoreboard> OnScoreboardChanged;
+    //현재 진행 중인 매치 반환
+    public MatchScore CurrentMatch
+    {
+        get
+        {
+            return matchList.Count > 0 ? matchList[^1] : null;
+        }
+    }
 
+    //점수 변동 이벤트
+    public event Action<Scoreboard> OnScoreboardChange;
+
+    //총 매치 수를 받아서 점수판을 생성
     public Scoreboard(int totalMatches)
     {
         if (totalMatches < 1)
-            throw new ArgumentOutOfRangeException(
-                nameof(totalMatches));
-
+        {
+            throw new ArgumentOutOfRangeException(nameof(totalMatches));
+        }
         TotalMatches = totalMatches;
     }
 
-    public int HomeMatchWins =>
-        _matches.Count(m => m.Result == MatchResult.HomeWin);
+    //홈 팀 매치 승수
+    public int HomeMatchWins
+    {
+        get
+        {
+            return matchList.Count(m => m.Result == MatchResult.HomeWin);
+        }
+    }
 
-    public int AwayMatchWins =>
-        _matches.Count(m => m.Result == MatchResult.AwayWin);
+    //원정 팀 매치 승수
+    public int AwayMatchWins
+    {
+        get
+        {
+            return matchList.Count(m => m.Result == MatchResult.AwayWin);
+        }
+    }
 
+    //게임 결과 판정
     public GameResult Result
     {
         get
         {
-            int majority = TotalMatches / 2 + 1;
+            //과반의 매치를 승리하면 게임 승리 조건 만족
+            int matchesToWin = TotalMatches / 2 + 1;
 
-            if (HomeMatchWins >= majority)
+            if (HomeMatchWins >= matchesToWin)
+            {
                 return GameResult.HomeWin;
-
-            if (AwayMatchWins >= majority)
+            }
+            if (AwayMatchWins >= matchesToWin)
+            {
                 return GameResult.AwayWin;
-
-            if (_matches.Count == TotalMatches &&
-                _matches.All(m => m.IsCompleted))
+            }
+            if (matchList.Count == TotalMatches && matchList.All(m => m.IsCompleted))
             {
                 return GameResult.Draw;
             }
-
+            //나중에 여기에서 기권 여부 확인해야 함
             return GameResult.Ongoing;
         }
     }
 
-    // 첫 매치 시작 및 다음 매치 시작
+    //첫 매치 시작 또는 다음 매치로 진행 (성공 여부를 반환)
     public bool StartNextMatch(int totalRounds)
     {
-        if (Result != GameResult.Ongoing)
-            return false;
-
-        if (_matches.Count >= TotalMatches)
-            return false;
-
-        if (CurrentMatch != null &&
-            !CurrentMatch.IsCompleted)
+        //완료된 게임인 경우 더 진행하지 않음
+        if (Result.IsCompleted())
         {
             return false;
         }
-
-        _matches.Add(new MatchScore(totalRounds));
-        NotifyChanged();
-
+        //총 매치 수 제한
+        if (matchList.Count >= TotalMatches)
+        {
+            return false;
+        }
+        //마지막 매치가 완료되어야 진행할 수 있음
+        if (CurrentMatch != null && !CurrentMatch.IsCompleted)
+        {
+            return false;
+        }
+        //새 매치 생성
+        matchList.Add(new MatchScore(totalRounds));
+        NotifyChange();
         return true;
     }
 
-    // 득점 기록
-    public bool RecordScore(TeamSide team, bool scored)
+    //득점 기록 (성공 여부를 반환)
+    public bool RecordScore(TeamSide team, ShotResult result)
     {
-        if (Result != GameResult.Ongoing ||
-            CurrentMatch == null)
+        //기록 가능한 상태가 아님
+        if (!IsPlaying())
         {
             return false;
         }
-
-        if (!CurrentMatch.RecordScore(team, scored))
+        //기록 시도
+        if (!CurrentMatch.RecordScore(team, result))
+        {
             return false;
-
-        NotifyChanged();
+        }
+        NotifyChange();
         return true;
     }
 
-    // 다음 라운드로 진행
-    public bool AdvanceRound()
+    //다음 라운드로 진행 (성공 여부를 반환)
+    public bool StartNextRound()
     {
-        if (Result != GameResult.Ongoing ||
-            CurrentMatch == null)
+        //진행 가능한 상태가 아님
+        if (!IsPlaying())
         {
             return false;
         }
-
-        if (!CurrentMatch.AdvanceRound())
+        //진행 시도
+        if (!CurrentMatch.StartNextRound())
+        {
             return false;
-
-        NotifyChanged();
+        }
+        NotifyChange();
         return true;
     }
 
-    // 매치 결과 확정
+    //매치 완료 (성공 여부를 반환)
     public bool CompleteCurrentMatch(MatchResult result)
     {
-        if (Result != GameResult.Ongoing ||
-            CurrentMatch == null)
+        //완료 가능한 상태가 아님
+        if (!IsPlaying())
         {
             return false;
         }
-
-        if (!CurrentMatch.Complete(result))
+        //완료 시도
+        if (!CurrentMatch.CompleteMatch(result))
+        {
             return false;
-
-        NotifyChanged();
+        }
+        NotifyChange();
         return true;
     }
-
-    // 현재 매치의 홈/원정 점수 반환
+    
+    //현재 매치의 (홈 팀 점수, 원정 팀 점수) 반환
     public (int Home, int Away) GetCurrentScores()
     {
         if (CurrentMatch == null)
+        {
             return (0, 0);
-
+        }
         return CurrentMatch.GetScores();
     }
 
-    private void NotifyChanged()
+    //이벤트 호출
+    private void NotifyChange()
     {
-        OnScoreboardChanged?.Invoke(this);
+        OnScoreboardChange?.Invoke(this);
+    }
+
+    //게임 진행 중인지 확인
+    private bool IsPlaying()
+    {
+        return !Result.IsCompleted() && CurrentMatch != null;
     }
 }
- */

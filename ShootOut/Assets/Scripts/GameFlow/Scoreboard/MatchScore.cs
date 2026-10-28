@@ -9,7 +9,7 @@ public sealed class MatchScore
     //총 라운드 수
     public int TotalRounds { get; }
 
-    //현재 라운드 (1라운드부터 시작)
+    //현재 라운드 번호 (1라운드부터 시작)
     public int CurrentRoundNumber
     {
         get
@@ -94,7 +94,7 @@ public sealed class MatchScore
     }
 
     //다음 라운드로 진행 (성공 여부를 반환)
-    public bool MoveToNextRound()
+    public bool StartNextRound()
     {
         //완료된 매치인 경우 더 진행하지 않음
         if (IsCompleted)
@@ -119,21 +119,14 @@ public sealed class MatchScore
         {
             return false;
         }
-        //매치 결과가 완료된 것이 아닐 경우
-        if (!result.IsCompleted())
-        {
-            return false;
-        }
         //결과 기록
         Result = result;
         return true;
     }
-/*
+
+    //(홈 팀 점수, 원정 팀 점수) 반환
     public (int Home, int Away) GetScores()
     {
         return (HomeScore, AwayScore);
     }
-    // 다음 매치 시작 전 점수 기록 초기화가 필요한 경우 사용한다.
-    // 이 객체 자체를 초기화하지 않고 새 MatchScore를 생성하는 방식이다.
- */
 }

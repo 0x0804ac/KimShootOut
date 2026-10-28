@@ -1,12 +1,3 @@
-//팀 구분 (게임플레이 차이 없음)
-public enum TeamSide
-{
-    //홈
-    Home,
-    //원정
-    Away
-}
-
 //게임 결과
 public enum GameResult
 {
@@ -22,4 +13,13 @@ public enum GameResult
     HomeGiveUp,
     //원정 팀 기권(포기, 연결 끊김 등)
     AwayGiveUp
+}
+
+//GameResult 확장 클래스
+public static class GameResultExtensions
+{
+    public static bool IsCompleted(this GameResult result)
+    {
+        return result != GameResult.Ongoing;
+    }
 }
