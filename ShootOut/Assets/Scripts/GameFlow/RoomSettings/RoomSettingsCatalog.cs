@@ -54,30 +54,20 @@ public static class RoomSettingsCatalog
         RoomSettingsData data = new RoomSettingsData();
         foreach (RoomSettingsDefinition item in catalog)
         {
-            /*
-            var change = definition.ValueType switch
+            //기본값으로 변경하는 데이터 생성
+            RoomSettingsChange change = item.ValueType switch
             {
-                RoomSettingValueType.Int =>
-                    RoomSettingChange.FromInt(
-                        definition.Id, definition.DefaultInt),
-
-                RoomSettingValueType.Float =>
-                    RoomSettingChange.FromFloat(
-                        definition.Id, definition.DefaultFloat),
-
-                RoomSettingValueType.Bool =>
-                    RoomSettingChange.FromBool(
-                        definition.Id, definition.DefaultBool),
-
+                RoomSettingsValueType.Int => RoomSettingsChange.FromInt(item.ID, item.DefaultInt),
+                RoomSettingsValueType.Float => RoomSettingsChange.FromFloat(item.ID, item.DefaultFloat),
+                RoomSettingsValueType.Bool => RoomSettingsChange.FromBool(item.ID, item.DefaultBool),
+                RoomSettingsValueType.String => RoomSettingsChange.FromString(item.ID, item.DefaultString),
                 _ => throw new InvalidOperationException()
             };
-
-            if (!RoomSettingsValidator.TryApply(
-                ref data, change))
+            //변경 사항 적용 시도
+            if (!RoomSettingsValidator.TryApply(ref data, change))
             {
-                throw new InvalidOperationException(
-                    $"Invalid default: {definition.Id}");
-            }*/
+                throw new InvalidOperationException($"Invalid default: {item.ID}");
+            }
         }
         return data;
     }

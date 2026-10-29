@@ -35,12 +35,6 @@ public sealed class RoomSettingsDefinition
     //string 형태의 설정 기본값
     public string DefaultString { get; }
 
-    //더미 값 상수
-    private const int dummyInt = 0;
-    private const float dummyFloat = 0f;
-    private const bool dummyBool = false;
-    private static readonly string dummyString = string.Empty;
-
     //방 설정 항목 생성
     private RoomSettingsDefinition(RoomSettingsID id, string displayName, RoomSettingsValueType valueType, float min, float max, float step, int defaultInt, float defaultFloat, bool defaultBool, string defaultString)
     {
@@ -59,24 +53,24 @@ public sealed class RoomSettingsDefinition
     //int 형태의 설정 항목 생성
     public static RoomSettingsDefinition Int(RoomSettingsID id, string displayName, int min, int max, int defaultValue, int step = 1)
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Int, min, max, step, defaultValue, dummyFloat, dummyBool, dummyString);
+        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Int, min, max, step, defaultValue, RoomSettingsConstants.dummyFloat, RoomSettingsConstants.dummyBool, RoomSettingsConstants.dummyString);
     }
 
     //float 형태의 설정 항목 생성
     public static RoomSettingsDefinition Float(RoomSettingsID id, string displayName, float min, float max, float defaultValue, float step = 1f)
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Float, min, max, step, dummyInt, defaultValue, dummyBool, dummyString);
+        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Float, min, max, step, RoomSettingsConstants.dummyInt, defaultValue, RoomSettingsConstants.dummyBool, RoomSettingsConstants.dummyString);
     }
 
     //bool 형태의 설정 항목 생성
     public static RoomSettingsDefinition Bool(RoomSettingsID id, string displayName, bool defaultValue)
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Bool, 0f, 1f, 1f, dummyInt, dummyFloat, defaultValue, dummyString);
+        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Bool, 0f, 1f, 1f, RoomSettingsConstants.dummyInt, RoomSettingsConstants.dummyFloat, defaultValue, RoomSettingsConstants.dummyString);
     }
 
     //string 형태의 설정 항목 생성
     public static RoomSettingsDefinition String(RoomSettingsID id, string displayName, string defaultValue)
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.String, 0f, 1f, 1f, dummyInt, dummyFloat, dummyBool, defaultValue);
+        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.String, 0f, 1f, 1f, RoomSettingsConstants.dummyInt, RoomSettingsConstants.dummyFloat, RoomSettingsConstants.dummyBool, defaultValue);
     }
 }
