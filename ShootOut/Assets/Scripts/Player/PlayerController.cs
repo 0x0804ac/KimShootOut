@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         playerActions = userInputs.Player;
         typeController = new AttackerController();
         // typeController = new DefenderController();
+        mouseController.Init();
     }
 
     private void OnEnable()
@@ -72,17 +73,17 @@ public class PlayerController : MonoBehaviour
 
         transform.position += moveDirection;
 
-        return ERESULT.SUCCESS;
+        return ERESULT.Success;
     }
 
     ERESULT MouseControllerUpdate()
     {
-        if (typeController.IsAimComfirmed())
+        if (!typeController.IsAimComfirmed())
         {
             mouseController.Update();
         }
 
-        return ERESULT.SUCCESS;
+        return ERESULT.Success;
     }
 
     ERESULT TeamUpdate()
@@ -93,13 +94,18 @@ public class PlayerController : MonoBehaviour
             meshRenderer.sharedMaterial = materials[index];
         }
 
-        return ERESULT.SUCCESS;
+        return ERESULT.Success;
     }
 
     ERESULT TypeControllerUpdate()
     {
         typeController.Update(this, playerActions);
 
-        return ERESULT.SUCCESS;
+        return ERESULT.Success;
+    }
+
+    public Vector2 GetLastAimPosition()
+    {
+        return mouseController.GetLastAimPosition();
     }
 }

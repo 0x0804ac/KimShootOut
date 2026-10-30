@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum ERESULT
 {
-    FAILED,
-    SUCCESS,
-    NOT_DEFINED,
+    Failed,
+    Success,
+    NotDefined,
 }

@@ -6,8 +6,8 @@ public class Stadium : MonoBehaviour
     [SerializeField] GameObject ballPrefab;
     [SerializeField] GameObject goalPostPrefab;
 
-    GameObject ball = null;
-    GameObject goalPost = null;
+    static GameObject ball = null;
+    static GameObject goalPost = null;
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class Stadium : MonoBehaviour
             ball = Instantiate(ballPrefab, new Vector3(0, 100, 0), transform.rotation);
         }
 
-        if (goalPost != null && goalPost == null)
+        if (goalPostPrefab != null && goalPost == null)
         {
             goalPost = Instantiate(goalPostPrefab, new Vector3(0, 200, 0), transform.rotation);
         }
@@ -26,12 +26,17 @@ public class Stadium : MonoBehaviour
 
     void Start()
     {
-            
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public static GameObject GetGoalPost()
+    {
+        return goalPost;
     }
 }

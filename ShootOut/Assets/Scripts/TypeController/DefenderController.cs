@@ -22,6 +22,6 @@ public class DefenderController: ITypeController
             Debug.Log("Defense");
         }
 
-        return ERESULT.SUCCESS;
+        return ERESULT.Success;
     }
 }

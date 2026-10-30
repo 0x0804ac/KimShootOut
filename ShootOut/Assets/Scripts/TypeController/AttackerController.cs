@@ -1,58 +1,90 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [Serializable]
 public class AttackerController: ITypeController
 {
     float power = 0f;
-    RangeVariable<float> minMaxPower = new RangeVariable<float>(0f, 100f);
+    RangeVariable<float> powerRangeVar = new RangeVariable<float>(0f, 100f);
     
     [SerializeField]
-    int chargePowerPerSecond = 10;
+    int chargePowerPerSecond = 100;
     sbyte sign = 1;
 
     bool isCharging = false;
 
+    [SerializeField]
+    Image chargeGuageImage;
+
+    [SerializeField]
+    Rigidbody ballRigidbody;
+
+    [SerializeField]
+    Camera gameCamera;
+
+    [SerializeField]
+    BoxCollider goalCollider;
+
     public override ERESULT Update(PlayerController player, UserInputs.PlayerActions playerInputActions)
     {
-        InputAction shootAction = playerInputActions.Action;
+        CheckAimComfirmed(playerInputActions);
 
-        if (shootAction.WasPerformedThisFrame())
+        if (IsAimComfirmed())
         {
-            isCharging = true;
-            Debug.Log("ChargeStart");
+            ShootAction(player, playerInputActions.Action);
         }
 
-        if (shootAction.IsPressed() && isCharging)
+        return ERESULT.Success;
+    }
+
+    private void ShootAction(PlayerController player, InputAction action)
+    {
+        if (action.WasPerformedThisFrame())
+        {
+            isCharging = true;
+        }
+
+        if (action.IsPressed() && isCharging)
         {
             power += chargePowerPerSecond * Time.deltaTime * sign;
 
-            if (power > minMaxPower.max)
+            if (power > powerRangeVar.max)
             {
-                power = minMaxPower.max;
+                power = powerRangeVar.max;
                 sign *= -1;
             }
 
-            else if (power < minMaxPower.min)
+            else if (power < powerRangeVar.min)
             {
-                power = minMaxPower.min;
+                power = powerRangeVar.min;
                 sign *= -1;
             }
-
-            Debug.Log("power: " + power);
         }
 
-        if (shootAction.WasReleasedThisFrame())
+        if (action.WasReleasedThisFrame())
         {
+            Vector2 lastAimPosition = player.GetLastAimPosition();
+            Ray ray = gameCamera.ScreenPointToRay(lastAimPosition);
+
+            goalCollider.Raycast(ray, out RaycastHit hit, 1000f);
+
+            Debug.Log("hit point: " + hit.point);
+
+            Vector3 direction = (hit.point - ballRigidbody.position).normalized;
+
+            ballRigidbody.AddForce(
+                direction * power,
+                ForceMode.Impulse
+                );
+
             power = 0f;
             isCharging = false;
             Debug.Log("Shoot");
         }
 
-        CheckAimComfirmed(playerInputActions);
-
-        return ERESULT.SUCCESS;
+        chargeGuageImage.fillAmount = Mathf.Clamp01(power / powerRangeVar.max);
     }
 
     private void CheckAimComfirmed(UserInputs.PlayerActions playerInputActions)
@@ -62,6 +94,7 @@ public class AttackerController: ITypeController
         if (aimComfirm.WasPerformedThisFrame())
         {
             isAimConfirm = !isAimConfirm;
+            Debug.Log("aimConfirm: " + isAimConfirm);
         }
     }
 }

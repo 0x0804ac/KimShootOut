@@ -7,9 +7,10 @@ public class ITypeController
 {
     protected bool isAimConfirm = false;
 
+
     public virtual ERESULT Update(PlayerController player, UserInputs.PlayerActions playerInputActions)
     {
-        return ERESULT.NOT_DEFINED;
+        return ERESULT.NotDefined;
     }
 
     public bool IsAimComfirmed()

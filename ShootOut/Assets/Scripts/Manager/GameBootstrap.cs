@@ -7,6 +7,6 @@ public class GameBootstrap
     {
         Debug.Log("Called GameBootstrap.Initialize()");
 
-        GameManager.Initialize();
+        
     }
 }

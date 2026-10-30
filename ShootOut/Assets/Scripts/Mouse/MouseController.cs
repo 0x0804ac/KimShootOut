@@ -8,56 +8,68 @@ public class MouseController
     [SerializeField] private Camera gameCamera;
     [SerializeField] private RectTransform canvasRect;
     [SerializeField] private RectTransform aimImage;
-    [SerializeField] private BoxCollider goalAimArea;
+    [SerializeField] private BoxCollider goalPostCol;
 
-    private Vector2 lastHitPoint = Vector2.zero;
+    RangeVariable<Vector2> screenRangeVar;
+    Vector2 lastAimPosition = Vector2.zero;
+
+    public void Init()
+    {
+        screenRangeVar = WorldToScreenProjection();
+    }
 
     // Update is called once per frame
     public void Update()
     {
-        bool hasValidAim = false;
-
         if (Mouse.current == null)
         {
-            hasValidAim = false;
             return;
         }
 
         Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-        Ray ray = gameCamera.ScreenPointToRay(mousePosition);
+        Vector2 aimPosition = ClampToGoalPost(mousePosition, screenRangeVar);
+        lastAimPosition = aimPosition;
 
-        hasValidAim = goalAimArea.Raycast(
-            ray,
-            out RaycastHit hit,
-            1000f
-            );
-
-        if (hasValidAim)
-        {
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvasRect,
-            mousePosition,
+            aimPosition,
             null,
             out Vector2 localPosition))
-            {
-                aimImage.anchoredPosition = localPosition;
-                lastHitPoint = localPosition;
-            }
+        {
+            aimImage.anchoredPosition = localPosition;
         }
-
-        World2ScreenProjection();
     }
 
-    public Vector2 GetLastHitPoint()
+    private RangeVariable<Vector2> WorldToScreenProjection()
     {
-        return lastHitPoint; 
+        Vector3 center = goalPostCol.center;
+        Vector3 halfSize = goalPostCol.size * 0.5f;
+
+        Vector3 bottomLeft = center - halfSize;
+        Vector3 topRight = center + halfSize;
+
+        bottomLeft = goalPostCol.transform.TransformPoint(bottomLeft);
+        topRight = goalPostCol.transform.TransformPoint(topRight);
+
+        Vector2 screenMin = gameCamera.WorldToScreenPoint(bottomLeft);
+        Vector2 screenMax = gameCamera.WorldToScreenPoint(topRight);
+
+        RangeVariable<Vector2> screenRangeVar = new RangeVariable<Vector2>(screenMin, screenMax);
+
+        return screenRangeVar;
     }
 
-    private Vector2 World2ScreenProjection()
+    private Vector2 ClampToGoalPost(Vector2 mousePosition, RangeVariable<Vector2> rangeVar)
     {
+        return new Vector2(
+            Mathf.Clamp(mousePosition.x, rangeVar.min.x, rangeVar.max.x),
+            Mathf.Clamp(mousePosition.y, rangeVar.min.y, rangeVar.max.y) 
+            );
+    }
 
-
-        return Vector2.zero;
+    public Vector2 GetLastAimPosition()
+    {
+        return lastAimPosition;
     }
 }
