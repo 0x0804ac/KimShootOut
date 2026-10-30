@@ -42,8 +42,8 @@ public static class RoomSettingsValidator
             case RoomSettingsID.KickerChargeSpeed:
                 updatedSettings.KickerFullChargeTimeInSeconds = change.FloatValue;
                 break;
-            case RoomSettingsID.KeeperChargeSpeed:
-                updatedSettings.KeeperFullChargeTimeInSeconds = change.FloatValue;
+            case RoomSettingsID.GoalkeeperChargeSpeed:
+                updatedSettings.GoalkeeperFullChargeTimeInSeconds = change.FloatValue;
                 break;
             case RoomSettingsID.EnableItems:
                 updatedSettings.IsItemEnabled = change.BoolValue;

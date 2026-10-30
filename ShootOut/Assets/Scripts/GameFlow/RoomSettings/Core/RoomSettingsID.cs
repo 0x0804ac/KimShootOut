@@ -15,7 +15,7 @@ public enum RoomSettingsID
     //키커 최대 파워 입력까지 걸리는 시간
     KickerChargeSpeed,
     //골키퍼 최대 속력 입력까지 걸리는 시간
-    KeeperChargeSpeed,
+    GoalkeeperChargeSpeed,
     //아이템 활성화 여부
     EnableItems,
     //아이템 선택 제한 시간

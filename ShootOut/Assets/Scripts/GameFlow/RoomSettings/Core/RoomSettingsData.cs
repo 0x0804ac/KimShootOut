@@ -19,7 +19,7 @@ public struct RoomSettingsData : IEquatable<RoomSettingsData>
     //키커 최대 파워 입력까지 걸리는 시간
     public float KickerFullChargeTimeInSeconds;
     //골키퍼 최대 속력 입력까지 걸리는 시간
-    public float KeeperFullChargeTimeInSeconds;
+    public float GoalkeeperFullChargeTimeInSeconds;
 
     //아이템 활성화 여부
     public bool IsItemEnabled;
@@ -38,7 +38,7 @@ public struct RoomSettingsData : IEquatable<RoomSettingsData>
             && ShouldForceFullRounds == other.ShouldForceFullRounds
             && InputTimeLimitInSeconds == other.InputTimeLimitInSeconds
             && KickerFullChargeTimeInSeconds == other.KickerFullChargeTimeInSeconds
-            && KeeperFullChargeTimeInSeconds == other.KeeperFullChargeTimeInSeconds
+            && GoalkeeperFullChargeTimeInSeconds == other.GoalkeeperFullChargeTimeInSeconds
             && IsItemEnabled == other.IsItemEnabled
             && ItemSelectionTimeLimitInSeconds == other.ItemSelectionTimeLimitInSeconds
             && AllowSpectators == other.AllowSpectators;
@@ -60,7 +60,7 @@ public struct RoomSettingsData : IEquatable<RoomSettingsData>
         hash.Add(ShouldForceFullRounds);
         hash.Add(InputTimeLimitInSeconds);
         hash.Add(KickerFullChargeTimeInSeconds);
-        hash.Add(KeeperFullChargeTimeInSeconds);
+        hash.Add(GoalkeeperFullChargeTimeInSeconds);
         hash.Add(IsItemEnabled);
         hash.Add(ItemSelectionTimeLimitInSeconds);
         hash.Add(AllowSpectators);

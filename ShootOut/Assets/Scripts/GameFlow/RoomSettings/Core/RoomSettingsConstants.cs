@@ -6,4 +6,6 @@ public static class RoomSettingsConstants
     public const float dummyFloat = 0f;
     public const bool dummyBool = false;
     public static readonly string dummyString = string.Empty;
+
+    public const long testPlayer1ID = 1L;
 }
