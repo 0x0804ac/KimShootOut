@@ -78,7 +78,7 @@ public sealed class RoundScore
         //진행 완료된 상황을 기록
         if (newRecord != ShotResult.Pending)
         {
-            return currentRecord.IsCompleted();
+            return !currentRecord.IsCompleted();
         }
         //이외의 상황에서는 기록하지 않음
         return false;
