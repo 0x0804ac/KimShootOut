@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum ERESULT
+public enum EResult
 {
     Failed,
     Success,

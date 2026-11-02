@@ -3,39 +3,54 @@ using UnityEngine;
 
 public class Stadium : MonoBehaviour
 {
-    [SerializeField] GameObject ballPrefab;
-    [SerializeField] GameObject goalPostPrefab;
+    [SerializeField]
+    GameObject ball;
 
-    static GameObject ball = null;
-    static GameObject goalPost = null;
+    [SerializeField]
+    GameObject goalPost;
 
-    private void Awake()
+    private static Stadium instance;
+
+    private Stadium()
     {
-        if (ballPrefab != null && ball == null)
+
+    }
+
+    public EResult Init()
+    {
+        EResult result = MakeInstance();
+
+        return EResult.Success;
+    }
+
+    private EResult MakeInstance()
+    {
+        if (instance != null && instance != this)
         {
-            ball = Instantiate(ballPrefab, new Vector3(0, 100, 0), transform.rotation);
+            Destroy(gameObject);
+            return EResult.Failed;
         }
 
-        if (goalPostPrefab != null && goalPost == null)
+        instance = this;
+
+        return EResult.Success;
+    }
+
+    public static Stadium GetInstance()
+    {
+        if (instance == null)
         {
-            goalPost = Instantiate(goalPostPrefab, new Vector3(0, 200, 0), transform.rotation);
+            return null; 
         }
+        return instance;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    void Start()
+    public GameObject GetBall()
     {
-        
+        return ball;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public static GameObject GetGoalPost()
+    public GameObject GetGoalPost()
     {
         return goalPost;
     }
