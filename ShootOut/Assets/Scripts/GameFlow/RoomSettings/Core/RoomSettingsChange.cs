@@ -1,52 +1,24 @@
-//¹æ ¼³Á¤ º¯°æ ¿äÃ» ±¸Á¶Ã¼
-public readonly struct RoomSettingsChange
+ï»¿//ë°© ì„¤ì • íŠ¹ì • í•­ëª©ì˜ ê°’ ë³€ê²½ ìš”ì²­
+public readonly struct RoomSettingsChange<T> where T : struct
 {
-    //¼³Á¤ ID
-    public RoomSettingsID ID { get; }
-    //¼³Á¤°ª ÀÚ·áÇü
-    public RoomSettingsValueType ValueType { get; }
+    public readonly ERoomSettingsID id;
+    public readonly T value;
 
-    //intÇü °ª
-    public int IntValue { get; }
-    //floatÇü °ª
-    public float FloatValue { get; }
-    //boolÇü °ª
-    public bool BoolValue { get; }
-    //stringÇü °ª
-    public string StringValue { get; }
-
-    //»õ ¿äÃ» »ı¼º (private)
-    private RoomSettingsChange(RoomSettingsID id, RoomSettingsValueType valueType,  int intValue, float floatValue, bool boolValue, string stringValue)
+    public RoomSettingsChange(ERoomSettingsID id, T value)
     {
-        ID = id;
-        ValueType = valueType;
-        IntValue = intValue;
-        FloatValue = floatValue;
-        BoolValue = boolValue;
-        StringValue = stringValue;
+        this.id = id;
+        this.value = value;
     }
+}
 
-    //intÇü °ª º¯°æ ¿äÃ» »ı¼º (public)
-    public static RoomSettingsChange FromInt(RoomSettingsID id, int value)
-    {
-        return new RoomSettingsChange(id, RoomSettingsValueType.Int, value, RoomSettingsConstants.dummyFloat, RoomSettingsConstants.dummyBool, RoomSettingsConstants.dummyString);
-    }
+public readonly struct RoomSettingsDelta<T> where T : struct
+{
+    public readonly long revision;
+    public readonly RoomSettingsChange<T> change;
 
-    //floatÇü °ª º¯°æ ¿äÃ» »ı¼º (public)
-    public static RoomSettingsChange FromFloat(RoomSettingsID id, float value)
+    public RoomSettingsDelta(long revision, RoomSettingsChange<T> change)
     {
-        return new RoomSettingsChange(id, RoomSettingsValueType.Float, RoomSettingsConstants.dummyInt, value, RoomSettingsConstants.dummyBool, RoomSettingsConstants.dummyString);
-    }
-
-    //boolÇü °ª º¯°æ ¿äÃ» »ı¼º (public)
-    public static RoomSettingsChange FromBool(RoomSettingsID id, bool value)
-    {
-        return new RoomSettingsChange(id, RoomSettingsValueType.Bool, RoomSettingsConstants.dummyInt, RoomSettingsConstants.dummyFloat, value, RoomSettingsConstants.dummyString);
-    }
-
-    //stringÇü °ª º¯°æ ¿äÃ» »ı¼º (public)
-    public static RoomSettingsChange FromString(RoomSettingsID id, string value)
-    {
-        return new RoomSettingsChange(id, RoomSettingsValueType.String, RoomSettingsConstants.dummyInt, RoomSettingsConstants.dummyFloat, RoomSettingsConstants.dummyBool, value);
+        this.revision = revision;
+        this.change = change;
     }
 }

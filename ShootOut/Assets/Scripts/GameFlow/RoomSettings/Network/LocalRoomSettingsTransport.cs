@@ -1,65 +1,88 @@
-using System;
-
-//Å×½ºÆ®¿ë Å¬·¡½º (·ÎÄÃ ¼­¹ö)
+ï»¿using UnityEngine;
+//í…ŒìŠ¤íŠ¸ìš© í´ë˜ìŠ¤ (ë¡œì»¬ ì„œë²„, ë‹¨ì¼ í”„ë¡œì„¸ìŠ¤ ë™ê¸° ì‹œë®¬ë ˆì´ì…˜) ì˜¨ë¼ì¸ ë„¤íŠ¸ì›Œí¬ ì•„ë‹˜
 public sealed class LocalRoomSettingsTransport : IRoomSettingsTransport
 {
-    private RoomSettingsService service;
-    private readonly RoomSettingsAuthority authority;
+    private readonly long localUserID;
+    private IRoomSettingsReceiver receiver;
+    private RoomSettingsService authorityService;
 
-    //·ÎÄÃ ÇÃ·¹ÀÌ¾î ID
-    private readonly long localPlayerId;
-
-    public bool IsServer
+    public LocalRoomSettingsTransport(long localUserID)
     {
-        get
+        this.localUserID = localUserID;
+    }
+
+    public long GetLocalUserID()
+    {
+        return localUserID;
+    }
+
+    public bool IsAuthority()
+    {
+        return true; //í…ŒìŠ¤íŠ¸ìš© ë¡œì»¬ ì„œë²„ì´ê¸° ë•Œë¬¸ì— ë³„ë„ì˜ ì„œë²„ í™•ì¸ ë¡œì§ì´ ì—†ìœ¼ë‹ˆ ì£¼ì˜
+    }
+
+    public void Bind(IRoomSettingsReceiver receiver)
+    {
+        this.receiver = receiver;
+        authorityService = receiver as RoomSettingsService;
+    }
+
+    public void Unbind(IRoomSettingsReceiver receiver)
+    {
+        if (ReferenceEquals(this.receiver, receiver))
         {
-            return true; //½ÇÁ¦·Î »ç¿ëÇÒ °æ¿ì ¼­¹öÀÎÁö È®ÀÎÇÏ´Â ·ÎÁ÷ Ãß°¡ÇØ¾ß ÇÔ
+            this.receiver = null;
+            authorityService = null;
         }
     }
 
-    public bool IsLocalHost
+    public void SendChangeRequest<T>(RoomSettingsChange<T> change) where T : struct
     {
-        get
+        if (authorityService == null)
         {
-            return authority.IsHost(localPlayerId);
+            throw new System.InvalidOperationException("ì„œë¹„ìŠ¤ê°€ ì•„ì§ bind ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+        }
+
+        ERoomSettingsResult result = authorityService.TryApplyOnAuthority(localUserID, change);
+        if (!result.IsSuccess())
+        {
+            receiver?.ReceiveRejection(result);
+        }
+        else
+        {
+            Debug.Log($"ë°© ì„¤ì • í•­ëª© {change.id}ì˜ ê°’ì´ {change.value}ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.");
         }
     }
 
-    public bool IsGameStarted
+    public void PublishDelta<T>(RoomSettingsDelta<T> delta) where T : struct
     {
-        get
+        //Authority already applied the change; the loopback is ignored.
+        receiver?.ReceiveDelta(delta);
+    }
+
+    public void PublishState(RoomSettingsRoomState state)
+    {
+        receiver?.ReceiveState(state);
+    }
+
+    public void PublishSnapshot(RoomSettingsSnapshot snapshot)
+    {
+        receiver?.ReceiveSnapshot(snapshot);
+    }
+
+    public void SendSnapshotTo(long targetUserID, RoomSettingsSnapshot snapshot)
+    {
+        if (targetUserID == localUserID)
         {
-            return authority.Phase != RoomPhase.PreGame;
+            receiver?.ReceiveSnapshot(snapshot);
         }
     }
 
-    public event Action<RoomSettingsData> OnSettingsReceive;
-
-    public LocalRoomSettingsTransport(RoomSettingsAuthority authority, long localPlayerId)
+    public void RequestSnapshot()
     {
-        this.authority = authority;
-        this.localPlayerId = localPlayerId;
-    }
-
-    //¼­ºñ½º ¿¬°á
-    public void Bind(RoomSettingsService service)
-    {
-        this.service = service;
-    }
-
-    public void SendChangeRequest(RoomSettingsChange change)
-    {
-        if (service == null)
-            return;
-
-        if (!authority.CanEdit(localPlayerId))
-            return;
-
-        service.TryApplyAuthoritative(change);
-    }
-
-    public void PublishSettings(RoomSettingsData settings)
-    {
-        OnSettingsReceive?.Invoke(settings);
+        if (authorityService != null)
+        {
+            receiver?.ReceiveSnapshot(authorityService.CreateSnapshot());
+        }
     }
 }

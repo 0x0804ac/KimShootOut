@@ -1,74 +1,105 @@
+ï»¿/*
 using System;
 using System.Collections.Generic;
-
-//¹æ ±âº» ¼³Á¤ ¸ñ·Ï
+*/
+//ì„¤ì • í•­ëª©ê³¼ ê¸°ë³¸ê°’ì´ ì €ì¥ëœ í´ë˜ìŠ¤
 public static class RoomSettingsCatalog
 {
-    //¸ñ·Ï (private ÇÊµå)
-    private static readonly RoomSettingsDefinition[] catalog =
+    private static readonly IRoomSettingsDefinition[] sDefinitions =
     {
-        RoomSettingsDefinition.Int(RoomSettingsID.PlayersPerTeam, "ÆÀ ÀÎ¿ø", 1, 5, 1),
-        RoomSettingsDefinition.Int(RoomSettingsID.MatchesPerGame, "¸ÅÄ¡ ¼ö", 1, 5, 1, 2),
-        RoomSettingsDefinition.Int(RoomSettingsID.RoundsPerMatch, "¸ÅÄ¡ ´ç Å°Ä¿ ¼ö", 5, 10, 5),
-        RoomSettingsDefinition.Bool(RoomSettingsID.ForceFullRounds, "¹«Á¶°Ç ¸¶Áö¸· Å°Ä¿±îÁö ÁøÇà", false),
-        RoomSettingsDefinition.Int(RoomSettingsID.InputTimeLimit, "ÀÔ·Â Á¦ÇÑ ½Ã°£(ÃÊ)", 5, 30, 10, 5),
-        RoomSettingsDefinition.Float(RoomSettingsID.KickerChargeSpeed, "Å°Ä¿ Á¶ÀÛ ½Ã ÃÖ´ë ÆÄ¿ö±îÁö °É¸®´Â ½Ã°£", 0.5f, 2f, 1.25f, 0.25f),
-        RoomSettingsDefinition.Float(RoomSettingsID.GoalkeeperChargeSpeed, "°ñÅ°ÆÛ Á¶ÀÛ ½Ã ÃÖ´ë ¼Ó·Â±îÁö °É¸®´Â ½Ã°£", 0.5f, 2f, 1.25f, 0.25f),
-        RoomSettingsDefinition.Bool(RoomSettingsID.EnableItems, "¾ÆÀÌÅÛ »ç¿ë", false), //¾ÆÀÌÅÛ ±¸Çö ÀÌÈÄ true·Î ¹Ù²ã¾ß ÇÔ
-        RoomSettingsDefinition.Int(RoomSettingsID.ItemSelectionTimeLimit, "¾ÆÀÌÅÛ °³´ç ¼±ÅÃ Á¦ÇÑ ½Ã°£", 5, 60, 15, 5),
-        RoomSettingsDefinition.Bool(RoomSettingsID.AllowSpectators, "°üÀü Çã¿ë", false)
+        new RoomSettingsDefinition<int>(
+            ERoomSettingsID.PlayersPerTeam,
+            new LocalizationMetadata("íŒ€ ì¸ì›", "Players per team"),
+            1, new RoomSettingsRange<int>(1, 5, 1)),
+        new RoomSettingsDefinition<int>(
+            ERoomSettingsID.MatchesPerGame,
+            new LocalizationMetadata("ë§¤ì¹˜ ìˆ˜", "Matches per game"),
+            1, new RoomSettingsRange<int>(1, 5, 2)),
+        new RoomSettingsDefinition<int>(
+            ERoomSettingsID.RoundsPerMatch,
+            new LocalizationMetadata("ë§¤ì¹˜ ë‹¹ ìŠ› íšŸìˆ˜", "Shots per match"),
+            5, new RoomSettingsRange<int>(5, 10, 1)),
+        new RoomSettingsDefinition<bool>(
+            ERoomSettingsID.ForceFullRounds,
+            new LocalizationMetadata("ë¬´ì¡°ê±´ ë§ˆì§€ë§‰ í‚¤ì»¤ê¹Œì§€ ì§„í–‰", "Enforce full rounds"),
+            false),
+        new RoomSettingsDefinition<int>(
+            ERoomSettingsID.InputTimeLimit,
+            new LocalizationMetadata("ì…ë ¥ ì œí•œ ì‹œê°„ (ì´ˆ)", "Input time limit (seconds)"),
+            10, new RoomSettingsRange<int>(5, 30, 5)),
+        new RoomSettingsDefinition<float>(
+            ERoomSettingsID.KickerChargeSpeed,
+            new LocalizationMetadata("í‚¤ì»¤ ìµœëŒ€ íŒŒì›Œ ì¶©ì „ ì‹œê°„ (ì´ˆ)", "Kicker full charge time (seconds)"),
+            1.25f, new RoomSettingsRange<float>(0.5f, 2f, 0.25f)),
+        new RoomSettingsDefinition<float>(
+            ERoomSettingsID.GoalkeeperChargeSpeed,
+            new LocalizationMetadata("ê³¨í‚¤í¼ ìµœëŒ€ ì†ë ¥ ì¶©ì „ ì‹œê°„ (ì´ˆ)", "Goalkeeper full charge time (seconds)"),
+            1.25f, new RoomSettingsRange<float>(0.5f, 2f, 0.25f)),
+        new RoomSettingsDefinition<bool>(
+            ERoomSettingsID.EnableItems,
+            new LocalizationMetadata("ì•„ì´í…œ ì‚¬ìš©", "Enable items"),
+            false), //ë‚˜ì¤‘ì— trueë¡œ ë³€ê²½
+        new RoomSettingsDefinition<int>(
+            ERoomSettingsID.ItemSelectionTimeLimit,
+            new LocalizationMetadata("ì•„ì´í…œ ê°œë‹¹ ì„ íƒ ì œí•œ ì‹œê°„ (ì´ˆ)", "Item selection time limit (seconds)"),
+            15, new RoomSettingsRange<int>(5, 60, 5)),
+        new RoomSettingsDefinition<bool>(
+            ERoomSettingsID.AllowSpectators,
+            new LocalizationMetadata("ê´€ì „ í—ˆìš©", "Allow spectators"),
+            false)
     };
 
-    //Å×ÀÌºí
-    private static readonly Dictionary<RoomSettingsID, RoomSettingsDefinition> map = BuildMap();
+    private static readonly System.Collections.Generic.IReadOnlyList<IRoomSettingsDefinition> sCatalog =
+        System.Array.AsReadOnly(sDefinitions);
 
-    //¸ñ·Ï (public ¼Ó¼º)
-    public static IReadOnlyList<RoomSettingsDefinition> CatalogList
+    static RoomSettingsCatalog()
     {
-        get
+        if (sDefinitions.Length != System.Enum.GetValues(typeof(ERoomSettingsID)).Length)
         {
-            return catalog;
+            throw new System.InvalidOperationException("ì¤‘ë³µë˜ê±°ë‚˜ ëˆ„ë½ëœ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.");
         }
-    }
 
-    //Å×ÀÌºí »ı¼º ÇÔ¼ö
-    private static Dictionary<RoomSettingsID, RoomSettingsDefinition> BuildMap()
-    {
-        Dictionary<RoomSettingsID, RoomSettingsDefinition> result = new Dictionary<RoomSettingsID, RoomSettingsDefinition>();
-        foreach (RoomSettingsDefinition item in catalog)
+        for (int i = 0; i < sDefinitions.Length; i++)
         {
-            result.Add(item.ID, item);
-        }
-        return result;
-    }
-
-    //Å×ÀÌºí °Ë»ö
-    public static bool TryGet(RoomSettingsID id, out RoomSettingsDefinition definition)
-    {
-        return map.TryGetValue(id, out definition);
-    }
-
-    //±âº» µ¥ÀÌÅÍ »ı¼º
-    public static RoomSettingsData CreateDefaultData()
-    {
-        RoomSettingsData data = new RoomSettingsData();
-        foreach (RoomSettingsDefinition item in catalog)
-        {
-            //±âº»°ªÀ¸·Î º¯°æÇÏ´Â µ¥ÀÌÅÍ »ı¼º
-            RoomSettingsChange change = item.ValueType switch
+            if ((int)sDefinitions[i].GetID() != i)
             {
-                RoomSettingsValueType.Int => RoomSettingsChange.FromInt(item.ID, item.DefaultInt),
-                RoomSettingsValueType.Float => RoomSettingsChange.FromFloat(item.ID, item.DefaultFloat),
-                RoomSettingsValueType.Bool => RoomSettingsChange.FromBool(item.ID, item.DefaultBool),
-                RoomSettingsValueType.String => RoomSettingsChange.FromString(item.ID, item.DefaultString),
-                _ => throw new InvalidOperationException()
-            };
-            //º¯°æ »çÇ× Àû¿ë ½Ãµµ
-            if (!RoomSettingsValidator.TryApply(ref data, change))
-            {
-                throw new InvalidOperationException($"Invalid default: {item.ID}");
+                throw new System.InvalidOperationException("ì„¤ì • í•­ëª© ëª©ë¡ê³¼ ID ëª©ë¡ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
             }
         }
-        return data;
+    }
+
+    public static System.Collections.Generic.IReadOnlyList<IRoomSettingsDefinition> GetAll()
+    {
+        return sCatalog;
+    }
+
+    public static bool TryGet<T>(ERoomSettingsID id, out RoomSettingsDefinition<T> definition)
+        where T : struct
+    {
+        int index = (int)id;
+
+        if (index >= 0 && index < sDefinitions.Length &&
+            sDefinitions[index] is RoomSettingsDefinition<T> typed)
+        {
+            definition = typed;
+            return true;
+        }
+
+        definition = null;
+        return false;
+    }
+
+    public static bool TryGet(ERoomSettingsID id, out IRoomSettingsDefinition definition)
+    {
+        int index = (int)id;
+
+        if (index >= 0 && index < sDefinitions.Length)
+        {
+            definition = sDefinitions[index];
+            return true;
+        }
+
+        definition = null;
+        return false;
     }
 }

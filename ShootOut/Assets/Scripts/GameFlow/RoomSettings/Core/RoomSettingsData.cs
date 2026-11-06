@@ -1,69 +1,103 @@
-using System;
+ï»¿using System;
 
+//ë°© ì„¤ì • ì „ì²´ ë°ì´í„°
 [Serializable]
-//¼³Á¤ µ¥ÀÌÅÍ ±¸Á¶Ã¼
-public struct RoomSettingsData : IEquatable<RoomSettingsData>
+public readonly struct RoomSettingsData : IEquatable<RoomSettingsData>
 {
-     //ÆÀ ´ç ÇÃ·¹ÀÌ¾î ¼ö
-    public int PlayersPerTeam;
-    //°ÔÀÓ ´ç ¸ÅÄ¡ ¼ö
-    public int MatchesPerGame;
-    //¸ÅÄ¡ ´ç ¶ó¿îµå ¼ö
-    public int RoundsPerMatch;
+    private readonly object[] values;
+    private readonly int cachedHashCode;
 
-    //½ÂºÎ°¡ ÀÌ¹Ì °áÁ¤³­ »óÈ²¿¡¼­µµ ÃÑ ¶ó¿îµå ¼ö¸¸Å­ °­Á¦ ÁøÇà
-    public bool ShouldForceFullRounds;
-
-    //ÀÔ·Â Á¦ÇÑ ½Ã°£
-    public int InputTimeLimitInSeconds;
-    //Å°Ä¿ ÃÖ´ë ÆÄ¿ö ÀÔ·Â±îÁö °É¸®´Â ½Ã°£
-    public float KickerFullChargeTimeInSeconds;
-    //°ñÅ°ÆÛ ÃÖ´ë ¼Ó·Â ÀÔ·Â±îÁö °É¸®´Â ½Ã°£
-    public float GoalkeeperFullChargeTimeInSeconds;
-
-    //¾ÆÀÌÅÛ È°¼ºÈ­ ¿©ºÎ
-    public bool IsItemEnabled;
-    //¾ÆÀÌÅÛ ¼±ÅÃ Á¦ÇÑ ½Ã°£
-    public int ItemSelectionTimeLimitInSeconds;
-
-    //°üÀüÀÚ Çã¿ë ¿©ºÎ
-    public bool AllowSpectators;
-
-    //´Ù¸¥ ¼³Á¤ µ¥ÀÌÅÍ¿Í °°ÀºÁö ºñ±³
-    public bool Equals(RoomSettingsData other)
+    internal RoomSettingsData(object[] ownedValues)
     {
-        return PlayersPerTeam == other.PlayersPerTeam
-            && MatchesPerGame == other.MatchesPerGame
-            && RoundsPerMatch == other.RoundsPerMatch
-            && ShouldForceFullRounds == other.ShouldForceFullRounds
-            && InputTimeLimitInSeconds == other.InputTimeLimitInSeconds
-            && KickerFullChargeTimeInSeconds == other.KickerFullChargeTimeInSeconds
-            && GoalkeeperFullChargeTimeInSeconds == other.GoalkeeperFullChargeTimeInSeconds
-            && IsItemEnabled == other.IsItemEnabled
-            && ItemSelectionTimeLimitInSeconds == other.ItemSelectionTimeLimitInSeconds
-            && AllowSpectators == other.AllowSpectators;
+        //Internal constructor is called only with a brand-new, non-shared array.
+        values = ownedValues ?? throw new ArgumentNullException(nameof(ownedValues));
+        cachedHashCode = CalculateHash(ownedValues);
     }
 
-    //ÀÎÅÍÆäÀÌ½º ±¸Çö (Equals)
+    public int GetCount()
+    {
+        return values == null ? 0 : values.Length;
+    }
+
+    public bool TryGet<T>(ERoomSettingsID id, out T value) where T : struct
+    {
+        int index = (int)id;
+
+        if (values != null &&
+            index >= 0 && index < values.Length &&
+            values[index] is T typed)
+        {
+            value = typed;
+            return true;
+        }
+
+        value = default;
+        return false;
+    }
+
+    public T Get<T>(ERoomSettingsID id) where T : struct
+    {
+        if (TryGet(id, out T value))
+        {
+            return value;
+        }
+
+        throw new InvalidOperationException($"ID ë˜ëŠ” ì„¤ì •ê°’ ìë£Œí˜•ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤: {id}/{typeof(T).Name}");
+    }
+
+    //An object is returned only internally. The catalog allows value types only.
+    internal object GetBoxed(int index)
+    {
+        return values[index];
+    }
+
+    public bool Equals(RoomSettingsData other)
+    {
+        if (ReferenceEquals(values, other.values))
+        {
+            return true;
+        }
+
+        if (values == null || other.values == null ||
+            values.Length != other.values.Length ||
+            cachedHashCode != other.cachedHashCode)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < values.Length; i++)
+        {
+            if (!object.Equals(values[i], other.values[i]))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public override bool Equals(object obj)
     {
         return obj is RoomSettingsData other && Equals(other);
     }
 
-    //ÀÎÅÍÆäÀÌ½º ±¸Çö (HashCode)
     public override int GetHashCode()
     {
-        HashCode hash = new HashCode();
-        hash.Add(PlayersPerTeam);
-        hash.Add(MatchesPerGame);
-        hash.Add(RoundsPerMatch);
-        hash.Add(ShouldForceFullRounds);
-        hash.Add(InputTimeLimitInSeconds);
-        hash.Add(KickerFullChargeTimeInSeconds);
-        hash.Add(GoalkeeperFullChargeTimeInSeconds);
-        hash.Add(IsItemEnabled);
-        hash.Add(ItemSelectionTimeLimitInSeconds);
-        hash.Add(AllowSpectators);
-        return hash.ToHashCode();
+        return cachedHashCode;
+    }
+
+    private static int CalculateHash(object[] input)
+    {
+        unchecked
+        {
+            int hash = 17;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                hash = hash * 31 + (input[i] == null ? 0 : input[i].GetHashCode());
+            }
+
+            return hash;
+        }
     }
 }

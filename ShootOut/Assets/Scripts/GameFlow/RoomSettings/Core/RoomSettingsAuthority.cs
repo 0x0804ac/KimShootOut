@@ -1,79 +1,19 @@
-//¹æ ÇöÀç »óÅÂ
-public enum RoomPhase
+ï»¿//ë°© ì„¤ì • ê¶Œí•œ í™•ì¸
+public static class RoomSettingsAuthority
 {
-    //°ÔÀÓ ½ÃÀÛ Àü
-    PreGame,
-    //°ÔÀÓ Áß
-    Playing,
-    //°ÔÀÓ Á¾·á ÈÄ
-    PostGame
-}
-
-//¹æ ¼³Á¤ º¯°æ ½Ãµµ °á°ú
-public enum RoomSettingsResult
-{
-    //¼º°ø
-    Success,
-    //½ÇÆĞ(¹æÀåÀÌ ¾Æ´Ô)
-    NotHost,
-    //½ÇÆĞ(°ÔÀÓ ½ÃÀÛµÊ)
-    GameAlreadyStarted,
-    //½ÇÆĞ(¿Ã¹Ù¸£Áö ¾ÊÀº °ª)
-    InvalidValue,
-    //½ÇÆĞ(±ÇÇÑ ¾øÀ½)
-    NoAuthority
-}
-
-//RoomSettingsResult È®Àå Å¬·¡½º
-public static class RoomSettingsResultExtensions
-{
-    public static bool IsSuccess(this RoomSettingsResult result)
+    public static ERoomSettingsResult CheckEdit(
+        ERoomPhase phase, long hostUserID, long requesterID)
     {
-        return result == RoomSettingsResult.Success;
-    }
-}
-
-//¹æ ¼³Á¤ ±ÇÇÑ
-public sealed class RoomSettingsAuthority
-{
-    //¹æÀå ID
-    public long HostID { get; private set; }
-    //¹æ ÇöÀç »óÅÂ
-    public RoomPhase Phase { get; private set; }
-
-    //»ı¼ºÀÚ
-    public RoomSettingsAuthority(long hostId)
-    {
-        HostID = hostId;
-        Phase = RoomPhase.PreGame;
-    }
-
-    //¹æÀåÀÇ IDÀÎÁö °Ë»ç
-    public bool IsHost(long playerId)
-    {
-        return playerId == HostID;
-    }
-
-    //¹æ ¼³Á¤À» º¯°æÇÒ ¼ö ÀÖ´ÂÁö °Ë»ç
-    public bool CanEdit(long playerId)
-    {
-        return Phase == RoomPhase.PreGame && IsHost(playerId);
-    }
-
-    //°ÔÀÓ ½ÃÀÛ ½Ãµµ
-    public bool TryStartGame(long playerId)
-    {
-        if (!CanEdit(playerId))
+        if (phase != ERoomPhase.Waiting)
         {
-            return false;
+            return ERoomSettingsResult.Locked;
         }
-        Phase = RoomPhase.Playing;
-        return true;
-    }
 
-    //¹æÀå ³Ñ±â±â
-    public void TransferHost(long newHostId)
-    {
-        HostID = newHostId;
+        if (hostUserID != requesterID)
+        {
+            return ERoomSettingsResult.NotHost;
+        }
+
+        return ERoomSettingsResult.Success;
     }
 }

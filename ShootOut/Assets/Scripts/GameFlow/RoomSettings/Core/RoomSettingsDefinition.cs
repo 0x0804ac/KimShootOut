@@ -1,76 +1,109 @@
-//¹æ ¼³Á¤ °ª ÀÚ·áÇü
-public enum RoomSettingsValueType
+ï»¿//using System;
+
+//ë°© ì„¤ì • (ë‹¨ì¼ í•­ëª©ê³¼ ê°’) ì •ì˜
+public interface IRoomSettingsDefinition
 {
-    Int,
-    Float,
-    Bool,
-    String
+    ERoomSettingsID GetID();
+    LocalizationMetadata GetMetadata();
+    IRoomSettingsSlot CreateSlot();
 }
 
-//¹æ ¼³Á¤ Ç×¸ñ
-public sealed class RoomSettingsDefinition
+//ê°„ê²©ì´ ìˆëŠ” ë²”ìœ„ êµ¬ì¡°ì²´ (bool ê°’ì¼ ê²½ìš° ì‚¬ìš©í•˜ì§€ ì•ŠìŒ)
+public readonly struct RoomSettingsRange<T> where T : struct
 {
-    //¼³Á¤ ¹øÈ£
-    public RoomSettingsID ID { get; }
+    public readonly T min;
+    public readonly T max;
+    public readonly T step;
 
-    //¼³Á¤ÀÌ Ç¥½ÃµÉ ¶§ ¾²ÀÌ´Â ÀÌ¸§
-    public string DisplayName { get; }
-
-    //¼³Á¤°ª ÀÚ·áÇü
-    public RoomSettingsValueType ValueType { get; }
-
-    //¼³Á¤ ÃÖ¼Ú°ª
-    public float Min { get; }
-    //¼³Á¤ ÃÖ´ñ°ª
-    public float Max { get; }
-    //¼³Á¤°ª º¯°æ ½Ã Çã¿ë °£°İ
-    public float Step { get; }
-
-    //int ÇüÅÂÀÇ ¼³Á¤ ±âº»°ª
-    public int DefaultInt { get; }
-    //float ÇüÅÂÀÇ ¼³Á¤ ±âº»°ª
-    public float DefaultFloat { get; }
-    //bool ÇüÅÂÀÇ ¼³Á¤ ±âº»°ª
-    public bool DefaultBool { get; }
-    //string ÇüÅÂÀÇ ¼³Á¤ ±âº»°ª
-    public string DefaultString { get; }
-
-    //¹æ ¼³Á¤ Ç×¸ñ »ı¼º
-    private RoomSettingsDefinition(RoomSettingsID id, string displayName, RoomSettingsValueType valueType, float min, float max, float step, int defaultInt, float defaultFloat, bool defaultBool, string defaultString)
+    public RoomSettingsRange(T min, T max, T step)
     {
-        ID = id;
-        DisplayName = displayName;
-        ValueType = valueType;
-        Min = min;
-        Max = max;
-        Step = step;
-        DefaultInt = defaultInt;
-        DefaultFloat = defaultFloat;
-        DefaultBool = defaultBool;
-        DefaultString = defaultString;
+        double lower = RoomSettingsNumeric<T>.ToDouble(min);
+        double upper = RoomSettingsNumeric<T>.ToDouble(max);
+        double interval = RoomSettingsNumeric<T>.ToDouble(step);
+
+        if (double.IsNaN(lower) || double.IsInfinity(lower) ||
+            double.IsNaN(upper) || double.IsInfinity(upper) ||
+            double.IsNaN(interval) || double.IsInfinity(interval) ||
+            lower > upper || interval <= 0)
+        {
+            throw new System.ArgumentException("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê°’ì…ë‹ˆë‹¤.");
+        }
+
+        this.min = min;
+        this.max = max;
+        this.step = step;
     }
 
-    //int ÇüÅÂÀÇ ¼³Á¤ Ç×¸ñ »ı¼º
-    public static RoomSettingsDefinition Int(RoomSettingsID id, string displayName, int min, int max, int defaultValue, int step = 1)
+    //ë²”ìœ„ ì•ˆì— ìˆëŠ” ì˜¬ë°”ë¥¸ ê°’ì¸ì§€ ê²€ì‚¬
+    public bool Contains(T value)
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Int, min, max, step, defaultValue, RoomSettingsConstants.dummyFloat, RoomSettingsConstants.dummyBool, RoomSettingsConstants.dummyString);
+        double candidate = RoomSettingsNumeric<T>.ToDouble(value);
+        double lower = RoomSettingsNumeric<T>.ToDouble(min);
+        double upper = RoomSettingsNumeric<T>.ToDouble(max);
+        double interval = RoomSettingsNumeric<T>.ToDouble(step);
+
+        if (double.IsNaN(candidate) || double.IsInfinity(candidate) ||
+            candidate < lower || candidate > upper)
+        {
+            return false;
+        }
+
+        double position = (candidate - lower) / interval;
+        return System.Math.Abs(position - System.Math.Round(position)) < 0.00001d;
+    }
+}
+
+public sealed class RoomSettingsDefinition<T> : IRoomSettingsDefinition where T : struct
+{
+    private readonly ERoomSettingsID id;
+    private readonly LocalizationMetadata metadata;
+    private readonly T defaultValue;
+    private readonly RoomSettingsRange<T>? range;
+
+    public RoomSettingsDefinition(
+        ERoomSettingsID id,
+        LocalizationMetadata metadata,
+        T defaultValue,
+        RoomSettingsRange<T>? range = null)
+    {
+        if (range.HasValue && !range.Value.Contains(defaultValue))
+        {
+            throw new System.ArgumentException("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê¸°ë³¸ê°’", nameof(defaultValue));
+        }
+
+        this.id = id;
+        this.metadata = metadata;
+        this.defaultValue = defaultValue;
+        this.range = range;
     }
 
-    //float ÇüÅÂÀÇ ¼³Á¤ Ç×¸ñ »ı¼º
-    public static RoomSettingsDefinition Float(RoomSettingsID id, string displayName, float min, float max, float defaultValue, float step = 1f)
+    public ERoomSettingsID GetID()
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Float, min, max, step, RoomSettingsConstants.dummyInt, defaultValue, RoomSettingsConstants.dummyBool, RoomSettingsConstants.dummyString);
+        return id;
     }
 
-    //bool ÇüÅÂÀÇ ¼³Á¤ Ç×¸ñ »ı¼º
-    public static RoomSettingsDefinition Bool(RoomSettingsID id, string displayName, bool defaultValue)
+    public LocalizationMetadata GetMetadata()
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.Bool, 0f, 1f, 1f, RoomSettingsConstants.dummyInt, RoomSettingsConstants.dummyFloat, defaultValue, RoomSettingsConstants.dummyString);
+        return metadata;
     }
 
-    //string ÇüÅÂÀÇ ¼³Á¤ Ç×¸ñ »ı¼º
-    public static RoomSettingsDefinition String(RoomSettingsID id, string displayName, string defaultValue)
+    public T GetDefaultValue()
     {
-        return new RoomSettingsDefinition(id, displayName, RoomSettingsValueType.String, 0f, 1f, 1f, RoomSettingsConstants.dummyInt, RoomSettingsConstants.dummyFloat, RoomSettingsConstants.dummyBool, defaultValue);
+        return defaultValue;
+    }
+
+    public RoomSettingsRange<T>? GetRange()
+    {
+        return range;
+    }
+
+    public IRoomSettingsSlot CreateSlot()
+    {
+        return new RoomSettingsSlot<T>(this);
+    }
+
+    public bool IsValid(T value)
+    {
+        return !range.HasValue || range.Value.Contains(value);
     }
 }

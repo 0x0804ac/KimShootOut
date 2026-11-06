@@ -1,107 +1,326 @@
-using System;
-using UnityEngine;
+Ôªøusing UnityEngine;
 
-//πÊ º≥¡§ ∞¸∏Æ º≠∫ÒΩ∫
-public sealed class RoomSettingsService
+//Mutable authoritative settings during Lobby; no full snapshot on each edit.
+public sealed class RoomSettingsService : System.IDisposable, IRoomSettingsReceiver
 {
-    //«ˆ¿Á µ•¿Ã≈Õ (private « µÂ)
-    private RoomSettingsData current;
-    //≥◊∆Æøˆ≈© ¿¸¥ﬁ ¿Œ≈Õ∆‰¿ÃΩ∫
+    private readonly RoomSettingsStore store;
     private readonly IRoomSettingsTransport transport;
 
-    //«ˆ¿Á µ•¿Ã≈Õ (public º”º∫)
-    public RoomSettingsData Current
+    private long revision;
+    private long hostUserID;
+    private ERoomPhase phase;
+
+    private bool initialized;
+    private bool waitingForSnapshot;
+    private bool disposed;
+
+    private RoomSettingsData finalizedData;
+    private bool hasFinalizedData;
+
+    public event System.Action<ERoomSettingsID> SettingsChanged;
+    public event System.Action SettingsReplaced;
+    public event System.Action RoomStateChanged;
+    public event System.Action<ERoomSettingsResult> RequestRejected;
+    public event System.Action<RoomSettingsData> GameStarted;
+
+    public RoomSettingsService(IRoomSettingsTransport transport, long initialHostUserID)
     {
-        get
+        this.transport = transport ?? throw new System.ArgumentNullException(nameof(transport));
+        store = new RoomSettingsStore();
+        initialized = transport.IsAuthority();
+        revision = initialized ? 0L : -1L;
+        hostUserID = initialHostUserID;
+        phase = ERoomPhase.Waiting;
+        transport.Bind(this);
+    }
+
+    public long GetRevision()
+    {
+        return revision;
+    }
+
+    public long GetHostUserID()
+    {
+        return hostUserID;
+    }
+
+    public ERoomPhase GetPhase()
+    {
+        return phase;
+    }
+
+    public bool HasSnapshot()
+    {
+        return initialized;
+    }
+
+    public T Get<T>(ERoomSettingsID id) where T : struct
+    {
+        return store.Get<T>(id);
+    }
+
+    public bool TryGet<T>(ERoomSettingsID id, out T value) where T : struct
+    {
+        return store.TryGet(id, out value);
+    }
+
+    public bool CanLocalEdit()
+    {
+        return initialized && !disposed &&
+            RoomSettingsAuthority.CheckEdit(phase, hostUserID, transport.GetLocalUserID()).IsSuccess();
+    }
+
+    //Î≥ÄÍ≤Ω ÏöîÏ≤≠ (Î™®Îì† ÏöîÏ≤≠Ïù¥ Î∞õÏïÑÎì§Ïó¨ÏßÄÎäî Í≤ÉÏùÄ ÏïÑÎãò)
+    public bool RequestChange<T>(ERoomSettingsID id, T value) where T : struct
+    {
+        if (!CanLocalEdit())
         {
-            return current;
+            return false;
         }
+
+        transport.SendChangeRequest(new RoomSettingsChange<T>(id, value));
+        return true;
     }
 
-    //∫Ø∞Ê ∞°¥…«—¡ˆ ∞ÀªÁ
-    public bool CanEdit
+    //Sender ID must be supplied by the authenticated networking connection.
+    public ERoomSettingsResult TryApplyOnAuthority<T>(
+        long authenticatedRequesterID,
+        RoomSettingsChange<T> change)
+        where T : struct
     {
-        get
+        if (!transport.IsAuthority() || disposed)
         {
-            return transport.IsLocalHost && !transport.IsGameStarted;
+            return ERoomSettingsResult.NoAuthority;
         }
+
+        ERoomSettingsResult permission = RoomSettingsAuthority.CheckEdit(
+            phase, hostUserID, authenticatedRequesterID);
+        if (!permission.IsSuccess())
+        {
+            return permission;
+        }
+
+        if (!store.TrySet(change, out bool changed))
+        {
+            return ERoomSettingsResult.InvalidValue;
+        }
+
+        if (changed)
+        {
+            revision = checked(revision + 1L);
+
+            //Send before notifying user code, which may issue another edit reentrantly.
+            transport.PublishDelta(new RoomSettingsDelta<T>(revision, change));
+
+            SettingsChanged?.Invoke(change.id);
+            return ERoomSettingsResult.Success;
+        }
+        return ERoomSettingsResult.UnchagedValue;
     }
 
-    //º≥¡§ ∫Ø∞Ê ¿Ã∫•∆Æ
-    public event Action<RoomSettingsData> OnSettingsChange;
-
-    //ª˝º∫¿⁄
-    public RoomSettingsService(IRoomSettingsTransport transport)
+    public ERoomSettingsResult TryStartGameOnAuthority(long authenticatedRequesterID)
     {
-        this.transport = transport;
-        current = RoomSettingsCatalog.CreateDefaultData();
-        transport.OnSettingsReceive += ApplySnapshot;
+        if (!transport.IsAuthority() || disposed)
+        {
+            return ERoomSettingsResult.NoAuthority;
+        }
+
+        ERoomSettingsResult permission = RoomSettingsAuthority.CheckEdit(
+            phase, hostUserID, authenticatedRequesterID);
+        if (!permission.IsSuccess())
+        {
+            return permission;
+        }
+
+        //The host game-room layer must verify team occupancy and readiness first.
+        finalizedData = store.CreateData();
+        hasFinalizedData = true;
+        phase = ERoomPhase.Playing;
+        Debug.Log("Í≤åÏûÑ ÏãúÏûë");
+        revision = checked(revision + 1L);
+        RoomSettingsSnapshot snapshot = new RoomSettingsSnapshot(
+            finalizedData, CreateState());
+        transport.PublishSnapshot(snapshot);
+
+        RoomStateChanged?.Invoke();
+        GameStarted?.Invoke(finalizedData);
+        return ERoomSettingsResult.Success;
     }
 
-    //º≥¡§ ∫Ø∞Ê ø‰√ª
-    public void RequestChange(RoomSettingsChange change)
+    public bool TryFinishGameOnAuthority()
     {
-        //∫Ø∞Ê ∞°¥…«—¡ˆ ∞ÀªÁ
-        if (!CanEdit)
+        if (!transport.IsAuthority() || disposed || phase != ERoomPhase.Playing)
+        {
+            return false;
+        }
+
+        phase = ERoomPhase.Finished;
+        revision = checked(revision + 1L);
+        transport.PublishState(CreateState());
+
+        RoomStateChanged?.Invoke();
+        return true;
+    }
+
+    //Trusted room-management code only; do not expose as a client RPC.
+    public bool TryTransferHostOnAuthority(long newHostUserID)
+    {
+        if (!transport.IsAuthority() || disposed)
+        {
+            return false;
+        }
+        if (hostUserID == newHostUserID)
+        {
+            return true;
+        }
+        hostUserID = newHostUserID;
+        revision = checked(revision + 1L);
+        transport.PublishState(CreateState());
+
+        RoomStateChanged?.Invoke();
+        return true;
+    }
+
+    //Construct a snapshot only on demand, not once per modified setting.
+    public RoomSettingsSnapshot CreateSnapshot()
+    {
+        if (!initialized)
+        {
+            throw new System.InvalidOperationException("No authoritative snapshot received yet.");
+        }
+
+        RoomSettingsData data = hasFinalizedData ? finalizedData : store.CreateData();
+        return new RoomSettingsSnapshot(data, CreateState());
+    }
+
+    public bool TryGetFinalizedData(out RoomSettingsData data)
+    {
+        data = finalizedData;
+        return hasFinalizedData;
+    }
+
+    public bool SendCurrentSnapshotTo(long targetUserID)
+    {
+        if (!transport.IsAuthority() || disposed)
+        {
+            return false;
+        }
+
+        transport.SendSnapshotTo(targetUserID, CreateSnapshot());
+        return true;
+    }
+
+    public void ReceiveDelta<T>(RoomSettingsDelta<T> delta) where T : struct
+    {
+        if (transport.IsAuthority() || disposed || delta.revision <= revision)
         {
             return;
         }
-        transport.SendChangeRequest(change);
+        if (!initialized || waitingForSnapshot || delta.revision != revision + 1L ||
+            !store.TrySet(delta.change, out bool changed))
+        {
+            RequireResync();
+            return;
+        }
+
+        revision = delta.revision;
+        if (changed)
+        {
+            SettingsChanged?.Invoke(delta.change.id);
+        }
     }
 
-    //º≠πˆ ±««— ∞Ë√˛ø°º≠∏∏ »£√‚«ÿæﬂ «‘
-    public RoomSettingsResult TryApplyAuthoritative(RoomSettingsChange change)
+    public void ReceiveState(RoomSettingsRoomState state)
     {
-        //±««— ∞ÀªÁ
-        if (!transport.IsServer)
-        {
-            Debug.Log("º≠πˆ ±««— æ¯¿Ω");
-            return RoomSettingsResult.NoAuthority;
-        }
-        //∞‘¿” Ω√¿€ ø©∫Œ ∞ÀªÁ
-        if (transport.IsGameStarted)
-        {
-            Debug.Log("∞‘¿” Ω√¿€µ ");
-            return RoomSettingsResult.GameAlreadyStarted;
-        }
-        RoomSettingsData updated = current;
-        //º≥¡§ ∫Ø∞Ê ∞™ ∞ÀªÁ
-        if (!RoomSettingsValidator.TryApply(ref updated, change))
-        {
-            Debug.Log("¿Ø»ø«œ¡ˆ æ ¿∫ ∞™");
-            return RoomSettingsResult.InvalidValue;
-        }
-        //º≥¡§ ∫Ø∞Ê ¿Ã∫•∆Æ »£√‚ π◊ µ•¿Ã≈Õ ¿¸º€
-        if (!updated.Equals(current))
-        {
-            current = updated;
-            OnSettingsChange?.Invoke(current);
-            transport.PublishSettings(current);
-        }
-        return RoomSettingsResult.Success;
-    }
-
-    //º≥¡§ µ•¿Ã≈Õ ¿˚øÎ
-    public void ApplySnapshot(RoomSettingsData snapshot)
-    {
-        //∞∞¿∫ µ•¿Ã≈Õ∏È ¿€æ˜ ∫“« ø‰
-        if (current.Equals(snapshot))
+        if (transport.IsAuthority() || disposed || state.revision <= revision)
         {
             return;
         }
-        current = snapshot;
-        OnSettingsChange?.Invoke(current);
+        if (!initialized || waitingForSnapshot || state.revision != revision + 1L ||
+            !IsValidPhase(state.phase))
+        {
+            RequireResync();
+            return;
+        }
+
+        revision = state.revision;
+        hostUserID = state.hostUserID;
+        phase = state.phase;
+        RoomStateChanged?.Invoke();
     }
 
-    //¿Ã∫•∆Æ »£√‚
-    public void NotifyCurrent()
+    public void ReceiveSnapshot(RoomSettingsSnapshot snapshot)
     {
-        OnSettingsChange?.Invoke(current);
+        if (transport.IsAuthority() || disposed || snapshot.state.revision < 0 ||
+            !IsValidPhase(snapshot.state.phase))
+        {
+            return;
+        }
+        if (initialized && snapshot.state.revision <= revision)
+        {
+            return;
+        }
+        if (!store.TryLoadData(snapshot.data))
+        {
+            RequireResync();
+            return;
+        }
+
+        ERoomPhase oldPhase = phase;
+        revision = snapshot.state.revision;
+        hostUserID = snapshot.state.hostUserID;
+        phase = snapshot.state.phase;
+        initialized = true;
+        waitingForSnapshot = false;
+        hasFinalizedData = phase != ERoomPhase.Waiting;
+        finalizedData = hasFinalizedData ? snapshot.data : default;
+
+        SettingsReplaced?.Invoke();
+        RoomStateChanged?.Invoke();
+        if (oldPhase == ERoomPhase.Waiting && phase == ERoomPhase.Playing)
+        {
+            GameStarted?.Invoke(finalizedData);
+        }
     }
-    
-    //¿Ã∫•∆Æ ¡¶∞≈
+
+    public void ReceiveRejection(ERoomSettingsResult result)
+    {
+        if (!disposed)
+        {
+            RequestRejected?.Invoke(result);
+        }
+    }
+
     public void Dispose()
     {
-        transport.OnSettingsReceive -= ApplySnapshot;
+        if (disposed)
+        {
+            return;
+        }
+
+        disposed = true;
+        transport.Unbind(this);
+    }
+
+    private static bool IsValidPhase(ERoomPhase value)
+    {
+        return value == ERoomPhase.Waiting ||
+            value == ERoomPhase.Playing || value == ERoomPhase.Finished;
+    }
+
+    private RoomSettingsRoomState CreateState()
+    {
+        return new RoomSettingsRoomState(revision, hostUserID, phase);
+    }
+
+    private void RequireResync()
+    {
+        if (waitingForSnapshot)
+        {
+            return;
+        }
+
+        waitingForSnapshot = true;
+        transport.RequestSnapshot();
     }
 }

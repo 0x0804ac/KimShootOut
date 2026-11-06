@@ -1,21 +1,25 @@
-using System;
+癤�//Adapter boundary: only the networking SDK can authenticate incoming senders.
+//Every incoming receiver callback must be invoked only for authoritative messages.
+public interface IRoomSettingsReceiver
+{
+    void ReceiveDelta<T>(RoomSettingsDelta<T> delta) where T : struct;
+    void ReceiveState(RoomSettingsRoomState state);
+    void ReceiveSnapshot(RoomSettingsSnapshot snapshot);
+    void ReceiveRejection(ERoomSettingsResult result);
+}
 
-//네트워크 전달 인터페이스
 public interface IRoomSettingsTransport
 {
-    //서버 여부
-    bool IsServer { get; }
-    //호스트 여부
-    bool IsLocalHost { get; }
-    //게임 시작 여부
-    bool IsGameStarted { get; }
+    bool IsAuthority();
+    long GetLocalUserID();
 
-    //설정 수신 이벤트
-    event Action<RoomSettingsData> OnSettingsReceive;
+    void Bind(IRoomSettingsReceiver receiver);
+    void Unbind(IRoomSettingsReceiver receiver);
 
-    //설정 변경 요청 전송
-    void SendChangeRequest(RoomSettingsChange change);
-
-    //설정 데이터 전송
-    void PublishSettings(RoomSettingsData data);
+    void SendChangeRequest<T>(RoomSettingsChange<T> change) where T : struct;
+    void PublishDelta<T>(RoomSettingsDelta<T> delta) where T : struct;
+    void PublishState(RoomSettingsRoomState state);
+    void PublishSnapshot(RoomSettingsSnapshot snapshot);
+    void SendSnapshotTo(long targetUserID, RoomSettingsSnapshot snapshot);
+    void RequestSnapshot();
 }
