@@ -67,6 +67,7 @@ public sealed class LocalRoomSettingsTransport : IRoomSettingsTransport
 
     public void PublishSnapshot(RoomSettingsSnapshot snapshot)
     {
+        //자신의 서비스에 전달하지 않도록 변경해야 함
         receiver?.ReceiveSnapshot(snapshot);
     }
 

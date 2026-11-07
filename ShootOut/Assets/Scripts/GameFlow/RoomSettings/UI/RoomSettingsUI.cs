@@ -319,11 +319,16 @@ public sealed class RoomSettingsUI : MonoBehaviour
 
     private void StartLocalGame()
     {
-        ERoomSettingsResult result = RoomSettingsBootstrap.TryStartLocalGame();
+        Debug.Log(
+            $"StartLocalGame 호출: {name}, " +
+            $"InstanceID: {GetInstanceID()}",
+            this);
 
+        ERoomSettingsResult result = RoomSettingsBootstrap.TryStartLocalGame();
         if (!result.IsSuccess())
         {
             Debug.LogWarning($"게임 시작에 실패했습니다: {result}");
         }
+        else Debug.Log("게임이 시작되었습니다.");
     }
 }

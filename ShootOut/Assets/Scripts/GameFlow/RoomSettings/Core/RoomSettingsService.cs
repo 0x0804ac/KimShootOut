@@ -136,7 +136,6 @@ public sealed class RoomSettingsService : System.IDisposable, IRoomSettingsRecei
         finalizedData = store.CreateData();
         hasFinalizedData = true;
         phase = ERoomPhase.Playing;
-        Debug.Log("게임 시작");
         revision = checked(revision + 1L);
         RoomSettingsSnapshot snapshot = new RoomSettingsSnapshot(
             finalizedData, CreateState());
@@ -251,13 +250,19 @@ public sealed class RoomSettingsService : System.IDisposable, IRoomSettingsRecei
 
     public void ReceiveSnapshot(RoomSettingsSnapshot snapshot)
     {
-        if (transport.IsAuthority() || disposed || snapshot.state.revision < 0 ||
+        if (transport.IsAuthority() || disposed)
+        {
+            return;
+        }
+        if (snapshot.state.revision < 0 ||
             !IsValidPhase(snapshot.state.phase))
         {
+            Debug.Log("Invalid");
             return;
         }
         if (initialized && snapshot.state.revision <= revision)
         {
+            Debug.Log("Old data");
             return;
         }
         if (!store.TryLoadData(snapshot.data))
