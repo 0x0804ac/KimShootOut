@@ -27,7 +27,7 @@ public class AttackerController: ITypeController
     [SerializeField]
     BoxCollider goalCollider;
 
-    public override ERESULT Update(PlayerController player, UserInputs.PlayerActions playerInputActions)
+    public override EResult Update(PlayerController player, UserInputs.PlayerActions playerInputActions)
     {
         CheckAimComfirmed(playerInputActions);
 
@@ -36,7 +36,7 @@ public class AttackerController: ITypeController
             ShootAction(player, playerInputActions.Action);
         }
 
-        return ERESULT.Success;
+        return EResult.Success;
     }
 
     private void ShootAction(PlayerController player, InputAction action)

@@ -5,10 +5,17 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class MouseController
 {
-    [SerializeField] private Camera gameCamera;
-    [SerializeField] private RectTransform canvasRect;
-    [SerializeField] private RectTransform aimImage;
-    [SerializeField] private BoxCollider goalPostCol;
+    [SerializeField] 
+    private Camera gameCamera;
+    
+    [SerializeField] 
+    private RectTransform canvasRect;
+    
+    [SerializeField] 
+    private RectTransform aimImage;
+    
+    [SerializeField] 
+    private BoxCollider goalPostCol;
 
     RangeVariable<Vector2> screenRangeVar;
     Vector2 lastAimPosition = Vector2.zero;

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class DefenderController: ITypeController
 {
-    public override ERESULT Update(PlayerController player, UserInputs.PlayerActions playerInputActions)
+    public override EResult Update(PlayerController player, UserInputs.PlayerActions playerInputActions)
     {
         InputAction defendAction = playerInputActions.Action;
 
@@ -22,6 +22,6 @@ public class DefenderController: ITypeController
             Debug.Log("Defense");
         }
 
-        return ERESULT.Success;
+        return EResult.Success;
     }
 }

@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         MouseControllerUpdate();
     }
 
-    ERESULT MovementUpdate()
+    EResult MovementUpdate()
     {
         Vector2 moveInput = playerActions.Move.ReadValue<Vector2>();
 
@@ -73,20 +73,20 @@ public class PlayerController : MonoBehaviour
 
         transform.position += moveDirection;
 
-        return ERESULT.Success;
+        return EResult.Success;
     }
 
-    ERESULT MouseControllerUpdate()
+    EResult MouseControllerUpdate()
     {
         if (!typeController.IsAimComfirmed())
         {
             mouseController.Update();
         }
 
-        return ERESULT.Success;
+        return EResult.Success;
     }
 
-    ERESULT TeamUpdate()
+    EResult TeamUpdate()
     {
         if (userInputs.Player.V.WasPressedThisFrame())
         {
@@ -94,14 +94,14 @@ public class PlayerController : MonoBehaviour
             meshRenderer.sharedMaterial = materials[index];
         }
 
-        return ERESULT.Success;
+        return EResult.Success;
     }
 
-    ERESULT TypeControllerUpdate()
+    EResult TypeControllerUpdate()
     {
         typeController.Update(this, playerActions);
 
-        return ERESULT.Success;
+        return EResult.Success;
     }
 
     public Vector2 GetLastAimPosition()

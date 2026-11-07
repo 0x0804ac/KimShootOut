@@ -1,14 +1,19 @@
+using Unity.Entities;
 using UnityEngine;
 
 
 
-public class GameManager : MonoBehaviour
-{
-    GameManager instance = null;
+public class GameManager : Singleton<GameManager>
+{   
+    [SerializeField]
+    private Stadium stadium;
+
+    [SerializeField]
+    private CanvasUI canvasUI;
 
     private void Awake()
     {
-        EResult result = MakeInstance();
+        Result.Check(Init());
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,15 +30,16 @@ public class GameManager : MonoBehaviour
 
     private GameManager() { }
 
-    private EResult MakeInstance()
+    public override EResult Init()
     {
-        if (instance != null && instance != this)
+        if(stadium == null || canvasUI == null)
         {
-            Destroy(gameObject);
             return EResult.Failed;
         }
 
-        instance = this;
+        Result.Check(MakeInstance());
+        Result.Check(stadium.Init());
+        Result.Check(canvasUI.Init());
 
         return EResult.Success;
     }
