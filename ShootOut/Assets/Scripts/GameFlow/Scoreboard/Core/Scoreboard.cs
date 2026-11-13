@@ -1,193 +1,258 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-//Á¡¼ö °ü¸® Å¬·¡½º
-public sealed class Scoreboard
+ï»¿public sealed class Scoreboard
 {
-    //¸ÅÄ¡ ¸®½ºÆ®
-    private readonly List<MatchScore> matchList = new List<MatchScore>();
+    private readonly int totalMatches;
+    private readonly int roundsPerMatch;
+    private readonly bool forceFullRounds;
+    private readonly int matchesToWin;
+    private readonly System.Collections.Generic.List<MatchScore> matchList;
+    private readonly System.Collections.ObjectModel.ReadOnlyCollection<MatchScore> readOnlyMatchList;
 
-    //ÃÑ ¸ÅÄ¡ ¼ö
-    public int TotalMatches { get; }
+    private int homeWins;
+    private int awayWins;
+    private EGameResult result;
 
-    //ÇöÀç ¸ÅÄ¡ ¹øÈ£ (Ã¹ ¸ÅÄ¡ ¹øÈ£ = 1)
-    public int CurrentMatchNumber
-    {
-        get
-        {
-            return matchList.Count;
-        }
-    }
+    public event System.Action<Scoreboard> ScoreboardChanged;
 
-    //¸ÅÄ¡ ¸ñ·Ï (¼öÁ¤ ºÒ°¡)
-    public IReadOnlyList<MatchScore> Matches
-    {
-        get
-        {
-            return matchList;
-        }
-    }
-
-    //ÇöÀç ÁøÇà ÁßÀÎ ¸ÅÄ¡ ¹ÝÈ¯
-    public MatchScore CurrentMatch
-    {
-        get
-        {
-            return matchList.Count > 0 ? matchList[^1] : null;
-        }
-    }
-
-    //Á¡¼ö º¯µ¿ ÀÌº¥Æ®
-    public event Action<Scoreboard> OnScoreboardChange;
-
-    //ÃÑ ¸ÅÄ¡ ¼ö¸¦ ¹Þ¾Æ¼­ Á¡¼öÆÇÀ» »ý¼º
-    public Scoreboard(int totalMatches)
+    public Scoreboard(int totalMatches, int roundsPerMatch, bool forceFullRounds)
     {
         if (totalMatches < 1)
         {
-            throw new ArgumentOutOfRangeException(nameof(totalMatches));
+            throw new System.ArgumentOutOfRangeException(nameof(totalMatches));
         }
-        TotalMatches = totalMatches;
-    }
 
-    //È¨ ÆÀ ¸ÅÄ¡ ½Â¼ö
-    public int HomeMatchWins
-    {
-        get
+        if (roundsPerMatch < 1)
         {
-            return matchList.Count(m => m.Result == MatchResult.HomeWin);
+            throw new System.ArgumentOutOfRangeException(nameof(roundsPerMatch));
         }
+
+        this.totalMatches = totalMatches;
+        this.roundsPerMatch = roundsPerMatch;
+        this.forceFullRounds = forceFullRounds;
+        matchesToWin = totalMatches / 2 + 1;
+        matchList = new System.Collections.Generic.List<MatchScore>(totalMatches);
+        readOnlyMatchList = matchList.AsReadOnly();
+        result = EGameResult.Ongoing;
     }
 
-    //¿øÁ¤ ÆÀ ¸ÅÄ¡ ½Â¼ö
-    public int AwayMatchWins
+    public int GetTotalMatches()
     {
-        get
-        {
-            return matchList.Count(m => m.Result == MatchResult.AwayWin);
-        }
+        return totalMatches;
     }
 
-    //°ÔÀÓ °á°ú ÆÇÁ¤
-    public GameResult Result
+    public int GetRoundsPerMatch()
     {
-        get
-        {
-            //°ú¹ÝÀÇ ¸ÅÄ¡¸¦ ½Â¸®ÇÏ¸é °ÔÀÓ ½Â¸® Á¶°Ç ¸¸Á·
-            int matchesToWin = TotalMatches / 2 + 1;
-
-            if (HomeMatchWins >= matchesToWin)
-            {
-                return GameResult.HomeWin;
-            }
-            if (AwayMatchWins >= matchesToWin)
-            {
-                return GameResult.AwayWin;
-            }
-            if (matchList.Count == TotalMatches && matchList.All(m => m.IsCompleted))
-            {
-                return GameResult.Draw;
-            }
-            //³ªÁß¿¡ ¿©±â¿¡¼­ ±â±Ç ¿©ºÎ È®ÀÎÇØ¾ß ÇÔ
-            return GameResult.Ongoing;
-        }
+        return roundsPerMatch;
     }
 
-    //Ã¹ ¸ÅÄ¡ ½ÃÀÛ ¶Ç´Â ´ÙÀ½ ¸ÅÄ¡·Î ÁøÇà (¼º°ø ¿©ºÎ¸¦ ¹ÝÈ¯)
-    public bool StartNextMatch(int totalRounds)
+    public bool GetForceFullRounds()
     {
-        //¿Ï·áµÈ °ÔÀÓÀÎ °æ¿ì ´õ ÁøÇàÇÏÁö ¾ÊÀ½
-        if (Result.IsCompleted())
+        return forceFullRounds;
+    }
+
+    public int GetMatchesToWin()
+    {
+        return matchesToWin;
+    }
+
+    public System.Collections.Generic.IReadOnlyList<MatchScore> GetMatchList()
+    {
+        return readOnlyMatchList;
+    }
+
+    //ì²« ë§¤ì¹˜ ì‹œìž‘ ì „ = 0, ì²« ë§¤ì¹˜ ë²ˆí˜¸ = 1
+    public int GetCurrentMatchNumber()
+    {
+        return matchList.Count;
+    }
+
+    public MatchScore GetCurrentMatch()
+    {
+        return matchList.Count == 0 ? null : matchList[matchList.Count - 1];
+    }
+
+    public RoundScore GetCurrentRound()
+    {
+        MatchScore currentMatch = GetCurrentMatch();
+        return currentMatch == null ? null : currentMatch.GetCurrentRound();
+    }
+
+    public int GetHomeWins()
+    {
+        return homeWins;
+    }
+
+    public int GetAwayWins()
+    {
+        return awayWins;
+    }
+
+    public EGameResult GetResult()
+    {
+        return result;
+    }
+
+    public (int home, int away) GetCurrentScores()
+    {
+        MatchScore current = GetCurrentMatch();
+        return current == null ? (0, 0) : current.GetScores();
+    }
+
+    public bool IsCompleted()
+    {
+        return result.IsCompleted();
+    }
+
+    public bool StartNextMatch()
+    {
+        if (IsCompleted() || matchList.Count >= totalMatches)
         {
             return false;
         }
-        //ÃÑ ¸ÅÄ¡ ¼ö Á¦ÇÑ
-        if (matchList.Count >= TotalMatches)
+
+        MatchScore current = GetCurrentMatch();
+
+        if (current != null && !current.IsCompleted())
         {
             return false;
         }
-        //¸¶Áö¸· ¸ÅÄ¡°¡ ¿Ï·áµÇ¾î¾ß ÁøÇàÇÒ ¼ö ÀÖÀ½
-        if (CurrentMatch != null && !CurrentMatch.IsCompleted)
-        {
-            return false;
-        }
-        //»õ ¸ÅÄ¡ »ý¼º
-        matchList.Add(new MatchScore(totalRounds));
+
+        matchList.Add(new MatchScore(roundsPerMatch, forceFullRounds));
         NotifyChange();
         return true;
     }
 
-    //µæÁ¡ ±â·Ï (¼º°ø ¿©ºÎ¸¦ ¹ÝÈ¯)
-    public bool RecordScore(TeamSide team, ShotResult result)
+    public bool RecordScore(ETeam team, EShotResult shotResult)
     {
-        //±â·Ï °¡´ÉÇÑ »óÅÂ°¡ ¾Æ´Ô
-        if (!IsPlaying())
+        MatchScore current = GetCurrentMatch();
+
+        if (IsCompleted() || current == null || current.IsCompleted())
         {
             return false;
         }
-        //±â·Ï ½Ãµµ
-        if (!CurrentMatch.RecordScore(team, result))
+
+        if (!current.RecordScore(team, shotResult))
         {
             return false;
         }
+
+        if (current.IsCompleted())
+        {
+            ApplyCompletedMatch(current);
+        }
+
         NotifyChange();
         return true;
     }
 
-    //´ÙÀ½ ¶ó¿îµå·Î ÁøÇà (¼º°ø ¿©ºÎ¸¦ ¹ÝÈ¯)
     public bool StartNextRound()
     {
-        //ÁøÇà °¡´ÉÇÑ »óÅÂ°¡ ¾Æ´Ô
-        if (!IsPlaying())
+        MatchScore current = GetCurrentMatch();
+
+        if (IsCompleted() || current == null || !current.StartNextRound())
         {
             return false;
         }
-        //ÁøÇà ½Ãµµ
-        if (!CurrentMatch.StartNextRound())
-        {
-            return false;
-        }
+
         NotifyChange();
         return true;
     }
 
-    //¸ÅÄ¡ ¿Ï·á (¼º°ø ¿©ºÎ¸¦ ¹ÝÈ¯)
-    public bool CompleteCurrentMatch(MatchResult result)
+    //Explicit, allocation-bearing snapshot for save files or late-joining clients.
+    public ScoreboardSnapshot CreateSnapshot()
     {
-        //¿Ï·á °¡´ÉÇÑ »óÅÂ°¡ ¾Æ´Ô
-        if (!IsPlaying())
+        MatchScoreSnapshot[] matches = new MatchScoreSnapshot[matchList.Count];
+
+        for (int i = 0; i < matchList.Count; i++)
+        {
+            matches[i] = matchList[i].CreateSnapshot();
+        }
+
+        return new ScoreboardSnapshot(
+            totalMatches, roundsPerMatch, forceFullRounds,
+            homeWins, awayWins, result, matches);
+    }
+
+    //A match-level forfeit awards one match win to the other team.
+    public bool TryForfeitCurrentMatch(ETeam forfeitingTeam)
+    {
+        MatchScore current = GetCurrentMatch();
+
+        if (IsCompleted() || current == null || !current.TryForfeit(forfeitingTeam))
         {
             return false;
         }
-        //¿Ï·á ½Ãµµ
-        if (!CurrentMatch.CompleteMatch(result))
-        {
-            return false;
-        }
+
+        ApplyCompletedMatch(current);
         NotifyChange();
         return true;
     }
-    
-    //ÇöÀç ¸ÅÄ¡ÀÇ (È¨ ÆÀ Á¡¼ö, ¿øÁ¤ ÆÀ Á¡¼ö) ¹ÝÈ¯
-    public (int Home, int Away) GetCurrentScores()
+
+    //A game-level forfeit ends the entire game immediately.
+    //If a match is active, its result records the same forfeit.
+    public bool TryForfeitGame(ETeam forfeitingTeam)
     {
-        if (CurrentMatch == null)
+        if (IsCompleted() || !forfeitingTeam.IsValid())
         {
-            return (0, 0);
+            return false;
         }
-        return CurrentMatch.GetScores();
+
+        MatchScore current = GetCurrentMatch();
+
+        if (current != null && !current.IsCompleted())
+        {
+            current.TryForfeit(forfeitingTeam);
+            ApplyCompletedMatch(current);
+        }
+
+        result = forfeitingTeam == ETeam.Home
+            ? EGameResult.HomeForfeit
+            : EGameResult.AwayForfeit;
+
+        NotifyChange();
+        return true;
     }
 
-    //ÀÌº¥Æ® È£Ãâ
+    private void ApplyCompletedMatch(MatchScore completedMatch)
+    {
+        EMatchResult matchResult = completedMatch.GetResult();
+
+        if (matchResult.IsWinFor(ETeam.Home))
+        {
+            homeWins++;
+        }
+        else if (matchResult.IsWinFor(ETeam.Away))
+        {
+            awayWins++;
+        }
+
+        if (homeWins >= matchesToWin)
+        {
+            result = EGameResult.HomeWin;
+        }
+        else if (awayWins >= matchesToWin)
+        {
+            result = EGameResult.AwayWin;
+        }
+        else if (matchList.Count >= totalMatches)
+        {
+            if (homeWins > awayWins)
+            {
+                result = EGameResult.HomeWin;
+            }
+            else if (awayWins > homeWins)
+            {
+                result = EGameResult.AwayWin;
+            }
+            else
+            {
+                //Only possible with even match counts or administrative draws.
+                result = EGameResult.Draw;
+            }
+        }
+    }
+
     private void NotifyChange()
     {
-        OnScoreboardChange?.Invoke(this);
-    }
-
-    //°ÔÀÓ ÁøÇà ÁßÀÎÁö È®ÀÎ
-    private bool IsPlaying()
-    {
-        return !Result.IsCompleted() && CurrentMatch != null;
+        ScoreboardChanged?.Invoke(this);
     }
 }

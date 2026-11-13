@@ -1,86 +1,76 @@
-using System;
+癤퓎sing System;
 
 [Serializable]
-//라운드의 점수를 기록하는 클래스
 public sealed class RoundScore
 {
-    //몇번째 라운드인지 기록
-    public int RoundNumber { get; }
+    private readonly int roundNumber;
+    private EShotResult home;
+    private EShotResult away;
 
-    //홈 팀의 슛 결과
-    public ShotResult Home { get; private set; }
-    //원정 팀의 슛 결과
-    public ShotResult Away { get; private set; }
-
-    //진행 완료된 라운드인지 확인
-    public bool IsCompleted
+    internal RoundScore(int roundNumber)
     {
-        get
+        if (roundNumber < 1)
         {
-            return Home.IsCompleted() && Away.IsCompleted();
+            throw new ArgumentOutOfRangeException(nameof(roundNumber));
         }
+
+        this.roundNumber = roundNumber;
+        home = EShotResult.Pending;
+        away = EShotResult.Pending;
     }
 
-    //라운드 번호를 받아서 해당 라운드를 생성
-    public RoundScore(int roundNumber)
+    public int GetRoundNumber()
     {
-        RoundNumber = roundNumber;
-        Home = ShotResult.Pending;
-        Away = ShotResult.Pending;
+        return roundNumber;
     }
 
-    //결과를 기록 (성공 여부를 반환)
-    public bool Record(TeamSide team, ShotResult result)
+    public EShotResult Get(ETeam team)
     {
-        //홈 팀 결과 기록
-        if (team == TeamSide.Home)
+        if (team == ETeam.Home)
         {
-            //결과가 이미 기록되어 있다면 기록하지 않음
-            if (!CanRecord(result, Home))
-            {
-                return false;
-            }
-            Home = result;
-            return true;
+            return home;
         }
-        //원정 팀 점수 기록
-        if (team == TeamSide.Away)
+
+        if (team == ETeam.Away)
         {
-            //결과가 이미 기록되어 있다면 기록하지 않음
-            if (!CanRecord(result, Away))
-            {
-                return false;
-            }
-            Away = result;
-            return true;
+            return away;
         }
-        return false;
+
+        throw new ArgumentOutOfRangeException(nameof(team));
     }
 
-    //currentRecord에서 newRecord으로 기록 가능한 상황인지 확인
-    private bool CanRecord(ShotResult newRecord, ShotResult currentRecord)
+    public bool IsCompleted()
     {
-        //입력 대기 후 진행 중인 상황을 기록
-        if (newRecord == ShotResult.Ongoing)
+        return home.IsCompleted() && away.IsCompleted();
+    }
+
+    internal bool TryRecord(ETeam team, EShotResult result, out bool shotFinished, out bool scored)
+    {
+        shotFinished = false;
+        scored = false;
+
+        if (!team.IsValid())
         {
-            return currentRecord == ShotResult.Pending;
+            return false;
         }
-        //공이 이동하다가 시간 초과된 상황을 기록
-        if (newRecord == ShotResult.TimeOut)
+
+        EShotResult current = Get(team);
+        if (!current.CanRecord(result))
         {
-            return currentRecord == ShotResult.Ongoing;
+            return false;
         }
-        //입력 대기 시간 동안 입력되지 않은 상황을 기록
-        if (newRecord == ShotResult.NoInput)
+
+        if (team == ETeam.Home)
         {
-            return currentRecord == ShotResult.Pending;
+            home = result;
         }
-        //진행 완료된 상황을 기록
-        if (newRecord != ShotResult.Pending)
+        else
         {
-            return !currentRecord.IsCompleted();
+            away = result;
         }
-        //이외의 상황에서는 기록하지 않음
-        return false;
+
+        shotFinished = result.IsCompleted();
+        scored = result == EShotResult.Goal;
+        return true;
     }
 }

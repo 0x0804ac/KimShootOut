@@ -319,11 +319,6 @@ public sealed class RoomSettingsUI : MonoBehaviour
 
     private void StartLocalGame()
     {
-        Debug.Log(
-            $"StartLocalGame 호출: {name}, " +
-            $"InstanceID: {GetInstanceID()}",
-            this);
-
         ERoomSettingsResult result = RoomSettingsBootstrap.TryStartLocalGame();
         if (!result.IsSuccess())
         {

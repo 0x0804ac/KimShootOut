@@ -1,58 +1,58 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Á¡¼öÆÇ UI (¿¹½Ã)
+//ì ìˆ˜íŒ UI (ì˜ˆì‹œ)
 public sealed class ScoreboardUIExample : MonoBehaviour
 {
-    //È¨ ÆÀ Á¡¼ö
+    //í™ˆ íŒ€ ì ìˆ˜
     [SerializeField]
     private TMP_Text homeScoreText;
-    //¿øÁ¤ ÆÀ Á¡¼ö
+    //ì›ì • íŒ€ ì ìˆ˜
     [SerializeField]
     private TMP_Text awayScoreText;
-    //¸ÅÄ¡ Á¤º¸
+    //ë§¤ì¹˜ ì •ë³´
     [SerializeField]
     private TMP_Text matchText;
-    //¶ó¿îµå Á¤º¸
+    //ë¼ìš´ë“œ ì •ë³´
     [SerializeField]
     private TMP_Text roundText;
-    //È¨ ÆÀ µæÁ¡ ¼º°ø
+    //í™ˆ íŒ€ ë“ì  ì„±ê³µ
     [SerializeField]
     private Button homeGoalButton;
-    //¿øÁ¤ ÆÀ µæÁ¡ ¼º°ø
+    //ì›ì • íŒ€ ë“ì  ì„±ê³µ
     [SerializeField]
     private Button awayGoalButton;
-    //È¨ ÆÀ µæÁ¡ ½ÇÆÐ
+    //í™ˆ íŒ€ ë“ì  ì‹¤íŒ¨
     [SerializeField]
     private Button homeMissButton;
-    //¿øÁ¤ ÆÀ µæÁ¡ ½ÇÆÐ
+    //ì›ì • íŒ€ ë“ì  ì‹¤íŒ¨
     [SerializeField]
     private Button awayMissButton;
-    //´ÙÀ½ ¶ó¿îµå ½ÃÀÛ
+    //ë‹¤ìŒ ë¼ìš´ë“œ ì‹œìž‘
     [SerializeField]
     private Button nextRoundButton;
-    //´ÙÀ½ ¸ÅÄ¡ ½ÃÀÛ
+    //ë‹¤ìŒ ë§¤ì¹˜ ì‹œìž‘
     [SerializeField]
     private Button nextMatchButton;
-    //¸ÅÄ¡ ¿Ï·á
+    //ë§¤ì¹˜ ì™„ë£Œ
     [SerializeField]
     private Button completeMatchButton;
-    //°æ±â °á°ú Ãâ·Â
+    //ê²½ê¸° ê²°ê³¼ ì¶œë ¥
     [SerializeField]
     private Button gameResultButton;
 
     private Scoreboard scoreboard;
 
-    //Á¡¼öÆÇ ÃÊ±âÈ­
+    //ì ìˆ˜íŒ ì´ˆê¸°í™”
     public void Initialize(Scoreboard scoreboard)
     {
-        //±âÁ¸ Á¡¼öÆÇ ÀÌº¥Æ® Á¦°Å
+        //ê¸°ì¡´ ì ìˆ˜íŒ ì´ë²¤íŠ¸ ì œê±°
         RemoveEvent();
 
         this.scoreboard = scoreboard;
 
-        //»õ Á¡¼öÆÇ ÀÌº¥Æ® Ãß°¡
+        //ìƒˆ ì ìˆ˜íŒ ì´ë²¤íŠ¸ ì¶”ê°€
         AddEvent();
 
         Refresh(this.scoreboard);
@@ -70,7 +70,7 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         RemoveEvent();
     }
 
-    //Á¡¼öÆÇ »õ·Î°íÄ§
+    //ì ìˆ˜íŒ ìƒˆë¡œê³ ì¹¨
     private void Refresh(Scoreboard scoreboard)
     {
         if (scoreboard == null)
@@ -83,14 +83,14 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         homeScoreText.text = $"{home}";
         awayScoreText.text = $"{away}";
 
-        matchText.text = $"¸ÅÄ¡ {scoreboard.CurrentMatchNumber} / {scoreboard.TotalMatches}";
+        matchText.text = $"ë§¤ì¹˜ {scoreboard.GetCurrentMatchNumber()} / {scoreboard.GetTotalMatches()}";
 
-        if (scoreboard.CurrentMatch != null)
+        if (scoreboard.GetCurrentMatch() != null)
         {
-            roundText.text = $"¶ó¿îµå {scoreboard.CurrentMatch.CurrentRoundNumber} / {scoreboard.CurrentMatch.TotalRounds}";
-            if (scoreboard.CurrentMatch.IsExtraRound)
+            roundText.text = $"ë¼ìš´ë“œ {scoreboard.GetCurrentMatch().GetCurrentRoundNumber()} / {scoreboard.GetCurrentMatch().GetTotalRounds()}";
+            if (scoreboard.GetCurrentMatch().IsExtraRound())
             {
-                roundText.text += " (¿¬Àå)";
+                roundText.text += " (ì—°ìž¥)";
             }
         }
         else
@@ -98,14 +98,14 @@ public sealed class ScoreboardUIExample : MonoBehaviour
             roundText.text = "-";
         }
 
-        bool canHomeShoot = scoreboard != null && scoreboard.CurrentMatch != null && !scoreboard.CurrentMatch.Rounds[^1].Home.IsCompleted();
-        bool canAwayShoot = scoreboard != null && scoreboard.CurrentMatch != null && !scoreboard.CurrentMatch.Rounds[^1].Away.IsCompleted();
+        bool canHomeShoot = scoreboard != null && scoreboard.GetCurrentMatch() != null && !scoreboard.GetCurrentMatch().GetRoundList()[^1].GetHome().IsCompleted();
+        bool canAwayShoot = scoreboard != null && scoreboard.GetCurrentMatch() != null && !scoreboard.GetCurrentMatch().GetRoundList()[^1].GetAway().IsCompleted();
         homeGoalButton.interactable = canHomeShoot;
         homeMissButton.interactable = canHomeShoot;
         awayGoalButton.interactable = canAwayShoot;
         awayMissButton.interactable = canAwayShoot;
-        nextRoundButton.interactable = scoreboard != null && scoreboard.CurrentMatch != null && !scoreboard.CurrentMatch.IsCompleted && scoreboard.CurrentMatch.Rounds[^1].IsCompleted;
-        nextMatchButton.interactable = scoreboard != null && scoreboard.CurrentMatch != null && scoreboard.CurrentMatch.IsCompleted;
+        nextRoundButton.interactable = scoreboard != null && scoreboard.GetCurrentMatch() != null && !scoreboard.GetCurrentMatch().IsCompleted() && scoreboard.GetCurrentMatch().GetRoundList()[^1].IsCompleted();
+        nextMatchButton.interactable = scoreboard != null && scoreboard.GetCurrentMatch() != null && scoreboard.GetCurrentMatch().IsCompleted();
         //completeMatchButton.interactable = scoreboard.CurrentMatch.Rounds[scoreboard.TotalMatches / 2].IsCompleted;
     }
 
@@ -115,7 +115,7 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(TeamSide.Home, ShotResult.Goal));
+        print(scoreboard.RecordScore(ETeam.Home, EShotResult.Goal));
     }
 
     private void OnAwayGoalButtonClick()
@@ -124,7 +124,7 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(TeamSide.Away, ShotResult.Goal));
+        print(scoreboard.RecordScore(ETeam.Away, EShotResult.Goal));
     }
 
     private void OnHomeMissButtonClick()
@@ -133,7 +133,7 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(TeamSide.Home, ShotResult.Saved));
+        print(scoreboard.RecordScore(ETeam.Home, EShotResult.Saved));
     }
 
     private void OnAwayMissButtonClick()
@@ -142,7 +142,7 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(TeamSide.Away, ShotResult.Saved));
+        print(scoreboard.RecordScore(ETeam.Away, EShotResult.Saved));
     }
 
     private void OnNextRoundButtonClick()
@@ -169,17 +169,17 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        int home = scoreboard.CurrentMatch.HomeScore;
-        int away = scoreboard.CurrentMatch.AwayScore;
+        int home = scoreboard.GetCurrentMatch().GetHomeScore();
+        int away = scoreboard.GetCurrentMatch().GetAwayScore();
         if (home > away)
         {
-            scoreboard.CompleteCurrentMatch(MatchResult.HomeWin);
+            scoreboard.CompleteCurrentMatch(EMatchResult.HomeWin);
         }
         else if (home < away)
         {
-            scoreboard.CompleteCurrentMatch(MatchResult.AwayWin);
+            scoreboard.CompleteCurrentMatch(EMatchResult.AwayWin);
         }
-        else scoreboard.CompleteCurrentMatch(MatchResult.Draw);
+        else scoreboard.CompleteCurrentMatch(EMatchResult.Draw);
     }
 
     private void OnGameResultButtonClick()
@@ -188,17 +188,17 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.Result);
+        print(scoreboard.GetResult());
     }
     
-    //Á¡¼öÆÇ ÀÌº¥Æ® Ãß°¡
+    //ì ìˆ˜íŒ ì´ë²¤íŠ¸ ì¶”ê°€
     private void AddEvent()
     {
         if (scoreboard == null)
         {
             return;
         }
-        scoreboard.OnScoreboardChange += Refresh;
+        scoreboard.ScoreboardChanged += Refresh;
         homeGoalButton.onClick.AddListener(OnHomeGoalButtonClick);
         awayGoalButton.onClick.AddListener(OnAwayGoalButtonClick);
         homeMissButton.onClick.AddListener(OnHomeMissButtonClick);
@@ -209,14 +209,14 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         gameResultButton.onClick.AddListener(OnGameResultButtonClick);
     }
 
-    //±âÁ¸ Á¡¼öÆÇ ÀÌº¥Æ® Á¦°Å
+    //ê¸°ì¡´ ì ìˆ˜íŒ ì´ë²¤íŠ¸ ì œê±°
     private void RemoveEvent()
     {
         if (scoreboard == null)
         {
             return;
         }
-        scoreboard.OnScoreboardChange -= Refresh;
+        scoreboard.ScoreboardChanged -= Refresh;
         homeGoalButton.onClick.RemoveListener(OnHomeGoalButtonClick);
         awayGoalButton.onClick.RemoveListener(OnAwayGoalButtonClick);
         homeMissButton.onClick.RemoveListener(OnHomeMissButtonClick);

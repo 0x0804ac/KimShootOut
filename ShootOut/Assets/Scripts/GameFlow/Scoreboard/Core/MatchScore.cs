@@ -1,132 +1,210 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+ï»¿using System;
 
 [Serializable]
-//¸ÅÄ¡ÀÇ Á¡¼ö¸¦ ±â·ÏÇÏ´Â Å¬·¡½º
 public sealed class MatchScore
 {
-    //ÃÑ ¶ó¿îµå ¼ö
-    public int TotalRounds { get; }
+    private readonly int totalRounds;
+    private readonly bool forceFullRounds;
+    private readonly System.Collections.Generic.List<RoundScore> roundList;
+    private readonly System.Collections.ObjectModel.ReadOnlyCollection<RoundScore> readOnlyRoundList;
 
-    //ÇöÀç ¶ó¿îµå ¹øÈ£ (1¶ó¿îµåºÎÅÍ ½ÃÀÛ)
-    public int CurrentRoundNumber
-    {
-        get
-        {
-            return Rounds.Count;
-        }
-    }
+    private int homeScore;
+    private int awayScore;
+    private int homeCompletedShots;
+    private int awayCompletedShots;
+    private EMatchResult result;
 
-    //¶ó¿îµå Á¡¼ö ¸ñ·Ï (¼öÁ¤ ºÒ°¡)
-    public IReadOnlyList<RoundScore> Rounds
-    {
-        get
-        {
-            return roundList;
-        }
-    }
-
-    //¶ó¿îµå Á¡¼ö ¸ñ·Ï (Å¬·¡½º ³»ºÎ¿¡¼­¸¸ ¼öÁ¤ °¡´É)
-    private readonly List<RoundScore> roundList = new List<RoundScore>();
-
-    //¸ÅÄ¡ °á°ú
-    public MatchResult Result { get; private set; }
-
-    //È¨ ÆÀ Á¡¼ö
-    public int HomeScore
-    {
-        get
-        {
-            return roundList.Count(r => r.Home == ShotResult.Goal);
-        }
-    }
-
-    //¿øÁ¤ ÆÀ Á¡¼ö
-    public int AwayScore
-    {
-        get
-        {
-            return roundList.Count(r => r.Away == ShotResult.Goal);
-        }
-    }
-
-    //¿¬Àå ¶ó¿îµå ¿©ºÎ
-    public bool IsExtraRound
-    {
-        get
-        {
-            return CurrentRoundNumber > TotalRounds;
-        }
-    }
-
-    //¸ÅÄ¡°¡ ¿Ï·áµÇ¾ú´ÂÁö ¿©ºÎ
-    public bool IsCompleted
-    {
-        get
-        {
-            return Result.IsCompleted();
-        }
-    }
-
-    //¶ó¿îµå ¼ö¸¦ ¹Ş¾Æ¼­ ¸ÅÄ¡¸¦ »ı¼º
-    public MatchScore(int totalRounds)
+    internal MatchScore(int totalRounds, bool forceFullRounds)
     {
         if (totalRounds < 1)
         {
             throw new ArgumentOutOfRangeException(nameof(totalRounds));
         }
-        TotalRounds = totalRounds;
-        roundList.Add(new RoundScore(1));
-        Result = MatchResult.Ongoing;
+
+        this.totalRounds = totalRounds;
+        this.forceFullRounds = forceFullRounds;
+        roundList = new System.Collections.Generic.List<RoundScore>(totalRounds + 1);
+        readOnlyRoundList = roundList.AsReadOnly();
+        result = EMatchResult.Ongoing;
+        AddRound();
     }
 
-    //ÇöÀç ¶ó¿îµåÀÇ µæÁ¡ °á°ú¸¦ ±â·Ï (¼º°ø ¿©ºÎ¸¦ ¹İÈ¯)
-    public bool RecordScore(TeamSide team, ShotResult result)
+    public int GetTotalRounds()
     {
-        //¿Ï·áµÈ ¸ÅÄ¡ÀÏ °æ¿ì ´õ ±â·ÏÇÏÁö ¾ÊÀ½
-        if (IsCompleted)
-        {
-            return false;
-        }
-        RoundScore currentRound = roundList[^1];
-        return currentRound.Record(team, result);
+        return totalRounds;
     }
 
-    //´ÙÀ½ ¶ó¿îµå·Î ÁøÇà (¼º°ø ¿©ºÎ¸¦ ¹İÈ¯)
-    public bool StartNextRound()
+    public System.Collections.Generic.IReadOnlyList<RoundScore> GetRoundList()
     {
-        //¿Ï·áµÈ ¸ÅÄ¡ÀÎ °æ¿ì ´õ ÁøÇàÇÏÁö ¾ÊÀ½
-        if (IsCompleted)
+        return readOnlyRoundList;
+    }
+
+    public EMatchResult GetResult()
+    {
+        return result;
+    }
+
+    //ì²« ë¼ìš´ë“œ ë²ˆí˜¸ = 1
+    public int GetCurrentRoundNumber()
+    {
+        return roundList.Count;
+    }
+
+    public RoundScore GetCurrentRound()
+    {
+        return roundList[^1];
+    }
+
+    public int GetHomeScore()
+    {
+        return homeScore;
+    }
+
+    public int GetAwayScore()
+    {
+        return awayScore;
+    }
+
+    //(í™ˆ íŒ€ ì ìˆ˜, ì›ì • íŒ€ ì ìˆ˜)
+    public (int home, int away) GetScores()
+    {
+        return (homeScore, awayScore);
+    }
+
+    public bool IsExtraRound()
+    {
+        return GetCurrentRoundNumber() > totalRounds;
+    }
+
+    public bool IsCompleted()
+    {
+        return result.IsCompleted();
+    }
+
+    //í˜„ì¬ ë¼ìš´ë“œì— ê¸°ë¡
+    internal bool RecordScore(ETeam team, EShotResult next)
+    {
+        if (IsCompleted())
         {
             return false;
         }
-        //¸¶Áö¸· ¶ó¿îµå°¡ ¿Ï·áµÇ¾î¾ß ÁøÇàÇÒ ¼ö ÀÖÀ½
-        if (!roundList[^1].IsCompleted)
+
+        RoundScore currentRound = GetCurrentRound();
+        if (!currentRound.TryRecord(team, next, out bool shotFinished, out bool scored))
         {
             return false;
         }
-        //´ÙÀ½ ¶ó¿îµå »ı¼º
-        roundList.Add(new RoundScore(CurrentRoundNumber + 1));
+
+        if (shotFinished)
+        {
+            if (team == ETeam.Home)
+            {
+                homeCompletedShots++;
+
+                if (scored)
+                {
+                    homeScore++;
+                }
+            }
+            else
+            {
+                awayCompletedShots++;
+
+                if (scored)
+                {
+                    awayScore++;
+                }
+            }
+
+            EvaluateResult();
+        }
+
         return true;
     }
 
-    //¸ÅÄ¡¸¦ ¿Ï·áÇÏ¿© °á°ú ±â·Ï (¼º°ø ¿©ºÎ¸¦ ¹İÈ¯)
-    public bool CompleteMatch(MatchResult result)
+    // Round transitions are explicit, allowing UI/gameplay animation between rounds.
+    internal bool StartNextRound()
     {
-        //ÀÌ¹Ì ¿Ï·áµÈ ¸ÅÄ¡ÀÏ °æ¿ì
-        if (IsCompleted)
+        if (IsCompleted() || !GetCurrentRound().IsCompleted())
         {
             return false;
         }
-        //°á°ú ±â·Ï
-        Result = result;
+
+        AddRound();
         return true;
     }
 
-    //(È¨ ÆÀ Á¡¼ö, ¿øÁ¤ ÆÀ Á¡¼ö) ¹İÈ¯
-    public (int Home, int Away) GetScores()
+    internal MatchScoreSnapshot CreateSnapshot()
     {
-        return (HomeScore, AwayScore);
+        RoundScoreSnapshot[] rounds = new RoundScoreSnapshot[roundList.Count];
+
+        for (int i = 0; i < roundList.Count; i++)
+        {
+            RoundScore round = roundList[i];
+            rounds[i] = new RoundScoreSnapshot(
+                round.GetRoundNumber(), round.Get(ETeam.Home), round.Get(ETeam.Away));
+        }
+
+        return new MatchScoreSnapshot(totalRounds, homeScore, awayScore, result, rounds);
+    }
+
+    internal bool TryForfeit(ETeam forfeitingTeam)
+    {
+        if (IsCompleted() || !forfeitingTeam.IsValid())
+        {
+            return false;
+        }
+
+        result = forfeitingTeam == ETeam.Home
+            ? EMatchResult.HomeForfeit
+            : EMatchResult.AwayForfeit;
+        return true;
+    }
+
+    private void AddRound()
+    {
+        roundList.Add(new RoundScore(roundList.Count + 1));
+    }
+
+    private void EvaluateResult()
+    {
+        RoundScore currentRound = GetCurrentRound();
+
+        if (IsExtraRound())
+        {
+            // Sudden death: both teams must complete an equal number of extra attempts.
+            if (currentRound.IsCompleted() && homeScore != awayScore)
+            {
+                SetWinnerByGoals();
+            }
+
+            return;
+        }
+
+        if (!forceFullRounds)
+        {
+            // Insurmountable lead can end regulation even during an unfinished round.
+            int remainingHomeShots = totalRounds - homeCompletedShots;
+            int remainingAwayShots = totalRounds - awayCompletedShots;
+
+            if (homeScore > awayScore + remainingAwayShots ||
+                awayScore > homeScore + remainingHomeShots)
+            {
+                SetWinnerByGoals();
+                return;
+            }
+        }
+
+        if (GetCurrentRoundNumber() == totalRounds && currentRound.IsCompleted() &&
+            homeScore != awayScore)
+        {
+            SetWinnerByGoals();
+        }
+        // If the final regulation round is tied, StartNextRound opens sudden death.
+    }
+
+    private void SetWinnerByGoals()
+    {
+        result = homeScore > awayScore ? EMatchResult.HomeWin : EMatchResult.AwayWin;
     }
 }
