@@ -26,12 +26,12 @@ public static class MatchResultExtensions
     {
         if (team == ETeam.Home)
         {
-            return result == EMatchResult.HomeWin || result == EMatchResult.AwayGiveUp;
+            return result == EMatchResult.HomeWin || result == EMatchResult.AwayForfeit;
         }
 
         if (team == ETeam.Away)
         {
-            return result == EMatchResult.AwayWin || result == EMatchResult.HomeGiveUp;
+            return result == EMatchResult.AwayWin || result == EMatchResult.HomeForfeit;
         }
 
         return false;

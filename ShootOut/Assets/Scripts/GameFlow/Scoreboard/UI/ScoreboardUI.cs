@@ -2,57 +2,42 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-//점수판 UI (예시)
+//점수판 테스트용 임시 클래스
 public sealed class ScoreboardUIExample : MonoBehaviour
 {
-    //홈 팀 점수
     [SerializeField]
     private TMP_Text homeScoreText;
-    //원정 팀 점수
     [SerializeField]
     private TMP_Text awayScoreText;
-    //매치 정보
     [SerializeField]
     private TMP_Text matchText;
-    //라운드 정보
     [SerializeField]
     private TMP_Text roundText;
-    //홈 팀 득점 성공
     [SerializeField]
     private Button homeGoalButton;
-    //원정 팀 득점 성공
     [SerializeField]
     private Button awayGoalButton;
-    //홈 팀 득점 실패
     [SerializeField]
     private Button homeMissButton;
-    //원정 팀 득점 실패
     [SerializeField]
     private Button awayMissButton;
-    //다음 라운드 시작
     [SerializeField]
     private Button nextRoundButton;
-    //다음 매치 시작
     [SerializeField]
     private Button nextMatchButton;
-    //매치 완료
     [SerializeField]
     private Button completeMatchButton;
-    //경기 결과 출력
     [SerializeField]
     private Button gameResultButton;
 
     private Scoreboard scoreboard;
 
-    //점수판 초기화
     public void Initialize(Scoreboard scoreboard)
     {
-        //기존 점수판 이벤트 제거
         RemoveEvent();
 
         this.scoreboard = scoreboard;
 
-        //새 점수판 이벤트 추가
         AddEvent();
 
         Refresh(this.scoreboard);
@@ -60,8 +45,8 @@ public sealed class ScoreboardUIExample : MonoBehaviour
 
     private void Start()
     {
-        Initialize(new Scoreboard(3));
-        scoreboard.StartNextMatch(5);
+        Initialize(new Scoreboard(3, 5, false));
+        scoreboard.StartNextMatch();
         scoreboard.StartNextRound();
     }
 
@@ -85,10 +70,12 @@ public sealed class ScoreboardUIExample : MonoBehaviour
 
         matchText.text = $"매치 {scoreboard.GetCurrentMatchNumber()} / {scoreboard.GetTotalMatches()}";
 
-        if (scoreboard.GetCurrentMatch() != null)
+        MatchScore currentMatch = scoreboard.GetCurrentMatch();
+
+        if (currentMatch != null)
         {
-            roundText.text = $"라운드 {scoreboard.GetCurrentMatch().GetCurrentRoundNumber()} / {scoreboard.GetCurrentMatch().GetTotalRounds()}";
-            if (scoreboard.GetCurrentMatch().IsExtraRound())
+            roundText.text = $"라운드 {currentMatch.GetCurrentRoundNumber()} / {currentMatch.GetTotalRounds()}";
+            if (currentMatch.IsExtraRound())
             {
                 roundText.text += " (연장)";
             }
@@ -98,15 +85,24 @@ public sealed class ScoreboardUIExample : MonoBehaviour
             roundText.text = "-";
         }
 
-        bool canHomeShoot = scoreboard != null && scoreboard.GetCurrentMatch() != null && !scoreboard.GetCurrentMatch().GetRoundList()[^1].GetHome().IsCompleted();
-        bool canAwayShoot = scoreboard != null && scoreboard.GetCurrentMatch() != null && !scoreboard.GetCurrentMatch().GetRoundList()[^1].GetAway().IsCompleted();
+        bool canHomeShoot = scoreboard != null &&
+            currentMatch != null &&
+            !currentMatch.GetRoundList()[^1].Get(ETeam.Home).IsCompleted();
+        bool canAwayShoot = scoreboard != null &&
+            currentMatch != null &&
+            !currentMatch.GetRoundList()[^1].Get(ETeam.Away).IsCompleted();
         homeGoalButton.interactable = canHomeShoot;
         homeMissButton.interactable = canHomeShoot;
         awayGoalButton.interactable = canAwayShoot;
         awayMissButton.interactable = canAwayShoot;
-        nextRoundButton.interactable = scoreboard != null && scoreboard.GetCurrentMatch() != null && !scoreboard.GetCurrentMatch().IsCompleted() && scoreboard.GetCurrentMatch().GetRoundList()[^1].IsCompleted();
-        nextMatchButton.interactable = scoreboard != null && scoreboard.GetCurrentMatch() != null && scoreboard.GetCurrentMatch().IsCompleted();
-        //completeMatchButton.interactable = scoreboard.CurrentMatch.Rounds[scoreboard.TotalMatches / 2].IsCompleted;
+        nextRoundButton.interactable = scoreboard != null &&
+            currentMatch != null &&
+            !currentMatch.IsCompleted() &&
+            currentMatch.GetRoundList()[^1].IsCompleted();
+        nextMatchButton.interactable = scoreboard != null &&
+            currentMatch != null &&
+            currentMatch.IsCompleted();
+        completeMatchButton.interactable = scoreboard.GetResult().IsCompleted();
     }
 
     private void OnHomeGoalButtonClick()
@@ -115,7 +111,11 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(ETeam.Home, EShotResult.Goal));
+
+        if (!scoreboard.RecordScore(ETeam.Home, EShotResult.Goal))
+        {
+            print("득점 기록 실패");
+        }
     }
 
     private void OnAwayGoalButtonClick()
@@ -124,7 +124,11 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(ETeam.Away, EShotResult.Goal));
+
+        if (!scoreboard.RecordScore(ETeam.Away, EShotResult.Goal))
+        {
+            print("득점 기록 실패");
+        }
     }
 
     private void OnHomeMissButtonClick()
@@ -133,7 +137,11 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(ETeam.Home, EShotResult.Saved));
+
+        if (!scoreboard.RecordScore(ETeam.Home, EShotResult.Saved))
+        {
+            print("선방 기록 실패");
+        }
     }
 
     private void OnAwayMissButtonClick()
@@ -142,7 +150,11 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.RecordScore(ETeam.Away, EShotResult.Saved));
+
+        if (!scoreboard.RecordScore(ETeam.Away, EShotResult.Saved))
+        {
+            print("선방 기록 실패");
+        }
     }
 
     private void OnNextRoundButtonClick()
@@ -151,7 +163,13 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        print(scoreboard.StartNextRound());
+
+        PrintRoundResult(scoreboard.GetCurrentRound());
+
+        if (!scoreboard.StartNextRound())
+        {
+            print("다음 라운드를 시작하지 못했습니다.");
+        }
     }
 
     private void OnNextMatchButtonClick()
@@ -160,7 +178,14 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        scoreboard.StartNextMatch(5);
+
+        MatchScore match = scoreboard.GetCurrentMatch();
+        print($"매치 {scoreboard.GetCurrentMatchNumber()} 결과 {match.GetHomeScore()} : {match.GetAwayScore()}");
+
+        if (!scoreboard.StartNextMatch())
+        {
+            print("다음 매치를 시작하지 못했습니다.");
+        }
     }
 
     private void OnCompleteMatchButtonClick()
@@ -169,17 +194,10 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
-        int home = scoreboard.GetCurrentMatch().GetHomeScore();
-        int away = scoreboard.GetCurrentMatch().GetAwayScore();
-        if (home > away)
-        {
-            scoreboard.CompleteCurrentMatch(EMatchResult.HomeWin);
-        }
-        else if (home < away)
-        {
-            scoreboard.CompleteCurrentMatch(EMatchResult.AwayWin);
-        }
-        else scoreboard.CompleteCurrentMatch(EMatchResult.Draw);
+
+        print($"게임 결과 {scoreboard.GetHomeWins()} : {scoreboard.GetAwayWins()} - {scoreboard.GetResult()}");
+
+        Debug.Break();
     }
 
     private void OnGameResultButtonClick()
@@ -188,16 +206,17 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         {
             return;
         }
+
         print(scoreboard.GetResult());
     }
     
-    //점수판 이벤트 추가
     private void AddEvent()
     {
         if (scoreboard == null)
         {
             return;
         }
+
         scoreboard.ScoreboardChanged += Refresh;
         homeGoalButton.onClick.AddListener(OnHomeGoalButtonClick);
         awayGoalButton.onClick.AddListener(OnAwayGoalButtonClick);
@@ -209,13 +228,13 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         gameResultButton.onClick.AddListener(OnGameResultButtonClick);
     }
 
-    //기존 점수판 이벤트 제거
     private void RemoveEvent()
     {
         if (scoreboard == null)
         {
             return;
         }
+
         scoreboard.ScoreboardChanged -= Refresh;
         homeGoalButton.onClick.RemoveListener(OnHomeGoalButtonClick);
         awayGoalButton.onClick.RemoveListener(OnAwayGoalButtonClick);
@@ -225,5 +244,20 @@ public sealed class ScoreboardUIExample : MonoBehaviour
         nextMatchButton.onClick.RemoveListener(OnNextMatchButtonClick);
         completeMatchButton.onClick.RemoveListener(OnCompleteMatchButtonClick);
         gameResultButton.onClick.RemoveListener(OnGameResultButtonClick);
+    }
+
+    private void PrintRoundResult(RoundScore round)
+    {
+        if (round == null)
+        {
+            return;
+        }
+
+        print($"라운드 {round.GetRoundNumber()} 결과 {Convert(round.Get(ETeam.Home))} : {Convert(round.Get(ETeam.Away))}");
+    }
+
+    private string Convert(EShotResult value)
+    {
+        return value == EShotResult.Goal ? "O" : "X";
     }
 }

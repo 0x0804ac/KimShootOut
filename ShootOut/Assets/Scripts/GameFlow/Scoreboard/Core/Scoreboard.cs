@@ -67,7 +67,7 @@
 
     public MatchScore GetCurrentMatch()
     {
-        return matchList.Count == 0 ? null : matchList[matchList.Count - 1];
+        return matchList.Count == 0 ? null : matchList[^1];
     }
 
     public RoundScore GetCurrentRound()
@@ -110,7 +110,6 @@
         }
 
         MatchScore current = GetCurrentMatch();
-
         if (current != null && !current.IsCompleted())
         {
             return false;
@@ -172,7 +171,6 @@
             homeWins, awayWins, result, matches);
     }
 
-    //A match-level forfeit awards one match win to the other team.
     public bool TryForfeitCurrentMatch(ETeam forfeitingTeam)
     {
         MatchScore current = GetCurrentMatch();
@@ -187,8 +185,7 @@
         return true;
     }
 
-    //A game-level forfeit ends the entire game immediately.
-    //If a match is active, its result records the same forfeit.
+    //현재 매치 포기 후 게임 포기
     public bool TryForfeitGame(ETeam forfeitingTeam)
     {
         if (IsCompleted() || !forfeitingTeam.IsValid())
@@ -197,7 +194,6 @@
         }
 
         MatchScore current = GetCurrentMatch();
-
         if (current != null && !current.IsCompleted())
         {
             current.TryForfeit(forfeitingTeam);
