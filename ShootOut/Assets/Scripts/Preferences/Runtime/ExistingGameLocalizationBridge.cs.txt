@@ -1,0 +1,33 @@
+// OPTIONAL integration for the previously discussed GameLocalization and EDisplayLanguage types.
+// Rename this file to .cs ONLY if those types exist in your Unity project.
+using UnityEngine;
+
+public sealed class ExistingGameLocalizationBridge : MonoBehaviour
+{
+    [SerializeField] private GamePreferencesController controller;
+
+    private void OnEnable()
+    {
+        if (controller == null)
+        {
+            return;
+        }
+
+        controller.LanguageApplied += Apply;
+        Apply(controller.GetService().GetLanguage());
+    }
+
+    private void OnDisable()
+    {
+        if (controller != null)
+        {
+            controller.LanguageApplied -= Apply;
+        }
+    }
+
+    private void Apply(EPreferencesLanguage language)
+    {
+        GameLocalization.SetLanguage(language == EPreferencesLanguage.Korean
+            ? EDisplayLanguage.Korean : EDisplayLanguage.English);
+    }
+}

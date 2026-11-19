@@ -84,7 +84,7 @@ public sealed class RoomSettingsStore
         {
             return value;
         }
-        throw new System.InvalidOperationException($"ID 또는 설정값 자료형이 올바르지 않습니다: {id}/{typeof(T).Name}");
+        throw new System.InvalidOperationException($"방 설정 ID 또는 자료형이 올바르지 않습니다: {id}/{typeof(T).Name}");
     }
 
     public bool TryGet<T>(ERoomSettingsID id, out T value) where T : struct

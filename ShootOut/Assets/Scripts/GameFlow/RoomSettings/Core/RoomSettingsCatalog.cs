@@ -63,7 +63,7 @@ public static class RoomSettingsCatalog
         {
             if ((int)sDefinitions[i].GetID() != i)
             {
-                throw new System.InvalidOperationException("설정 항목 목록과 ID 목록이 일치하지 않습니다.");
+                throw new System.InvalidOperationException("방 설정 항목 목록과 ID 목록이 일치하지 않습니다.");
             }
         }
     }

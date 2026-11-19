@@ -242,7 +242,7 @@ public sealed class RoomSettingsUI : MonoBehaviour
         }
 
         UnityAction<int> handler = index =>
-            GameLocalization.SetLanguage(index == 0 ? EDisplayLanguage.Korean : EDisplayLanguage.English);
+            GameLocalization.SetLanguage(index == 0 ? EPreferencesLanguage.Korean : EPreferencesLanguage.English);
 
         languageDropdown.onValueChanged.AddListener(handler);
         detachListeners.Add(() => languageDropdown.onValueChanged.RemoveListener(handler));

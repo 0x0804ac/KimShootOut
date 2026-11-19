@@ -145,18 +145,13 @@ public readonly struct ScoreboardSnapshot : System.IEquatable<ScoreboardSnapshot
         EGameResult result,
         MatchScoreSnapshot[] ownedMatches)
     {
-        if (ownedMatches == null)
-        {
-            throw new System.ArgumentNullException(nameof(ownedMatches));
-        }
-
+        matches = ownedMatches ?? throw new System.ArgumentNullException(nameof(ownedMatches));
         this.totalMatches = totalMatches;
         this.roundsPerMatch = roundsPerMatch;
         this.forceFullRounds = forceFullRounds;
         this.homeWins = homeWins;
         this.awayWins = awayWins;
         this.result = result;
-        matches = ownedMatches;
 
         unchecked
         {

@@ -1,10 +1,4 @@
-﻿public enum EDisplayLanguage
-{
-    Korean,
-    English
-}
-
-public readonly struct LocalizationMetadata
+﻿public readonly struct LocalizationMetadata
 {
     private readonly string koreanLabel;
     private readonly string englishLabel;
@@ -17,8 +11,8 @@ public readonly struct LocalizationMetadata
         this.englishLabel = englishLabel;
     }
 
-    public string GetLabel(EDisplayLanguage language)
+    public string GetLabel(EPreferencesLanguage language)
     {
-        return language == EDisplayLanguage.Korean ? koreanLabel : englishLabel;
+        return language == EPreferencesLanguage.Korean ? koreanLabel : englishLabel;
     }
 }

@@ -2,18 +2,18 @@
 
 public static class GameLocalization
 {
-    private static EDisplayLanguage sLanguage = EDisplayLanguage.Korean;
+    private static EPreferencesLanguage sLanguage = EPreferencesLanguage.Korean;
     //private static readonly var sKoreanCulture = System.Globalization.CultureInfo.GetCultureInfo("ko-KR");
     //private static readonly var sEnglishCulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
 
     public static event System.Action LanguageChanged;
 
-    public static EDisplayLanguage GetLanguage()
+    public static EPreferencesLanguage GetLanguage()
     {
         return sLanguage;
     }
 
-    public static void SetLanguage(EDisplayLanguage newLanguage)
+    public static void SetLanguage(EPreferencesLanguage newLanguage)
     {
         if (sLanguage == newLanguage)
         {
@@ -34,13 +34,13 @@ public static class GameLocalization
     */
     public static string FormatToggle(bool enabled)
     {
-        if (sLanguage == EDisplayLanguage.Korean) return enabled ? "켜짐" : "꺼짐";
+        if (sLanguage == EPreferencesLanguage.Korean) return enabled ? "켜짐" : "꺼짐";
         return enabled ? "On" : "Off";
     }
 
     public static void Reset()
     {
-        sLanguage = EDisplayLanguage.Korean;
+        sLanguage = EPreferencesLanguage.Korean;
         LanguageChanged = null;
         Debug.Log("언어 설정이 초기화되었습니다.");
     }
