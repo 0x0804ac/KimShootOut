@@ -1,12 +1,14 @@
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-// Use a dedicated settings-preview target, not a camera controlled by another shake system.
-public sealed class GamePreferencesShakePreview : MonoBehaviour
+//Use a dedicated settings-preview target, not a camera controlled by another shake system.
+public sealed class PreferencesScreenShakePreview : MonoBehaviour
 {
-    [SerializeField] private Transform previewTarget;
-    [SerializeField, Min(0.01f)] private float duration = 0.55f;
-    [SerializeField, Min(0f)] private float maximumOffset = 0.20f;
+    [SerializeField]
+    private Transform previewTarget;
+    [SerializeField, Min(0.01f)]
+    private float duration = 0.55f;
+    [SerializeField, Min(0f)]
+    private float maximumOffset = 0.20f;
 
     private Coroutine activeRoutine;
     private Vector3 originalLocalPosition;
@@ -46,7 +48,7 @@ public sealed class GamePreferencesShakePreview : MonoBehaviour
         hasOriginalPosition = false;
     }
 
-    private IEnumerator Animate(float intensity)
+    private System.Collections.IEnumerator Animate(float intensity)
     {
         float elapsed = 0f;
 
@@ -55,6 +57,7 @@ public sealed class GamePreferencesShakePreview : MonoBehaviour
             float normalizedTime = Mathf.Clamp01(elapsed / duration);
             float amplitude = maximumOffset * intensity * (1f - normalizedTime);
             Vector2 direction = Random.insideUnitCircle * amplitude;
+
             previewTarget.localPosition = originalLocalPosition + new Vector3(direction.x, direction.y, 0f);
             elapsed += Time.unscaledDeltaTime;
             yield return null;

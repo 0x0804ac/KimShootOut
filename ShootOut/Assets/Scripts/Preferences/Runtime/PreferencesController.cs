@@ -1,37 +1,39 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
-// Scene owner for applying preferences to Unity APIs. Service and storage are ordinary C# classes.
-public sealed class GamePreferencesController : MonoBehaviour
+//Scene owner for applying preferences to Unity APIs. Service and storage are ordinary C# classes.
+public sealed class PreferencesController : MonoBehaviour
 {
-    private const string musicVolumeParameter = "MusicVolumeDb";
-    private const string effectsVolumeParameter = "EffectsVolumeDb";
-    private const float muteDecibels = -80f;
+    private const string MUSIC_VOLUME_PARAMETER = "MusicVolumeDb";
+    private const string EFFECTS_VOLUME_PARAMETER = "EffectsVolumeDb";
+    private const float MUTE_DECIBELS = -80f;
 
-    [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private GamePreferencesShakePreview shakePreview;
+    [SerializeField]
+    private AudioMixer audioMixer;
+    [SerializeField]
+    private PlayerInput playerInput;
+    [SerializeField]
+    private PreferencesScreenShakePreview screenShakePreview;
 
-    private GamePreferencesStorage storage;
-    private GamePreferencesService service;
-    private GamePreferencesBindings bindings;
+    private PreferencesStorage storage;
+    private PreferencesService service;
+    private PreferencesBindings bindings;
     private bool hasStarted;
 
-    public event Action<EPreferencesLanguage> LanguageApplied;
+    public event System.Action<EPreferencesLanguage> LanguageApplied;
 
     private void Awake()
     {
-        storage = new GamePreferencesStorage();
-        service = new GamePreferencesService(storage.Load());
+        storage = new PreferencesStorage();
+        service = new PreferencesService(storage.Load());
 
         if (playerInput != null)
         {
-            bindings = new GamePreferencesBindings(playerInput.actions, service);
+            bindings = new PreferencesBindings(playerInput.actions, service);
         }
 
-        service.PreferencesChanged += HandleSettingsChanged;
+        service.PreferencesChanged += HandlePreferencesChanged;
     }
 
     private void Start()
@@ -57,18 +59,18 @@ public sealed class GamePreferencesController : MonoBehaviour
     {
         if (service != null)
         {
-            service.PreferencesChanged -= HandleSettingsChanged;
+            service.PreferencesChanged -= HandlePreferencesChanged;
         }
 
         bindings?.Dispose();
     }
 
-    public GamePreferencesService GetService()
+    public PreferencesService GetService()
     {
         return service;
     }
 
-    public GamePreferencesBindings GetBindings()
+    public PreferencesBindings GetBindings()
     {
         return bindings;
     }
@@ -107,14 +109,14 @@ public sealed class GamePreferencesController : MonoBehaviour
                 height = Screen.currentResolution.height;
                 break;
             case EPreferencesWindowMode.Fullscreen:
-#if UNITY_STANDALONE_WIN
+                #if UNITY_STANDALONE_WIN
                 unityMode = FullScreenMode.ExclusiveFullScreen;
-#else
+                #else
                 unityMode = FullScreenMode.FullScreenWindow;
                 width = Screen.currentResolution.width;
                 height = Screen.currentResolution.height;
-                Debug.LogWarning("Exclusive fullscreen is Windows-only; using borderless fullscreen.");
-#endif
+                Debug.LogWarning("전체 화면 모드를 지원하지 않는 환경이므로 테두리 없는 창 모드로 전환합니다.");
+                #endif
                 break;
         }
 
@@ -128,19 +130,19 @@ public sealed class GamePreferencesController : MonoBehaviour
             return;
         }
 
-        SetChannelVolume(EPreferencesAudioChannel.Music, musicVolumeParameter);
-        SetChannelVolume(EPreferencesAudioChannel.Effects, effectsVolumeParameter);
+        SetChannelVolume(EPreferencesAudioChannel.Music, MUSIC_VOLUME_PARAMETER);
+        SetChannelVolume(EPreferencesAudioChannel.Effects, EFFECTS_VOLUME_PARAMETER);
     }
 
-    public void PreviewShake()
+    public void PreviewScreenShake()
     {
-        if (shakePreview != null && service != null)
+        if (screenShakePreview != null && service != null)
         {
-            shakePreview.Play(service.GetEffectiveShakeIntensity());
+            screenShakePreview.Play(service.GetEffectiveScreenShakeIntensity());
         }
     }
 
-    private void HandleSettingsChanged(EPreferencesCategory category)
+    private void HandlePreferencesChanged(EPreferencesCategory category)
     {
         if (!hasStarted)
         {
@@ -156,7 +158,7 @@ public sealed class GamePreferencesController : MonoBehaviour
                 ApplyAudio();
                 break;
             case EPreferencesCategory.Video:
-                // Video changes are explicitly applied from the UI Apply button.
+                //비디오 설정은 UI의 적용 버튼을 눌러야 적용됨
                 break;
             case EPreferencesCategory.Controls:
             case EPreferencesCategory.Accessibility:
@@ -164,7 +166,7 @@ public sealed class GamePreferencesController : MonoBehaviour
         }
     }
 
-    private void ApplyLanguage()
+    public void ApplyLanguage()
     {
         if (service == null)
         {
@@ -172,18 +174,18 @@ public sealed class GamePreferencesController : MonoBehaviour
         }
 
         EPreferencesLanguage language = service.GetLanguage();
-        GamePreferencesLocalization.SetLanguage(language);
+        PreferencesLocalization.SetLanguage(language);
         LanguageApplied?.Invoke(language);
     }
 
     private void SetChannelVolume(EPreferencesAudioChannel channel, string exposedName)
     {
         service.GetAudio(channel, out bool enabled, out float volume);
-        float db = enabled && volume > 0f ? Mathf.Max(muteDecibels, 20f * Mathf.Log10(volume)) : muteDecibels;
-
+        float db = enabled && volume > 0f ?
+            Mathf.Max(MUTE_DECIBELS, 20f * Mathf.Log10(volume)) : MUTE_DECIBELS;
         if (!audioMixer.SetFloat(exposedName, db))
         {
-            Debug.LogWarning($"AudioMixer missing exposed parameter: {exposedName}");
+            Debug.LogWarning($"AudioMixer에 해당 인자가 없습니다: {exposedName}");
         }
     }
 }

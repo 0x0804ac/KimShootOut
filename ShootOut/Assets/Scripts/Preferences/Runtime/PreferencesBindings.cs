@@ -1,26 +1,25 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Rebinds the SAME PlayerInput.actions asset used by gameplay, not a disconnected copy.
-public sealed class GamePreferencesBindings : IDisposable
+//Rebinds the SAME PlayerInput.actions asset used by gameplay, not a disconnected copy.
+public sealed class PreferencesBindings : System.IDisposable
 {
     private readonly InputActionAsset actions;
-    private readonly GamePreferencesService service;
+    private readonly PreferencesService service;
     private InputActionRebindingExtensions.RebindingOperation operation;
     private InputAction selectedAction;
     private int selectedBindingIndex;
     private string previousOverridePath;
     private bool wasEnabled;
 
-    public event Action BindingsChanged;
-    public event Action<bool> ListeningChanged;
-    public event Action<string> RebindRejected;
+    public event System.Action BindingsChanged;
+    public event System.Action<bool> ListeningChanged;
+    public event System.Action<string> RebindRejected;
 
-    public GamePreferencesBindings(InputActionAsset actions, GamePreferencesService service)
+    public PreferencesBindings(InputActionAsset actions, PreferencesService service)
     {
-        this.actions = actions ?? throw new ArgumentNullException(nameof(actions));
-        this.service = service ?? throw new ArgumentNullException(nameof(service));
+        this.actions = actions ?? throw new System.ArgumentNullException(nameof(actions));
+        this.service = service ?? throw new System.ArgumentNullException(nameof(service));
         LoadOverrides();
     }
 
@@ -51,7 +50,7 @@ public sealed class GamePreferencesBindings : IDisposable
         string path = binding.effectivePath;
 
         if (binding.isComposite || string.IsNullOrEmpty(path) ||
-            !path.StartsWith("<Keyboard>/", StringComparison.OrdinalIgnoreCase))
+            !path.StartsWith("<Keyboard>/", System.StringComparison.OrdinalIgnoreCase))
         {
             return false;
         }
@@ -69,8 +68,8 @@ public sealed class GamePreferencesBindings : IDisposable
         operation = action.PerformInteractiveRebinding(bindingIndex)
             .WithControlsHavingToMatchPath("<Keyboard>/*")
             .WithCancelingThrough("<Keyboard>/escape")
-            .OnComplete(OnRebindCompleted)
-            .OnCancel(OnRebindCanceled);
+            .OnComplete(RebindCompleted)
+            .OnCancel(RebindCanceled);
 
         ListeningChanged?.Invoke(true);
         operation.Start();
@@ -101,7 +100,6 @@ public sealed class GamePreferencesBindings : IDisposable
     private void LoadOverrides()
     {
         string json = service.GetBindingOverridesJson();
-
         if (string.IsNullOrEmpty(json))
         {
             return;
@@ -111,9 +109,9 @@ public sealed class GamePreferencesBindings : IDisposable
         {
             actions.LoadBindingOverridesFromJson(json);
         }
-        catch (Exception exception)
+        catch (System.Exception exception)
         {
-            Debug.LogWarning($"Invalid input overrides, resetting: {exception.Message}");
+            Debug.LogWarning($"조작 키 설정을 불러오는 중 오류가 발생했습니다: {exception.Message}");
             actions.RemoveAllBindingOverrides();
             service.SetBindingOverridesJson(string.Empty);
         }
@@ -122,10 +120,11 @@ public sealed class GamePreferencesBindings : IDisposable
     private bool TryFindBinding(string actionName, int bindingIndex, out InputAction action)
     {
         action = actions.FindAction(actionName, false);
-        return action != null && bindingIndex >= 0 && bindingIndex < action.bindings.Count;
+        return action != null &&
+            bindingIndex >= 0 && bindingIndex < action.bindings.Count;
     }
 
-    private void OnRebindCompleted(InputActionRebindingExtensions.RebindingOperation completed)
+    private void RebindCompleted(InputActionRebindingExtensions.RebindingOperation completed)
     {
         string candidate = selectedAction.bindings[selectedBindingIndex].effectivePath;
         bool conflict = HasConflict(selectedAction, selectedBindingIndex, candidate);
@@ -148,7 +147,7 @@ public sealed class GamePreferencesBindings : IDisposable
         }
     }
 
-    private void OnRebindCanceled(InputActionRebindingExtensions.RebindingOperation canceled)
+    private void RebindCanceled(InputActionRebindingExtensions.RebindingOperation canceled)
     {
         CleanupRebind();
         BindingsChanged?.Invoke();
@@ -188,7 +187,7 @@ public sealed class GamePreferencesBindings : IDisposable
             return false;
         }
 
-        // Within the same action map; intentional duplicates across maps are allowed.
+        //Within the same action map; intentional duplicates across maps are allowed.
         foreach (InputAction otherAction in action.actionMap.actions)
         {
             for (int i = 0; i < otherAction.bindings.Count; i++)
@@ -199,9 +198,8 @@ public sealed class GamePreferencesBindings : IDisposable
                 }
 
                 InputBinding other = otherAction.bindings[i];
-
                 if (!other.isComposite && string.Equals(other.effectivePath, path,
-                    StringComparison.OrdinalIgnoreCase))
+                    System.StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }
